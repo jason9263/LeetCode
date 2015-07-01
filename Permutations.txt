@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        
+        vector<vector<int>> result;
+        
+        vector<int> temp;
+        
+        if(nums.size() == 0){
+            return result;
+        }
+        
+        else if(nums.size() == 1){
+            temp.push_back(nums[0]);
+            result.push_back(temp);
+            return result;
+        }
+        
+        
+        else if(nums.size() >= 2){
+            temp.push_back(nums[0]);
+            result.push_back(temp);
+            
+            
+            
+        for(int i = 1; i < nums.size() ; i++){
+            
+            int rsize = result.size();
+            
+            for(int j = 0 ; j < rsize; j++){
+                
+                temp = result[j];
+                
+                for(int k = 0;k < temp.size(); k++ ){
+                    
+                    vector<int> pretemp = temp;
+                    pretemp.insert(pretemp.begin()+k,nums[i]);
+                    result.push_back(pretemp);
+                }
+                
+                result[j].push_back(nums[i]);
+            }
+        }
+            
+            
+            return result;
+        }
+        
+    }
+};

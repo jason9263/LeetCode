@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        
+        int sizep = prices.size();
+        
+        int profit = 0;
+        
+        if(sizep == 0 || sizep == 1){
+            profit = 0;
+            return profit;
+        }
+        
+        else {
+            
+            int indexfirst = 1;
+            int indexsecond = 0;
+            
+            
+            while(indexfirst < sizep){
+                while(indexfirst < sizep && prices[indexfirst] > prices[indexfirst-1] ){
+                    profit = profit + prices[indexfirst] - prices[indexsecond];
+                    indexsecond = indexfirst;
+                    indexfirst++;
+                    
+                }
+                
+                while(indexfirst < sizep  && prices[indexfirst] <= prices[indexfirst-1] ){
+                    indexsecond = indexfirst;
+                    indexfirst++;
+                }
+                
+            }
+            
+            return profit;
+            
+        }
+        
+    }
+};

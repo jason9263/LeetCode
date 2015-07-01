@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+     
+     int onecount = 0;
+     int res = 0;
+     int temp = 0;
+     
+     
+     for (int i = 31; i >=0 ; i--){
+         res = n / pow(2,i);
+         if (res == 1){
+             onecount ++;
+            
+         }else{
+             onecount = onecount;
+         }
+         
+         n = n - res*pow(2,i);
+         
+         
+     }
+     
+     return onecount;
+     
+        
+    }
+};
