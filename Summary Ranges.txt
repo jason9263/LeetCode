@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<string> summaryRanges(vector<int>& nums) {
+     
+     vector<string>  result;
+     if(nums.size() == 0){
+         return result;
+     }
+     
+     if(nums.size() == 1){
+        string temp = to_string(nums[0]);
+        result.push_back(temp);
+        return result;
+     }
+     
+     int i = nums.size();
+     int tail = 0;
+     int head = 0;
+     
+     while(i > 0){
+        
+        if(head < (nums.size()-1) && (nums[head+1] - nums[head] == 1) 
+
+){
+            head++;
+            
+        }else{
+            
+             if( head == tail){
+            string temp = to_string(nums[tail]) ;
+            result.push_back(temp);
+            
+        }
+            
+         else {
+            string temp = to_string(nums[tail]) + "->" + to_string
+
+(nums[head]) ;
+            result.push_back(temp);
+
+        }
+        
+        head = head + 1;
+        tail = head;
+            
+            
+            
+        }
+        
+         i--;
+     }
+     
+     return result;
+
+        
+    }
+};
