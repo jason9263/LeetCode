@@ -1,0 +1,47 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> stackp;
+        
+        if(s.length() == 0){
+            return true;
+        }else if(s.length() == 1){
+            return false;
+        }else{
+            int slen = s.length();
+            int index = 0;
+            
+            while(index < slen){
+                if(s.at(index) == '('||  s.at(index) == '{'|| s.at(index) == '['){
+                    
+                         stackp.push(s.at(index));
+                    
+                }else if(s.at(index == ')' || s.at(index) ==  ']' || s.at(index) == '}')){
+                    if(stackp.size() >0 && s.at(index) == ')' && stackp.top() == '('){
+                          stackp.pop();
+                 
+                    }else if(stackp.size() >0 &&s.at(index) == ']' && stackp.top() == '['){
+                   stackp.pop();
+                    }else if(stackp.size() >0 &&s.at(index) == '}' && stackp.top() == '{'){
+                  stackp.pop();
+                    }else{
+                        return false;
+                    }
+                    
+                }else{
+                    return false;
+                }
+                
+                
+                index++;
+            }
+            
+            if(stackp.size() == 0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+    }
+};
