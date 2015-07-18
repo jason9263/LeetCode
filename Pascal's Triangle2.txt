@@ -1,0 +1,54 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        
+        vector<int> result;
+        
+        if(rowIndex < 0){
+            return result;    
+        }
+        
+        if(rowIndex == 0){
+            result.push_back(1);
+            return result;
+        }
+        
+        if(rowIndex == 1){
+            result.push_back(1);
+            result.push_back(1);
+            return result;
+        }
+        
+            result.push_back(1);
+            result.push_back(1);
+            
+            
+	vector<int> tempresult;
+	tempresult = result;
+
+	if (rowIndex >= 2){
+		int i = 1;
+		while (i < rowIndex){
+
+			int size = result.size();
+
+
+			for (int j = 1; j < i + 1; j++){
+				int temp = tempresult[j - 1] + tempresult[j];
+				result[j] = temp;
+
+			}
+			result.push_back(1);
+			tempresult = result;
+			i++;
+
+		}
+
+
+	}
+
+        
+        
+        
+    }
+};
