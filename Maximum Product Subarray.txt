@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        
+        
+        if(nums.size() == 0){
+            return 0;
+        }
+        
+        if(nums.size() == 1){
+            return nums[0];
+        }
+        
+        
+        
+        int res = nums[0];
+        int minlocal = nums[0];
+        int maxlocal = nums[0];
+        
+        int maxglobal = nums[0];
+        
+        
+        for(int i = 1 ; i < nums.size(); i++){
+            int tempmaxlocal = maxlocal;
+            
+            maxlocal = max(max(maxlocal*nums[i], minlocal*nums[i]), nums[i]);
+            minlocal = min(min(minlocal*nums[i], tempmaxlocal*nums[i]), nums[i]);
+            
+            maxglobal = max(maxlocal,maxglobal);
+        }
+        
+        return maxglobal;
+    }
+};
