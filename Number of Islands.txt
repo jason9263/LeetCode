@@ -1,0 +1,84 @@
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        //find each 1
+        int row = grid.size();
+        if(row == 0){
+            return 0;
+        }
+        
+        int col = grid[0].size() ;
+        
+        if(col == 0){
+            return 0;
+        }
+        
+        
+        vector<vector<int>> result(row,vector<int>(col,0));
+        
+        for(int i = 0 ; i < row; i++){
+            for(int j = 0; j < col ; j++){
+                if(grid[i][j] == '1'){
+                    result[i][j] = grid[i][j] - '0';
+                }
+                
+            }
+        }
+        
+        
+        int sign = 2;
+        for(int i = 0 ; i < row; i++){
+            for(int j = 0; j < col; j++){
+                if(result[i][j] == 1){
+                    Flood(i,j, result,sign ,row, col);
+                    sign++;
+                }else{
+                    
+                }
+            }
+        }
+        
+        
+        return sign - 2;
+        
+        
+        
+    }
+    
+    void Flood(int i , int j, vector<vector<int>> & grid,int sign, int row, int col){
+        
+        if(grid[i][j] == 1){
+            grid[i][j] = sign;
+            
+            if(i - 1 >= 0 && grid[i-1][j] == 1){
+                Flood(i-1, j , grid,sign, row, col);
+            }
+            
+            if(i+1 <= row -1 && grid[i+1][j] == 1){
+                Flood(i+1,j,grid,sign,row, col);
+            }
+            
+            if(j-1 >= 0 && grid[i][j-1] == 1){
+                Flood(i,j-1,grid,sign, row, col);
+            }
+            
+            
+            if(j + 1 <= col -1 && grid[i][j+1] == 1){
+                Flood(i,j+1,grid, sign , row, col);
+            }
+            
+            
+        }else{
+            return;
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+};
