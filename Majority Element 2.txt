@@ -1,0 +1,82 @@
+class Solution {
+    
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        
+        vector<int> result;
+        int n = nums.size();
+        
+        if(n == 0){
+            return result;
+        }
+        
+        if(n == 1){
+            result.push_back(nums[0]);
+            return result;
+        }
+        
+        
+ 
+        
+        
+        
+        
+        int samplea = 0;
+        int sampleb = 0;
+        int counta = 0;
+        int countb = 0;
+        
+        
+        for(auto &a:nums){
+            if(a == samplea){
+                counta++;
+            }else if(a == sampleb){
+                countb++;
+            }else if(counta == 0){
+                samplea = a;
+                counta = 1;
+            }else if(countb == 0){
+                sampleb = a;
+                countb = 1;
+            }else{
+                counta --;
+                countb--;
+            }
+        }
+        
+        
+        
+        counta = 0;
+        countb = 0;
+        
+        for(auto &a :nums){
+            if(a == samplea){
+                counta++;
+            }
+            
+            else if(a == sampleb && samplea != sampleb){
+                countb++;
+            }
+        }
+        
+        cout<< samplea <<"  "<< counta<< endl;
+        cout<< sampleb << "   "<< countb << endl;
+        
+        if(counta > n/3){
+            result.push_back(samplea);
+        }
+        
+        if(countb > n/3){
+            result.push_back(sampleb);
+        }
+        
+        
+        return result;
+        
+    }
+    
+    
+    
+    
+    
+};
