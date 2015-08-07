@@ -1,0 +1,62 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if(divisor == 0 || dividend == INT_MIN && divisor == -1){
+            return INT_MAX;
+        }
+        
+        if(dividend == 0 || divisor == INT_MIN && divisor != INT_MIN){
+            return 0;
+        }
+        
+        
+        if(divisor == INT_MIN && dividend == INT_MIN){
+            return 1;
+        }
+        
+        if(divisor == 1){
+            return dividend;
+        }
+        
+        int sign = 1;
+        if(divisor < 0){
+            sign = (-1) * sign;
+        }
+        
+        if(dividend  < 0){
+            sign = (-1) * sign;
+        }
+        
+        unsigned long long lend = abs((long long) dividend);
+        unsigned long long lsor = abs((long long) divisor);
+        unsigned long long tempsor = lsor;
+        unsigned long long step  = 0;
+        
+        
+        
+        while(lsor < lend){
+            lsor = lsor << 1;
+            step++;
+        }
+        
+        
+        
+        int result = 0;
+        
+        while(lend >= tempsor){
+            if(lend >= lsor){
+                lend = lend - lsor;
+                result = result + (1<<step);
+            }
+            step --;
+            lsor = lsor >> 1;
+            
+        }
+        
+        
+        
+        return result* (sign);
+        
+        
+    }
+};
