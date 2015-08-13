@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int,int> mapping;
+        int index = 0;
+        
+        if(nums.size() <= 1){
+            return false;
+        }
+        
+        int sizenums = nums.size();
+        int i = 0;
+        
+        while(i < sizenums){
+            if(mapping.find(nums[i]) == mapping.end()){
+                mapping[nums[i]] = i;
+            }else{
+                if(i- mapping[nums[i]] <= k){
+                    return true;
+                }else{
+                    mapping[nums[i]] = i;
+                }
+            }
+            i++;
+        }
+        
+        return false;
+        
+        
+        
+    }
+};

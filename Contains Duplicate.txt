@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        
+        int sizenums = nums.size();
+        
+        int i = 0;
+     
+        set<int> char_count;
+        
+        while( i < sizenums){
+        
+            
+            if(char_count.find(nums[i]) == char_count.end()){
+                char_count.insert(nums[i]);
+                i++;
+            }else{
+               return true;
+            }    
+        }
+        
+        return false;
+
+    }
+};

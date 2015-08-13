@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int calculate(string s) {
+        
+        int slen = s.length();
+        int res = 0;
+        stack<int> signstack;
+        
+        signstack.push(1);
+        signstack.push(1);
+        
+        if(slen == 0){
+            return 0;
+        }
+        
+
+        
+        
+        for(int i = 0; i< slen; i++){
+            
+            cout<<s.at(i);
+            
+            if( s.at(i) >= '0' && s.at(i) <= '9'){
+                
+                
+                int num = 0;
+             
+                while( i < slen && s.at(i) >= '0' && s.at(i) <= '9'){
+                    num = num * 10 + s.at(i) - '0';
+                    i++;
+                }
+                res = res +  signstack.top() * num;
+                signstack.pop();
+                i--;
+
+            }
+            
+            else if(s.at(i) == ')'){
+                signstack.pop();
+            }else if(s.at(i) == ' '){
+                continue;
+            }else if(s.at(i) == '('){
+               signstack.push(1 * signstack.top());
+            }else if(s.at(i) == '+'){
+                signstack.push(1*signstack.top());
+            }else if(s.at(i) == '-'){
+                signstack.push((-1)*signstack.top());
+            }
+            
+            
+            
+        }
+        
+        return res;
+        
+    }
+};

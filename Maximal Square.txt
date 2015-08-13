@@ -1,0 +1,65 @@
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int row = matrix.size();
+        
+        if(row == 0){
+            return 0;
+        }
+        
+        
+        int col = matrix[0].size();
+        
+        if(col == 0){
+            return 0;
+        }
+        
+        vector<vector<int>> result(row,vector<int>(col,0));
+      
+        
+        for(int i = 0 ; i < col; i++){
+            if(matrix[0][i] == '1'){
+                result[0][i] = 1;
+            }
+           
+        }
+        
+        
+        for(int j = 0; j < row; j++){
+                if(matrix[j][0] == '1'){
+                    result[j][0] = 1;
+                }
+        }
+        
+ 
+        
+        for(int i = 1; i < row; i++){
+            for(int j = 1; j < col ; j++){
+                if( matrix[i][j] == '1'){
+
+                            result[i][j]  = min(result[i-1][j-1], min(result[i-1][j], result[i][j-1])) + 1;
+      
+                }
+                else{
+                        result[i][j] = 0;
+                    }
+            }
+        }
+        
+        
+        
+        
+        int maxv = 0;
+        
+        for(int i = 0; i < row; i++){
+            for(int j = 0 ; j < col; j++){
+                    maxv = max(result[i][j], maxv);        
+            }
+        }
+        
+        
+        
+        return maxv*maxv;
+        
+    }
+};

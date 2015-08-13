@@ -1,0 +1,44 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if(s.size() <= 1){
+            return true;
+        }
+        
+        
+        int index = 0;
+        unordered_map <char,char> mapping;
+        while(index < s.size()){
+            char temps = s.at(index);
+            char tempt = t.at(index);
+            
+            if(mapping.find(temps) == mapping.end()){
+                mapping[temps] = tempt;
+            }else{
+                if(mapping[temps] != tempt){
+                    return false;
+                }
+            }
+            
+            index++;
+        }
+        
+        
+        unordered_set<char> charset;
+        unordered_map<char, char>:: iterator it = mapping.begin();
+        
+        
+        for(; it != mapping.end(); ++it){
+            
+            if(charset.find(it->second) != charset.end()){
+                return false;
+            }else{
+                charset.insert(it->second);
+            }
+        }
+        
+        return true;
+        
+        
+    }
+};

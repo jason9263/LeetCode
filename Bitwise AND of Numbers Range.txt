@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        
+        int d = INT_MAX;
+        
+        for(int i = 0 ; i < 32; i++){
+            if((m & d) != (n & d)){
+                d <<= 1;
+            }else{
+                break;
+            }
+        }
+        
+        return m & d;
+        
+        
+    }
+};
