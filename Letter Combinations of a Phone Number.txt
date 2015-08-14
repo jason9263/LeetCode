@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        
+        vector<string> result;
+        if(digits.size() == 0){
+            return result;
+        }
+        
+        
+        
+        string temps(digits.size(),' ');
+        string numbermap [] = {" ","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"}; 
+        PriviteDfs( digits,numbermap, result,temps,0);
+        return result;
+    }
+    
+    
+   void PriviteDfs(string digits, string numbermap[],vector<string> &result,string temps ,int step ){
+       
+    if(step == temps.size()){
+        result.push_back(temps);
+        return ;
+    }
+       string stepstring = numbermap[digits[step]-'0'];
+       
+       int len = stepstring.length();
+       
+       for(int i = 0 ; i < len; i++ ){
+           temps[step] = stepstring.at(i);
+           PriviteDfs(digits,numbermap,result,temps,step+1);
+       }
+       
+    }
+    
+};
