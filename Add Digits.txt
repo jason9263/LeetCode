@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int addDigits(int num) {
+        
+        int result = 0;
+        if(num == 0){
+            return 0; 
+        }
+        result = ((num -1 ) % 9 ) + 1;
+         
+        return result;
+        
+        
+    }
+};
