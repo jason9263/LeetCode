@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        
+     vector<int> result(1,1);
+
+     
+     //starting the loop
+     int step = 0;
+     
+     int L2 = 0;
+     int L3 = 0;
+     int L5 = 0;
+     
+     while(step < n-1){
+         int temp2 = 2 * result[L2];
+         int temp3 = 3 * result[L3];
+         int temp5 = 5 * result[L5];
+         
+         int temp = min( temp2, min(temp3, temp5));
+         
+         if(temp == temp2){
+             L2++;
+         }
+         
+         if(temp == temp3){
+             L3++;
+         }
+         
+         if(temp == temp5){
+             L5++;
+         }
+         
+         
+         step++;
+         result.push_back(temp);
+         
+         
+     }
+     
+     
+     return result[n-1];
+     
+        
+    }
+};
