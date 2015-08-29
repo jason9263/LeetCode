@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        
+        int lenword1 = word1.length();
+        int lenword2 = word2.length();
+
+        if (lenword1 == 0 || lenword2 == 0){
+            return max(lenword1, lenword2);
+        }
+
+        vector<vector<int>> worddistance(lenword1 + 1, vector<int>(lenword2 + 1, 0));
+
+
+        for (int i = 0; i <= lenword1; i++){
+            worddistance[i][0] = i;
+        }
+
+        for (int j = 0; j <= lenword2; j++){
+            worddistance[0][j] = j;
+        }
+
+        for (int i = 1; i <= lenword1; i++){
+            for (int j = 1; j <= lenword2; j++){
+
+                int temp = 0;
+
+                if (word1[i-1] == word2[j-1]){
+                    
+                    temp = 0;
+                    
+                }
+                else{
+                    
+                    temp = 1;
+                    
+                }
+
+                worddistance[i][j] = min(worddistance[i-1][j-1] + temp, min(worddistance[i-1][j] + 1, worddistance[i][j-1] + 1));
+            }
+        }
+
+        return worddistance[lenword1][lenword2];
+        
+    }
+};
