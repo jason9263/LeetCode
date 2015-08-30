@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        vector<int> result;
+        
+        
+        int n = 0;
+        
+        for(auto a:nums){
+            n = a^ n;
+        }
+        
+        int x = 0;
+        int y = 0;
+        
+        
+        n = n & (~(n-1));
+        
+        
+        for(auto a:nums){
+            if((a & n) == 0){
+                x = x ^ a;
+            }else{
+                y = y ^ a;
+            }
+        }
+        
+        result.push_back(x);
+        result.push_back(y);
+        
+        return result;
+        
+        
+    }
+};
