@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> lefttoright;
+        lefttoright.push_back(nums[0]);
+        
+        int temp = 1;
+        
+        for(int i = 1;i < nums.size();i++){
+            temp = temp * nums[i-1];
+            lefttoright.push_back(temp);
+        }
+        
+        vector<int> righttoleft(nums.size(),nums[nums.size()-1]);
+        
+        
+        temp = 1;
+        
+        for(int i = nums.size()-2;i >= 0 ; i--){
+        temp = nums[i+1] * temp;
+        righttoleft[i] = temp;
+        }
+        
+        vector<int> result(nums.size(),0);
+        
+        for(int i = 1 ; i < nums.size()-1; i++){
+            result[i] = lefttoright[i] * righttoleft[i];
+        }
+        
+        result[0] = righttoleft[0];
+        result[nums.size()-1] = lefttoright[nums.size()-1];
+        
+        return result;
+        
+    }
+};
