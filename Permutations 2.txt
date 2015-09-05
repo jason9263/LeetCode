@@ -1,0 +1,77 @@
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        
+        int snums = nums.size();
+        vector<int> out;
+        vector<vector<int>> result;
+        
+        if(nums.size() == 0){
+            return result;
+        }
+        
+        if(nums.size() == 1){
+            out.push_back(nums[0]);
+            result.push_back(out);
+            return result;
+        }
+        
+        int level = 0;
+        
+        pers(nums,out,result,level);
+        
+        return result;
+        
+        
+    }
+
+
+    void swap(int i, int j , vector<int> &nums){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+    bool find(vector<int> & nums, int level , int index){
+        int snums = nums.size();
+        for(int i = level ; i <= index; i++){
+            if(nums[i] == nums[index] && i != index){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    
+    void pers(vector<int> &nums, vector<int> &out, vector<vector<int>> &result, int level){
+        
+        int snums = nums.size();
+        
+        if(level == snums){
+            result.push_back(out);
+            return;
+        }
+        
+        for(int i = level; i < snums; i++){
+            
+            if(find(nums,level, i)){
+                
+            swap(level, i, nums);
+            out.push_back(nums[level]);
+            
+            pers(nums,out,result,level+1);
+            
+            out.pop_back();
+            swap(level,i, nums);
+            
+            }
+            
+
+        }
+
+        
+    }
+    
+
+};
