@@ -1,0 +1,57 @@
+class LRUCache{
+private:
+    int _cap;
+    list<pair<int,int>> _list;
+    unordered_map<int,list<pair<int,int>> :: iterator> _map;
+    
+    
+    
+public:
+    LRUCache(int capacity) {
+        _cap = capacity;
+    }
+    
+    int get(int key) {
+        auto it = _map.find(key);
+        
+        if(it != _map.end()){
+            _list.splice(_list.begin(), _list,it->second);
+            return it->second->second;
+        }
+        
+        return -1;
+    }
+    
+    void set(int key, int value) {
+        auto it = _map.find(key);
+        
+        if(it != _map.end()){
+            _list.erase(it->second);
+        }
+        
+        
+        _list.push_front(make_pair(key,value));
+        
+        _map[key] = _list.begin();
+        
+        
+        if(_map.size() > _cap){
+            int k = _list.rbegin()->first;
+            _list.pop_back();
+            _map.erase(k);
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+};
