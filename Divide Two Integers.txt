@@ -1,62 +1,42 @@
 class Solution {
 public:
     int divide(int dividend, int divisor) {
-        if(divisor == 0 || dividend == INT_MIN && divisor == -1){
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        
+        if(divisor == 0 || divisor == -1 && dividend == INT_MIN){
             return INT_MAX;
         }
-        
-        if(dividend == 0 || divisor == INT_MIN && divisor != INT_MIN){
-            return 0;
-        }
-        
-        
-        if(divisor == INT_MIN && dividend == INT_MIN){
-            return 1;
-        }
-        
-        if(divisor == 1){
-            return dividend;
-        }
-        
+
         int sign = 1;
-        if(divisor < 0){
-            sign = (-1) * sign;
+        
+        if (dividend<0){sign = -sign;}
+        if (divisor<0){sign = -sign;}
+         
+        unsigned long long tmp = abs((long long)dividend);
+        unsigned long long tmp2 = abs((long long)divisor);               
+        unsigned long c = 1;
+
+        while (tmp>tmp2){
+            tmp2 = tmp2<<1;    
+            c = c<<1;
         }
-        
-        if(dividend  < 0){
-            sign = (-1) * sign;
-        }
-        
-        unsigned long long lend = abs((long long) dividend);
-        unsigned long long lsor = abs((long long) divisor);
-        unsigned long long tempsor = lsor;
-        unsigned long long step  = 0;
-        
-        
-        
-        while(lsor < lend){
-            lsor = lsor << 1;
-            step++;
-        }
-        
-        
-        
-        int result = 0;
-        
-        while(lend >= tempsor){
-            if(lend >= lsor){
-                lend = lend - lsor;
-                result = result + (1<<step);
+         
+        int res = 0;
+        while (tmp >= abs((long long)divisor)){
+
+            while (tmp>=tmp2){
+
+                tmp -= tmp2;
+
+                res = res+c;
             }
-            step --;
-            lsor = lsor >> 1;
-            
+
+            tmp2=tmp2>>1;
+            c=c>>1;    
+
         }
-        
-        
-        
-        return result* (sign);
-        
-        
+         
+        return sign*res;
     }
 };
