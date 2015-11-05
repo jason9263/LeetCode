@@ -1,0 +1,52 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        //ATGC's binary representation is different
+        vector<string> res;
+        
+        unordered_map <int,int> m;
+        
+        int lens = s.length();
+        
+        if(lens <= 10){
+            return res;
+        }
+        
+        
+        int c = 0;
+        int i = 0;
+        int mark = 0x7ffffff;
+        
+        while(i < 9){
+            c = (c<<3 )|(7&s[i++]);
+        }
+        
+        //Finish the 27 bits
+      
+        
+        while(i < lens){
+            c = ((c & mark)<< 3 | (7&s[i++])); 
+            
+            if(m.find(c) != m.end()){
+                
+                if(m[c] == 1){
+                    res.push_back(s.substr(i-10,10));
+                }
+                
+                m[c]++;
+                
+            }else{
+                    m[c] = 1;
+                }
+
+            
+        }
+        
+        
+        return res;
+        
+        
+        
+        
+    }
+};
