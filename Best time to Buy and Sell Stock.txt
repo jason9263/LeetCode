@@ -22,3 +22,27 @@ public:
         
     }
 };
+
+///////////////////////////////////////////////////////////////
+///class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int lens = prices.size();
+        
+        if(lens == 0 || lens == 1){
+            return 0;
+        }
+
+        
+        int minval = prices[0];
+        int maxpro = 0;
+        
+        for (int i = 0 ; i < lens; i++){
+            minval = min(prices[i], minval);
+            maxpro = max(maxpro, prices[i] - minval);
+        }
+        
+        return maxpro;
+        
+    }
+};
