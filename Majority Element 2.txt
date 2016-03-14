@@ -14,13 +14,7 @@ public:
             result.push_back(nums[0]);
             return result;
         }
-        
-        
- 
-        
-        
-        
-        
+
         int samplea = 0;
         int sampleb = 0;
         int counta = 0;
