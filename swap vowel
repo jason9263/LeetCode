@@ -1,0 +1,38 @@
+public class Solution {
+
+    public boolean helper(char t){
+        if(t == 'a'||t == 'e'||t == 'i'||t == 'o'||t == 'u'||t == 'A'||t == 'E'||t == 'I'||t == 'O'||t == 'U'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public String reverseVowels(String s) {
+
+        char[] c = s.toCharArray();
+        int i = 0;
+        int j = s.length() -1;
+
+        while(i < j){
+            while(i < j && !helper(c[i])){
+                i++;
+            }
+
+            while(i < j && !helper(c[j])){
+                j--;
+            }
+
+            char temp = c[i];
+            c[i] = c[j];
+            c[j] = temp;
+            i++;
+            j--;
+
+        }
+
+        return new String(c);
+
+    }
+}
