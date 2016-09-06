@@ -10,28 +10,43 @@
 public class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<String>();
-        if(root != null){
-             helper(root,"",result);
+        
+        if(root ==  null){
+            return result;
         }
+        
+        String temp = "";
+        
+        helper(result,root,temp);
+        
         return result;
+        
     }
-
-    public void helper(TreeNode root, String path, List<String> result){
+    
+    public void helper(List<String> result, TreeNode root,String temp){
+        
         if(root.left == null && root.right == null){
-            result.add(path+root.val);
-
+            temp = temp + Integer.toString(root.val);
+            result.add(temp);
+            return;
         }
-
-        if(root.right != null){
-            helper(root.right,path+ root.val + "->",result);
+        
+        
+        else if(root.left != null && root.right == null){
+            temp =  temp + Integer.toString(root.val) + "->";
+            helper(result,root.left,temp);
         }
-
-        if(root.left != null){
-            helper(root.left, path+ root.val + "->", result);
+        
+        else if(root.left == null && root.right != null){
+            temp =  temp + Integer.toString(root.val) + "->";
+            helper(result,root.right,temp);
         }
-
+        
+        else if(root.left != null && root.right != null){
+            temp = temp + Integer.toString(root.val) +"->" ;
+            helper(result,root.left,temp);
+            helper(result,root.right,temp);
+        }
+        
     }
-
-
-
 }

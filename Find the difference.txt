@@ -1,0 +1,34 @@
+public class Solution {
+    public char findTheDifference(String s, String t) {
+        
+        int [] map = new int[26];
+        
+        for(int i = 0; i < s.length(); i++){
+            int temp = s.charAt(i)-'a';
+            
+            map[temp] = map[temp] + 1;
+            
+            System.out.println(map[temp]);
+        }
+        
+        int index = 0;
+        
+        for(int i = 0; i < t.length(); i++){
+            int temp = t.charAt(i) - 'a';
+            
+            map[temp] = map[temp] -1;
+            
+            
+    
+            
+            if(map[temp] == -1){
+                index = i;
+                System.out.println("    " + index);
+                break;
+            }
+        }
+        
+        return t.charAt(index);
+        
+    }
+}
