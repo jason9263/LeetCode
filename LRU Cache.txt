@@ -1,0 +1,39 @@
+public class LRUCache {
+    
+    private Map<Integer,Integer> jm;
+    
+    public LRUCache(int capacity) {
+        jm = new JLinkedHashMap(capacity);
+    }
+    
+    public int get(int key) {
+        if(!jm.containsKey(key)){
+            return -1;
+        }else{
+            return jm.get(key);
+        }
+    }
+    
+    public void set(int key, int value) {
+        jm.put(key,value);
+    }
+    
+    
+    
+    
+    private static class JLinkedHashMap<K,V> extends  LinkedHashMap<K,V>{
+        int maximumCapacity;
+        
+        JLinkedHashMap(int maximumCapacity){
+            super(16,0.75f,true);
+            this.maximumCapacity = maximumCapacity;
+        }
+        
+        
+        protected boolean removeEldestEntry(Map.Entry eldest){
+            return this.size() > maximumCapacity;
+        }
+        
+        
+    }
+}
