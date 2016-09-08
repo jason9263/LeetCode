@@ -1,0 +1,40 @@
+public class Solution {
+    public int lengthLongestPath(String input) {
+        // the main idea is about dfs
+        String [] parts = input.split("\n");
+        
+        int maxLen = 0;
+        
+        Stack<Integer> js = new Stack<Integer>();
+        js.push(0);
+        
+        for(int i = 0; i < parts.length; i++){
+            String temps = parts[i];
+            //get the lev
+            int lev = temps.lastIndexOf("\t")+1;
+            int len = 0;
+            
+            // Find parent  +1, means increasing one more time
+            while(lev+1  < js.size()){
+                js.pop();
+            }
+                
+            
+            len = js.peek() + temps.length() + 1 - lev;                
+            
+            js.push(len);
+            
+            if(temps.contains(".")){
+            
+                maxLen = Math.max(len-1, maxLen);
+            
+                
+            }
+            
+        }
+        
+        return maxLen;
+        
+        
+    }
+}
