@@ -1,0 +1,172 @@
+https://www.sharelatex.com/project/56bc04f9ad59e40d76f7f86f
+https://www.sharelatex.com/project/56bc04f9ad59e40d76f7f86f
+\documentclass[a4paper,10pt]{article}
+
+%A Few Useful Packages
+\usepackage{marvosym}
+\usepackage{hyperref}
+\usepackage{fontspec} 					%for loading fonts
+\usepackage{xunicode,xltxtra,url,parskip} 	%other packages for formatting
+\RequirePackage{color,graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[big]{layaureo} 				%better formatting of the A4 page
+% an alternative to Layaureo can be ** \usepackage{fullpage} **
+\usepackage{supertabular} 				%for Grades
+\usepackage{titlesec}					%custom \section
+
+%Setup hyperref package, and colours for links
+\usepackage{hyperref}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
+
+%FONTS
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont[SmallCapsFont = Fontin SmallCaps]{Fontin}
+%%% modified for Karol Kozioł for ShareLaTeX use
+\setmainfont[
+SmallCapsFont = Fontin-SmallCaps.otf,
+BoldFont = Fontin-Bold.otf,
+ItalicFont = Fontin-Italic.otf
+]
+{Fontin.otf}
+%%%
+
+%CV Sections inspired by: 
+%http://stefano.italians.nl/archives/26
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{3pt}{3pt}
+%Tweak a bit the top margin
+%\addtolength{\voffset}{-1.3cm}
+
+%Italian hyphenation for the word: ''corporations''
+\hyphenation{im-pre-se}
+
+%-------------WATERMARK TEST [**not part of a CV**]---------------
+\usepackage[absolute]{textpos}
+
+\setlength{\TPHorizModule}{30mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{2mm}{0.65\paperheight}
+\setlength{\parindent}{0pt}
+
+%--------------------BEGIN DOCUMENT----------------------
+\begin{document}
+
+%WATERMARK TEST [**not part of a CV**]---------------
+%\font\wm=''Baskerville:color=787878'' at 8pt
+%\font\wmweb=''Baskerville:color=FF1493'' at 8pt
+%{\wm 
+%	\begin{textblock}{1}(0,0)
+%		\rotatebox{-90}{\parbox{500mm}{
+%			Typeset by Alessandro Plasmati with \XeTeX\  \today\ for 
+%			{\wmweb \href{http://www.aleplasmati.comuv.com}{aleplasmati.comuv.com}}
+%		}
+%	}
+%	\end{textblock}
+%}
+
+\pagestyle{empty} % non-numbered pages
+
+\font\fb=''[cmr10]'' %for use with \LaTeX command
+
+%--------------------TITLE-------------
+\par{\centering
+		{\Huge Junwei Jason \textsc{Zhang}
+	}\bigskip\par}
+
+%--------------------SECTIONS-----------------------------------
+%Section: Personal Data
+\section{Personal Data}
+
+\begin{tabular}{rl}
+   
+    \textsc{Address:}   & 6 Middle LN, Stony Brook, NY, 11790 \\
+    \textsc{Phone:}     & +631 416 9263\\
+    \textsc{email:}     & \href{mailto:junweizhang23@gmail.com}{junweizhang23@gmail.com}
+\end{tabular}
+
+
+%Section: Education
+\section{Education}
+\begin{tabular}{rl}	
+ \textsc{December} 2017 & PhD in \textsc{Applied Mathematics and Statistics}, \textbf{Stony Brook University}\\
+& | Major: Computational Mathematics\\
+&\normalsize \textsc{GPA}: 3.4/4.0 \\
+
+\textsc{May} 2013& Master Degree   \normalsize\textbf{University of Florida}\\
+& | Major: Computer Engineering\\
+&\normalsize \textsc{GPA}: 3.4/4.0\\
+
+\textsc{Fall} 2009 & Double Bachelor Degrees in \textbf{Shandong University}\\
+& | Major: Computer Science and  Mathematics\\
+&\textsc{GPA}: 3.5/4 \\
+
+\end{tabular}
+
+
+
+\section{Computer Skills and Research Field}
+\begin{tabular}{rl}
+ Basic Knowledge:& \textsc{c++} \textsc{Java} \textsc{Python} \textsc{php}, \textsc{Mysql},\textsc{PostgreSQL},\textsc{HTML},\textsc{Matlab},\textsc{Linux},\textsc{Hadoop} \\
+ Research Field:& \textsc{Computer Vision}, \textsc{Computer Graphics}, \textsc{Machine learning}, \textsc{Hadoop}  \\
+\end{tabular}
+
+%Section: Scholarships and additional info
+\section{Scholarships and Certificates}
+\begin{tabular}{rl}
+ \textsc{Sept.} 2013 & Special CS Department Chair Fellowship, Stony Brook, New York\normalsize\\
+\textsc{Sept.} 2011 & Achievement Award of Computer Information Science and Engineering\\ 
+\textsc{June} 2009 & Innovative Scholarship of Shandong University for Outstanding Thesis\\
+\textsc{December} 2008 & First Prize of China Mathematics modeling contest in Applied Mathematics \\
+\textsc{December} 2007 & First Prize of China Mathematics modeling contest in Applied Mathematics \\
+\end{tabular}
+
+
+
+%Section: Work Experience at the top
+\section{University of Florida Research and Project Experience}
+\begin{tabular}{r|p{11cm}}
+
+\textsc{Spring 2013} & Summer Intern at \textsc{Ocoos.com}\\&\footnotesize{During the internship, I develop the website front end using Sencha, PHP and Zend framework. I also write the whole PHP testing program through PHPUnit}\\\multicolumn{2}{c}{} \\
+
+
+ \emph{Fall 2012} & 2012 KDD (Knowledge discover and data mining) Cup Recommendation System of Blog\\&\footnotesize{Input data is over 17,000,000 user behavior records. Output is the products or famous stars which are recommended to users. I first clean the input data, for example formatting the input data, deleting the "zombie" data. I cut the whole data set into 10 different categories and utilize the k-fold cross-validation method to establish the learning model. Use the K-nearest-neighbor method to find the highest relative recommendation item}\\\multicolumn{2}{c}{} \\
+ 
+ 
+ \textsc{Spring 2012} & Map-Reduce scheme algorithm in Weather forecast \\&\footnotesize{ Input data is collected by the Florida government; Output result the weather forecast; I use the Map-Reduce  framework to process the whole pipeline. I first clean the data. The map function is computing the specific location weather situation based on the nearby weather data. The reduce function is computing the next step's result based the previous result. I have tested my  Map-Reduce algorithms result on 4*4, 8*8,32*32, 64*64 multi-core HPC computation center. }\\\multicolumn{2}{c}{} \\
+
+\end{tabular}
+
+
+%Section: Work Experience at the top
+\section{Stony Brook University Research and Project Experience}
+\begin{tabular}{r|p{11cm}}
+
+ \emph{Current} & Volume Preserving Mesh Parameterization Based on Optimal Mass Transportation\\&\footnotesize{Input data is the 3$D$ volume data; Output is the volume mesh parameterization result; I utilize spherical conformal mapping to cast the surface of original model to sphere; I compute the 3$D$ harmonic volume tetrahedron structure and calculate 
+ 3$D$ optimal mass transport mapping between the harmonic solid mesh and the target solid mesh.Especially, the final result is volume preservation result, which roots in the firm mathematics theory.}\\\multicolumn{2}{c}{} \\
+ 
+  \textsc{Fall 2015} & Area-preserving Mesh Parameterization for Poly-Annulus Surfaces Based
+on Optimal Mass Transportation \\&\footnotesize{Input the mesh with multi-boundaries of genus zero surface; Output is the parameterization of these complex surfaces; I use the Ricci Flow to cast the original mesh to unit circle. I use 2$D$ area-preserving method to compute the optimal mass transport mapping between the original mesh and the target measure mesh. Finally, I get the final parameterization result. }\\\multicolumn{2}{c}{
+ } \\
+ 
+ \textsc{Spring 2015} & Dentist Teaching Android App for Stony Brook University Dentist School \\&\footnotesize{Input is the 3D teeth model; Output the Android app. You can find my app in \href{https://github.com/jason9263/Teeth_Demo}{GitHub Teeth Demo }  }\\\multicolumn{2}{c}{
+ } \\
+ 
+ 
+  \textsc{Spring 2015} & Graph Representation Using Combinatorial Hodge Theory \\&\footnotesize{Input is the planar graph, for example USA train map; Output is the square titling representation of this USA train map; I first use the SIFT and Delaunay method to establish the triangulation mesh of the original graph. And then I use the combinatorial Hodge algorithm  to translate triangulation mesh to square titling graph. This method can be used in geographic information, document structure and data visualization}\\\multicolumn{2}{c}{
+ } \\
+ 
+\textsc{Summer 2014} & Space Filling Curves for 3D Sensor Networks with Complex Topology\\&\footnotesize{Input data is the massive sensor geographic location. Output is a dense curve which link most sensors in one line. I use holomorphic one form to establish the branch covering algorithm, finally getting the dense curve covering result, which can be used to deal with linear data flow processing or addressing the sensor covering problem}\\\multicolumn{2}{c}{} \\
+
+\textsc{Fall 2013} & Non-Rigid Image Registration with Markov Random Field\\&\footnotesize{Input data is the source image and the target image. Output is the morphing process and the corresponding feature registration result. I establish the Markov Random Field energy function between them and use the Tree-Re-weighted-Message passing techniques to get an approximate minimum value. It can be used in image registration }\\\multicolumn{2}{c}{} \\
+
+
+
+\end{tabular}
+
+%\newpage
+%\hypertarget{gmat}{\textsc{Gmat}\setmainfont{LMRoman10 Regular}\textregistered\setmainfont[SmallCapsFont=Fontin-SmallCaps]{Fontin-Regular}}
+
+%\XeTeXpdffile ''GMAT.pdf'' page 1 scaled 800
+
+\end{document}

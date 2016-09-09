@@ -1,0 +1,474 @@
+What's the relationship between PCA and SVD?
+
+Give an example of when you would need to use MCMC instead of monte carlo sampling?
+
+What's the difference between ridge and LASSO?
+
+Why (geometrically) does LASSO produce solutions with zero-valued coefficients (as opposed to LASSO ridge)?
+
+How do you pick which LASSO solution to use?
+
+When might you want to use ridge regression instead of traditional linear regression?
+
+What does it mean (practically) for a regression matrix to be "ill-conditioned?"
+
+Describe the problem of multi-colinearity and some ways you might identify and address it.
+
+What are some diagnostics you would use to evaluate the fit of a statistical model? Consider each model you listed in kind and if there are any diagnostics especially well suited for those models, discuss them.
+
+How do you interpret the values of the coefficients of a logistic regression?
+
+What does it mean when people say SVM is a "maximum margin" classifier?
+
+What is the purpose of dimensionality reduction?
+
+Is it beneficial to perform dimensionality reduction before fitting an SVM? Why or why not?
+
+What is the difference between metropolis and metropolis hastings?
+
+How would you evaluate the convergence of an MCMC?
+
+What is the purpose of burn-in and thinning in MCMC?
+
+What is meant by "effective sample size?"
+
+Under what conditions is PCA effective? What alternative dimensionality techniques are available if these conditions are not met?
+
+Do you understand the basics of the tools and techniques you claimed to understand?
+
+Do you know when they are or are not appropriate?
+
+Do you understand the assumptions underlying these techniques?
+
+What are examples of "embarassingly parallelizable" algorithms?
+
+Describe different NoSQL technologies you're familiar with, what they are good at, and what they are bad at.
+
+What kind of problems are well suited for Newton's method? Simplex? BFGS? SGD?
+
+What are "slack variables?"
+
+How can you modify k-means to produce soft class assignments?
+
+What is the relationship between PGMs and the chain rule?
+
+How does the "power method" work?
+
+How are sparse matrices special/useful?
+
+Why is the QR factorization often used to solve OLS regression problems instead of the better known matrix form of the normal equations?
+
+What are some uses for the hat matrix?
+
+Describe a constrained optimization problem and how you would tackle it.
+
+You are training an image classifier with limited data. What are some ways you can augment your dataset?
+
+Is it necessary to center and scale your data prior to performing PCA? Why or why not?
+
+Discuss the bias-variance tradeoff.
+
+What does cross-validation accomplish?
+
+What is the bootstrap?
+
+What are some business reasons you might want to use a decision tree model?
+
+Describe some of the different splitting rules used by different decision tree algorithms.
+
+What is the purpose of ensemble model?
+
+Why are random forests so effective, especially considering how weak individual trees in the ensemble generally are?
+
+How might you perform variable selection for any particular model?
+
+Why is logistic regression popular as a first-stab classification model?
+
+Why is "vectorization" such a powerful method for optimizing numerical code? What is going on that makes the code faster relative to alternatives like nested for loops?
+
+If you have 10 TBs of unstructured customer data , and you need to find some clever ways to extract valuable information of it, What do you do? Explain to me in the most technical level that you think.
+
+return the substring from string array according to given prefix
+
+What metrics would you use to track whether Uber's strategy of using paid advertising to acquire customers works? How would you then figure out an acceptable cost of customer acquisition?
+
+There is a pool of people who took Uber rides from two cities that were close in proximity, for example Menlo Park and Palo Alto, and any data you could think of could be collected. What data would you collect so that the city the passenger took a ride from could be determined? If some type of supervised classification algorithm was used to split the two populations, for example Support Vector Machine, what type of business decision would you make on points that appear close to the hyperplane?
+
+How to optimize surge pricing given data set.
+
+Given two string identify if they are anagrams, Given two strings find the longest common sub-string, How will you generate a password ofgiven length with uniform distribution of uppercase, lowercase, special character and numbers in it.
+
+Want to design a database similar to imdb, design it, and tell me the structure/fields so that 1. given a specific year, you can find top 5 grossing films 2. given an actor, return all his costars 3. all movies with more than 3 cast members.
+
+Written test is based on real time scenario about the product sales, orders.
+
+1. List out the second highest(by sales) sold products under each product category for a month.
+
+2. List out the products the products that are sold less than the last month based on sales.
+
+3. List out the products that are bought by more than one customer for a month
+
+4. Pivoting the sales for a product by month...
+
+Data Model: There are 3 questions based on the data modelling.
+
+1. Design model for a tata sky? It was explained in very detail with reporting requirements
+
+2. Design model for a scenario(given there) in star, snow flake schema
+
+3. Store sales, region, country...Design model.
+
+Write SQL to Find groups having exactly three different tags.
+
+Do you have an opinion between using k-means vs hierarchical clustering for cluster analysis.
+
+Write a SQL to explode the data from orders table based on quantity ordered for each product Ex: A product book if ordered with quantity 3, Then i should get the output as 3 rows with each record having quantity 1.
+
+How do you recover a failed insert statement which is loading millions of records into a table containing billions of records. Hint: oracle partitioning.
+
+Write a sql on sales fact table and product dimension to report products with highest revenue in each product group.
+
+How do you conduct a survey to know how many number of cars sold in a particular city? what are the techniques do you use for the accuracy?
+
+How to build a dictionary in such a way that it'd be efficient to search for all valid words which are permutations of a given string?
+
+How to build a classifier to distinguish between different possible locations where an audio sample was recorded?
+
+statistical analysis for machine learning, overfitting, regularization, and coding for binary search in 2D matrix. Explaining one of my projects. What would I do if I have different opinion with my boss? For the 2nd interview: more specific to the speech signal processing, e.g., sentence boundary detection from ASR.
+
+Describe linear regression vs. logistic regression. Explain advantages and drawbacks of SVM.
+
+Given a number, how to find a closest number in a series of floating point data.
+
+Provide details about LDA and Gibbs Sampling.
+
+Write a java program to calculate the frequency of the online series data.
+
+Please code up and send me a function that takes two integer arrays and returns their intersection. This answer must take less than n^2 time.
+
+A person using search engine to find something, you know nothing about her/him, nothing at all, how do you come up with am algorithm that will predict what she/he needs after the user types only a few letters ?
+
+HackerRank:Given a list of strings, group the anagrams.
+
+3rd round: Skype interview for 45 minutes.
+
+Round 3:How would you compare two recommendation systems? Many follow up questions over the same. Given a sorted array, return the index of that element which satisfies the property a[i] = i. How would you solve the problem if there array has duplicates?
+
+Round 4: Given an n*m integer matrix where value in each cell indicates the cost involved in reaching that cell. At any cell, you can either go to right/down. Move from Top left of the matrix to the bottom right of the matrix with the least cost. How did i implement the Spam filtering project mentioned on my resume?
+
+Round 5: Given 4 co-ordinates, find if they form a square. How did i implement the Collaborative Filtering algorithm(mentioned on my resume) How would you compare two recommendation systems? Many follow up questions over the same.
+
+Given a query and a document, highlight the query in the document and return a snippet of the document itself. Don't use existing large 3rd party libraries.
+
+We do pre-screening on the data to remove fraud threats -- so how do we find a data sample that we can use to determine a real representation of fraud events. Essentially: We use naive bayes (although he didn't really set up the question), and sometimes the probabilities don't work out when there is no data in the area we are looking.
+
+Suppose you have a matrix of numbers. How can you easily compute the sum of any rectangle (i.e. a range [row_start, row_end, col_start, col_end]) of those numbers? How would you code this?”
+
+Describe approaches to data mining of customer logs.
+
+Was asked about implementation details of convolutional neural networks (my research area) and how I would design a distributed system for production.
+
+Explain the benefits of the Map-Reduce framework.
+
+Why does one use MSE as a measure of quality. What is the scientific/mathematical reason for the same?
+
+First interview:
+
+1. Improve the product google glass by identifying objects in scene and populating information about it on screen.
+
+2. How to efficiently index a book based on words
+
+Second Interview:
+
+1. SQL - write a query to extract the first occurrences of sales according to person name (I am not very experienced in SQL and my answer might not have been very good. But he realized that about my background and moved on to programming questions).
+
+2. Write a function to find the 2nd highest number in an array - Easy to solve.
+
+3. Write a function to find the nth highest number - I kept giving solutions and he asked me to improve the time complexity at each step. First step - use quick sort to find nth order statistic Second step - to sort the function by merge sort and return nth order statistic. Third step - if this function is called over and over again, use a hash table to store sorted version of array and return the nth statistic.
+
+4. How to efficiently index a book based on words
+
+5. Probability question: There's one box - has 12 black and 12 red cards, 2nd box has 24 black and 24 red; if you want to draw 2 cards at random from one of the 2 boxes, which box has the higher probability of getting the same color? He added, can you tell intuitively why the 2nd box has a higher probability - My solution was that at a step when you remove a card, say a red one, the second box still has a higher probability of drawing a red card than the first box and he said it is right.
+
+Given a list of tuples, return the user numbers that has the highest replying rate. Form: [(user id), (rate of sending out), (rate of reply)]
+
+Come up with some of the factors that could be used to produce certain algorithms ('people you may know,' and an algorithm to discover when a person is starting to search for new job).
+
+Concepts of classification and clustering; and a simple dp question which is quite similar to "Climbing Stairs"
+
+How you write a code to store a large matrix.
+
+Segment a long string into a set of valid words using a dictionary. Return false if the string cannot be segmented. What is the complexity of your solution?
+
+Find out k most frequent numbers from incoming stream of numbers one the fly.
+
+If there are some sparse data, how to do the modeling?
+
+Design question - design auto complete article search functionality.
+
+Given a matrix of following relationships between N LinkedIn users (with ids from 0 to N-1): * followingMatrix[i][j] == true iff user i is following user j * thus followingMatrix[i][j] doesn't imply followingMatrix[j][i]. * Let's also agree that followingMatrix[i][i] == false. * * An influencer is a user who is: * - followed by everyone else and * - not following anyone herself/himself * * This method should return the influencer's id in a given matrix of following relationships, * or return -1 if there is no influencer in this group. */
+
+Repeated DNA Sequences // DNA. // ACGT =&gt; chemicals // AAAACCCGGTTT // AACCGTACGT // input =&gt; string // count, of number of size 10 substrings which occurs more than once // AAAACCCGGTTT // AAAACCCGGT // AAACCCGGTT // AACCCGGTTT // AAAAAAAAAAAAAAA // A-10 substrigns of size 10 // input has 20 characters, 11 substrings
+
+There are three doors, and one of them has a car behind it and the other two have nothing. If you choose one door, what is your probability of choosing the door with the car? If after your choose, it is shown one of the other two doors had nothing behind it, would you switch doors from your current one to the one that's left? Why?
+
+Given you have a regression with m variables and another n are available, would you want to include them? What would you do next?
+
+Given a stream of numbers how would you keep track of the 1,000,000th largest one?
+
+How would you build a predictive model for guessing the value of 10,000 different stocks, given their past values.
+
+1.） 比较Array和LinkedList
+
+2.） 比较vector的实现（如何能够random access + push_back同时实现）具体如何做到random access的. From 1point 3acres bbs
+
+2.）HashTable的具体实现 （follow up到hashtable和hashmap的区别）
+
+3.）给freshman解释OOP， 说了reusablity，encapsulation，具体解释，解释的过程提到了inheritance，polymorphism 让我给具体inheritance的例子，这里讲了好久。
+
+4.）解释template
+
+5.）coding给了两道： string回文 和 linkedlist weave function其实就是merge how to evaluate performance of your model, ROC的一些follow up
+language model的知识，就是前面帖子提到的n-gram,讲了些Markov Model和hidden Markov sequence model
+rules和general machine learning techique的结合，什么时候用rule-based比较好，什么时候用general ML比较好; smoothing的问题
+
+1. 先谈简历，问你为什么开始对ML感兴趣
+2. 你在XX实习，这个项目是干嘛的, 你是怎么train data的
+3. 你另外一个项目是怎么做的，怎么评估它的好坏，有没有用到过Evaluation matrix，我说我一直只 confusion matrix
+4. 一篇文章里，怎么把所有heading找出来。
+5. 一篇文章里，如何把各个公司的名字找出来。如果我要用机器学习方面的方法你有什么方法。
+
+在yelp裡面搜寻餐厅，search engine会return回去a list of restaurant给使用者，如何知道return回去的list是使用者想看的？要用哪些metrics来决定要return哪些餐厅给使用者？如果要用data mining/ML的approach做要怎麽做?
+Ans: 这题问了很多follow-up 主要看你对Yelp的功能熟不熟，还有能不能想出具有代表性的feature来做machine learning.
+
+Implement一个data structure，insert/delete/return a random element的time complexity都是O(1).
+
+问怎麽帮使用者filter出他们会interested的content.
+
+Return k most frequent words given a search history，答scan之后建hash map，然后丢进heap裡面一个一个pop。接着要我分析time/space complexity，每一步都分析了，最后一步建heap是n，然后pop_heap答是klog(n).
+
+问了一下random forest的原理(因为我之前做过)。但我感觉面试官对RF不是太熟，因为他问我RF要怎麽知道model对不对，我说RF可以不用另外做cross validation，因为每次RF在bootstrapping的时候会有out-of-bag (OOB) sample，Python scikit-learn裡面就可以去捞OOB error.
+
+如果给一个hash map (or any other data structure)，裡面存的是工人名字，和他们做的工作list, i.e., key是每一个worker的名字，values是他们take的project名字 (P1, P3, P5 etc) as follows:
+
+DICT[WORKER_1] = ["P1", "P3", "P10"]
+
+DICT[WORKER_2] = ["P2", "P4", "P5"]
+
+每次worker take project之后的时间，也会被记录下来,请想出一个metrics来evaluate which worker is more efficient in finishing projects.
+
+Naive bayesian的assumption 是什么？
+
+Ans :independent.
+
+如果发现不是independent怎么办？ 课退了好久，只能说用full bayesian，但是可能需要比较多得data，因为要算协方差矩阵。。他说是对的.
+什么是OUTLIER.. 忘了，问是不是跟overfitting有关，于是问什么是overfitting, 然后问overfitting怎么搞，答曰可以cross validation。
+
+统计一个文本中word的频率，排序输出。用了hashMap,然后有点忘记java里ENTRY的方法名了，自己写了个private static class implements comparable。写完之后想起其实该用TreeMap....
+
+为什么用holdout data来检验model，如果data set小，能不能用holdout data做检验。我说不能，因为样本小，再分出一部分会导致剩余run model的数据更少，error可能会太大。
+
+- Suppose we need to build a model to distinguish players who may pay more with players who may not want to pay?
+
+- What kind of model would u use? (Ans: logistic regression / random forest)
+
+- How would u justify ur model? (Ans: cross-validation).
+
+- Say you made one logistic regression model and one random forest model, how would you compare them?(Ans:  using same training set and same test set, compare precision / recall).
+
+If there are 30 groups of servers, each with an uptime of 0.99, and you select 1 at random, what is the probability that at least one server in the group chosen will be up?
+
+probability brain teasers:
+
+probabilities when rolling two dice twice with the second roll depending on the outcome of the first, the  German tank problem, breaking a 4-digit code with different prior information etc.
+
+In total: know your combinatorics and Bayes rule in-and-out!
+
+Example business cases:
+
+- You own a museum and consider putting up an exhibition by a new artist. How would you go about the decision? What kind of information / data would you look for, how would you use it?
+
+- You want to buy a TV on amazon.com. How do you make a decision?
+
+- You performed A/B testing on a change in a search engine algorithm. Although in B, the coders made a mistake which led to really poor search results, user clicked on more results as well as on more ads. How do you interpret the results, what do you do next? etc.
+
+In total, they look for how you think and approach a problem. They often want to know how you deal with incomplete information, short timelines, trade-offs. Overall, all interviewers were very friendly and professional.
+
+You are compiling a report for user content uploaded every month and notice a spike in uploads in October. In particular, a spike in picture uploads. What might you think is the cause of this, and how would you test it?
+
+What is the expected value of rolling a 6-sided die. The sum of two prime numbers is 999.
+
+What is the higher of these two numbers?
+
+I went out to dinner last night and discovered that I charged $50.40 in total for my meal. Tax is 5%, and I always I tip 20% of the meal + tax amount. If 60% of the cost of my meal was my entree, how much did I spend on the entree? You walk into a Las Vegas casino.
+
+There are 10 slot machines. 9 of them win 20% of the time. 1 of them, the lucky machine, wins 30% of the time. But you don't know which one is the lucky one (the 30% winner). You watch someone put a quarter into the machine and win. What is the chance it was the "lucky" machine? Two players, A and B are rolling a fair die. Whoever rolls 5 first wins. A plays first and then B. What is the probability that A wins? Please discuss. Do you think there is any unfair advantage for any player in this game?
+
+How to aggregate data and plot a graph about word count vs reply rate without using COUNTIF or AVERAGE IF in Excel.
+
+You have 50 coins that add up to $1. You go into a coffee shop to buy coffee that is $1. The shop has a policy that if you are a penny short, you can still get the coffee. You're about to pay and you drop one coin. What is the probability that you can still get a coffee?
+
+You're playing a game with a friend where some third party flips a fair coin. You can choose a sequence of either Heads, Heads, Tails or Heads, Tails, Heads. Your friend gets the remaining sequence. Whoever's sequence occurs first wins. Which do you pick?
+
+Imagine you have N pieces of rope in a bucket. You reach in and grab one end-piece, then reach in and grab another end-piece, and tie those two together. What is the expected value of the number of loops in the bucket?
+
+What do you know about A/B testing in the context of streaming?
+
+How do you prevent overfitting and complexity of a model? How do you measure and compare models? How should we approach to attribution modeling to measure marketing efffectiveness?
+
+How might you determine if the size of a specific item is a significant feature in determining the customer&#039;s calculated propensity to buy it?
+
+Dynamic programming/backward induction on a multi-stage decision making problem
+
+Case study - what features would you use to determine credit risk given transaction history from the past two years.
+
+Explain a simple map reduce problem Read in a very large file of tab delimited numbers using python and count frequency of each number (don’t overthink this. Use python done in a few lines)
+
+Whats more likely: Getting at least one six in 6 rolls, at least two sixes in 12 rolls or at least 100 sixes in 600 rolls? Find all the combinations of change you can for a given amount
+
+They talked about some of the active projects that they are doing and asked me how I would solve some of the issues that they are facing right now. While the questions are open-ended (they are still trying to solve them themselves), you should be able to come with a reasonable solution and justify your answer.
+
+For the data visualization team, common questions are like "Suppose you want to visualize this scenario, what method would you use and why?". There were also some questions on basic of computer graphics which I was not very familiar with, but answered them anyway.
+
+We have like million card members and along with their transactions. Also, we have 10k restaurants and 1k coupons to eat food. Give a method that can be used to pass along the coupons to the users given that some users have already got their coupons so far.
+
+Given a training set of users with their demographic information, psychology test of their personality (openness to like pages or not) and the pages of FB they have liked so far, how could we predict the gender, age and other demographics of unseen data?
+ans: bayes
+
+ii) What are the statistical models you use like logistic regression etc
+
+iii) They showed some graphs on the electricity consumption pattern in a year and a particular day of a year (winter/summer) to figure out the peak time and what could be the factors of the high consumption in a day from morning or afternoon and the dip during night times
+
+iv) One of them showed the SAS output in a paper of a simple linear time-series forecasting model to read the significant coefficients from the linear model based on the t-statistic & Durbin–Watson statistic.
+
+ix) What statistical/software tools you use in your current company like R, SQL, Tableau?
+
+Optimization Function in Linear SVM
+
+Given two lists of sorted integers, develop an algorithm to sort these numbers into a single list efficiently
+
+You're at a casino with two dice, if you roll a 5 you win, and get paid $10. What is your expected payout? If you play until you win (however long that takes) then stop, what is your expected payout?
+
+Given two binary strings, write a function that adds them. You are not allowed to use any built in string to int conversions or parsing tools. E.g. Given "100" and "111" you should return "1011". What is the time and space complexity of your algorithm?
+
+Lets say the population on Facebook clicks ads with a click-through-rate of P. We select a sample of size N and examine the sample's conversion rate, denoted by hat{P}, what is the minimum sample size N such that Probability( ABS(hat{P} - P) &lt; DELTA ) = 95%. In other words (this is my translation), find the minimum sample size N such that our sample estimate hat{P} is within DELTA of the true click through rate P, with 95% confidence.
+
+Write a SQL query to compute a frequency table of a certain attribute involving two joins. What if you want to GROUP or ORDER BY some attribute? What changes would you need to make? How would you account for NULLs?
+
+how I would go about creating a model to predict an arbitrary response.
+
+you're given a database of email addresses and people under that email address. How would you insure there are no repeat email addresses or people in the database
+
+Given the available data, walk me through how you would value a marketing campaign from a data science perspective.
+
+“Suppose you have a coffee store, how do you do to increase the number of customers?”
+
+As a part of a bigger question: "How do you draw a uniform random sample from a circle in polar coordinates?
+
+How might you determine if the size of a specific item is a significant feature in determining the customer's calculated propensity to buy it?
+
+Why do the residuals from a linear regression add up to 0?
+
+Is this still true if you fit a regression without intercept?
+
+What's so bad about collinearity?
+
+We first regress Y on X1 and X2, then regress Y on X1 and Z, where Z=X1−X2. How are the coefficients in the two regressions related?
+
+We regress Y on categorical data X1,…,Xp. This is a large data set (that's right, big data!) but many of the rows of the design matrix are duplicated. We  can summarize the data by averaging Y for each unique row of the design matrix, and perform a weighted regression with each row of the design matrix weighted by its number of duplicates. This gives us a much smaller data set to work with. How do the regression coefficients and their standard errors compare to regression on the raw data?
+
+What are the conditions for Omitted Variable Bias and how does it affect the coefficient estimates? Why? What are some fixes for OVB?
+
+How do you interpret the coefficients in a log-log model? Why?
+
+What does the Gauss-Markov Theorem say and why is it important?
+
+How does heteroscedasticity affect the coefficient estimates and why? What are some fixes for heteroscedasticity?
+
+Given a regression setting with a binary response variable, what probability model should be used and why?
+
+What happens to the errors in the logistic regression function?
+
+Design a regression model to test the Law of Demand.
+
+Explain the Central Limit Theorem to a five year-old. (This one gave me the most trouble).
+
+"modern" linear regression; how are Ridge Regression and the LASSO different from ordinary least-squares, and why do you want to use it
+
+be comfortable in writing down the closed-form solution ("normal equations") but also how to minimize the least-squares cost function with gradient descent (very useful in practice if you are working with very large datasets)
+
+how to evaluate the assumptions (QQ-plot, residual plot)
+
+how do you evaluate the performance of your model? Techniques for training (k-fold cross-validation, nested cross-validation) and metrics (MSE, coefficient of determination)
+
+how to deal with outliers (e.g., RANSAC)
+
+polynomial regression and feature transformation (for non-linear problems); alternatively: decision trees and random forests (advantages and shortcomings), support vector regression
+
+How do you measure fit of the model? What do R and D mean?What is Ordinary Least Squares? What are some possible problems with regression models? How do you avoid or compensate for them?
+
+Name a few types of regression you are familiar with? What are the differences?
+
+What is overfitting a regression model? What are ways to avoid it?
+
+In linear regression, under what condition R^2 always equals a perfect 1?
+
+重复丢骰子，直到点数之和大于等于某个数M。
+
+Q1: M=10000，点数之和减去M的平均值是多少（也就是期望）？
+Q2: M=10000，点数之和减掉M的标准差是多少？
+Q3: M=10000，投掷骰子的平均次数是多少？
+Q4: M=10000，投掷骰子次数的标准差是多少？
+
+You roll a fair 6-sided dice iteratively until the sum of the dice rolls is greater than or equal to M.
+
+Q1. What is the mean of the sum minus M when M=10000
+
+Q2. What is the standard deviation of the sum minus M when M=10000
+
+Q3.What is the mean of the number of rolls when M=10000
+
+Q4. What is the standard deviation of the number of rolls when M=10000
+
+Q0：讲讲你最得意的一个project。
+
+Q1：有一组数据，很长，有ID，经纬度，时间4个变量。怎么找出两人是否有一面之缘。怎么找出所有relationship（定义是在100米范围内一起度过1小时以上）。
+
+Q2：有一组以往marketing campaign的数据，包括使用的关键词集合，目录集合，还有成功率。怎么决定下次campaign使用哪些关键词。
+
+Q3：怎么找出竞争对手购买了哪些搜索关键词。
+
+Q4：怎么判断两个TB级别的文本是否雷同，是否近似。
+
+Q5：怎么用C实现SQL的join功能。只是思路（hash），没让code。
+
+Q6：三个按钮对应隔壁房间的三盏灯，只能到隔壁房间一次，怎么判断哪个对应哪个。
+
+Q7：怎么用两个正方体（共12面）显示一个月的所有日期。
+
+Q8：怎么最快的在一个大文本里面搜索字符串。
+
+Q9：为什么有时候K means算法不能converge？
+
+Q10：沙滩上有两个一模一样的冰激凌店，由两兄弟经营。为了竞争顾客，他们会把店开到哪里？
+
+Q11：纽约有多少出租车？他们年收入大概多少？
+
+Q12：某公司在各种marketing channel投入资金，请问怎么计算投资回报？怎么决定最佳投资方案？
+
+Q13：（唯一的一个code题）计算斐波那契数列。
+
+Q14：怎么设计recommending system，怎么解决cold start 问题。
+
+Q15：假设你既卖toyota又卖lexus，请问应该如何定价？
+
+Q16：怎么解决marketing data里面selection bias问题（从impression到click到purchase，每次都只有少数人进入下一步）。
+
+Q17：使用decision tree的时候，假设y应该随着x递增，但是cart算法得出的结果有spike，即某处出现y随着x递减的现象。怎么解决？
+
+Q18：怎么判断sample是否符合预设的population 分布。
+
+Q19：假设盒子里有1000条鞋带，每次拿出两个头系起来，如果形成一个loop就拿出来，否则放回去。请问预期最后有几个环。
+
+Q20：有一个人口调查问题是家里有几口人，显然最后的结果会有重复，因为4口之家每个人都会说4。怎么解决？
+
