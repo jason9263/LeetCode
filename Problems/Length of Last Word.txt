@@ -1,0 +1,22 @@
+public class Solution {
+    public int lengthOfLastWord(String s) {
+       
+        s = s.trim();
+        
+        String[] temp = s.split(" ");
+        
+        
+        
+        int len = temp.length;
+        if(len == 0){
+            
+        }else{
+             return temp[len-1].length();
+        }
+        
+        return 0;
+        
+       
+        
+    }
+}

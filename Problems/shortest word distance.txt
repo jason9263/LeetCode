@@ -1,27 +1,27 @@
 public class Solution {
     public int shortestDistance(String[] words, String word1, String word2) {
-        int p1 = -1;
-        int p2 = -1;
-        int min = Integer.MAX_VALUE;
-
+        
+        int index1 = -1;
+        int index2 = -1;
+        int len = Integer.MAX_VALUE;
+        
+        
         for(int i = 0; i < words.length; i++){
-
             if(words[i].equals(word1)){
-                p1 = i;
+                index1 = i;
             }
-
+            
             if(words[i].equals(word2)){
-                p2 = i;
+                index2 = i;
             }
-
-            if(p1 != -1 && p2 != -1){
-                min = Math.min(min, Math.abs(p1-p2));
+            
+            if(index1 != -1 && index2 != -1){
+                len = Math.min(len,Math.abs(index1 - index2));
             }
-
-
 
         }
-        return min;
-
+        
+        return len;
+        
     }
 }
