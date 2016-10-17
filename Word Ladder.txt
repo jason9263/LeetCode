@@ -1,0 +1,62 @@
+public class Solution {
+    public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+        //two way bfs searching
+        Set<String> start = new HashSet<String>();
+        Set<String> end = new HashSet<String>();
+        
+        int len = 1;
+        start.add(beginWord);
+        end.add(endWord);
+        
+        
+        Set<String> visited = new HashSet<String>();
+        
+        while(!start.isEmpty() && !end.isEmpty()){
+            //swap two set starting from the small size set 
+            if(start.size() > end.size()){
+                Set<String> js = new HashSet<String>();
+                js = start;
+                start = end;
+                end = js;
+            }
+            
+            //
+            Set<String> tmpset = new HashSet<String>();
+             
+            for(String s : start){
+                
+                String temps = s;
+                char[] jcs = temps.toCharArray();
+       
+                for (int i = 0; i < s.length(); i++){
+                    char jc = s.charAt(i);
+                    
+                    for(char j = 'a' ; j <= 'z'; j++){
+                        jcs[i] = j;
+                        String jts = String.valueOf(jcs);
+                        
+                        if(end.contains(jts)){
+                            return len + 1;
+                        }
+                        
+                        if(!visited.contains(jts) && wordList.contains(jts)){
+                            
+                            tmpset.add(jts);
+                            visited.add(jts);
+                            
+                        }
+                        
+                    }
+                    
+                    jcs[i] = jc;
+
+                }
+            }
+            start = tmpset;
+            len++;
+
+        }
+
+        return 0;
+    }
+}

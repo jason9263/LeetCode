@@ -1,42 +1,0 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\margl1440\margr1440\vieww10800\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 public class Solution \{\
-    public List<List<Integer>> generate(int numRows) \{\
-        List<List<Integer>> result = new LinkedList<List<Integer>>();\
-        \
-        if(numRows <= 0)\{\
-            return result;\
-        \}\
-        \
-        List<Integer> one = new LinkedList<Integer>();\
-        one.add(1);\
-        \
-        if(numRows == 1)\{\
-            result.add(one);\
-            return result;\
-        \}else\{\
-            result.add(one);\
-            List<Integer> previous = new LinkedList<Integer>();\
-            previous = one;\
-            \
-            for(int i =1 ; i < numRows; i++)\{\
-                List<Integer> next = new LinkedList<Integer>();\
-                next.add(1);\
-                for(int j = 1 ; j< i; j++)\{\
-                    next.add(previous.get(j-1) + previous.get(j) );\
-                \}\
-                next.add(1);\
-                result.add(next);\
-                previous = next;\
-                \
-            \}\
-        \}\
-        \
-        return result;\
-\
-    \}\
-\}}

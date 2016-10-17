@@ -1,0 +1,22 @@
+public class Solution {
+    public int hIndex(int[] citations) {
+        if(citations == null){
+            return 0;
+        }
+
+        Arrays.sort(citations);
+
+        int hindex = 0;
+        int threshold = 1;
+
+
+        for(int i = citations.length-1; i >= 0; i--){
+            if(citations[i] >= threshold){
+                hindex++;
+                threshold++;
+            }
+        }
+
+        return hindex;
+    }
+}
