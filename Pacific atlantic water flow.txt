@@ -1,0 +1,76 @@
+public class Solution {
+    public List<int[]> pacificAtlantic(int[][] matrix) {
+        List<int[]> res = new ArrayList<int[]>();
+        
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
+            return res;
+        }
+        
+        
+        int m = matrix.length;
+        int n = matrix[0].length;
+        
+        boolean[][] pac = new boolean[m][n];
+        boolean[][] atl = new boolean[m][n];
+        
+        
+        
+        for(int i = 0; i < m; i++){
+            dfs(matrix,pac,i,0,0);
+            dfs(matrix,atl,i,n-1,0);
+        }
+        
+        for(int i = 0; i < n; i++){
+            
+            dfs(matrix,pac,0,i,0);
+            dfs(matrix,atl,m-1,i,0);
+            
+        
+        }
+        
+        for(int i = 0; i < m; i++){
+            for(int j = 0;j < n; j++){
+                if(pac[i][j] && atl[i][j]){
+                    int[] tmp ={i,j};
+                    res.add(tmp);
+                }
+            }
+        }
+        
+        
+        return res;
+        
+    }
+    
+    
+    public void dfs(int[][] matrix, boolean[][] pa, int i , int j,  int pre){
+
+    if(i < 0 || j < 0 || i >= matrix.length ||j >= matrix[0].length){
+        return ;
+    }
+    
+    if(pa[i][j] == true){
+        return;
+    }
+    
+    
+    int tmp = matrix[i][j];
+    
+    if(tmp >= pre){
+        pa[i][j] = true;
+    
+    dfs(matrix,pa,i-1,j,tmp);
+    dfs(matrix,pa,i+1,j,tmp);
+    dfs(matrix,pa,i,j-1,tmp);
+    dfs(matrix,pa,i,j+1,tmp);
+
+    }else{
+        return;
+    }
+
+            
+
+
+
+    }
+}
