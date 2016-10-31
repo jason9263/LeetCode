@@ -1,0 +1,41 @@
+public class Solution {
+    public void wallsAndGates(int[][] rooms) {
+        //corner case
+        if(rooms == null || rooms.length == 0 || rooms[0].length == 0){
+            return ;
+        }
+        
+        
+        for(int i = 0; i < rooms.length; i++){
+            for(int j = 0; j < rooms[0].length; j++){
+                if(rooms[i][j] == 0 ){
+                    helper(rooms,i, j , 0);
+                }
+            }
+        }
+        
+        
+        
+        
+    }
+    
+    public void helper(int[][] rooms, int i , int j , int d){
+        
+        if(i < 0 || i >= rooms.length || j <0 || j >= rooms[0].length || rooms[i][j] < d){
+            return ;
+        }
+        
+        rooms[i][j] = d;
+        
+        
+        helper(rooms, i-1 ,j , d+1);
+        helper(rooms, i+1, j , d+1);
+        helper(rooms, i, j- 1, d+1);
+        helper(rooms, i , j+ 1, d+1);
+        
+        
+    }
+    
+    
+    
+}
