@@ -1,0 +1,71 @@
+public class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        
+        List<Integer> res = new ArrayList<Integer>();
+        
+        if(s.length() < p. length() || s == null || p == null || s.length() == 0 || p.length() == 0){
+            return res;
+        }
+        
+        //
+        int[] cnt = new int[256];
+        Arrays.fill(cnt,0);
+        
+        char[] jp = p.toCharArray();
+        
+        for(char c : jp){
+            cnt[c]++;
+        }
+        
+        
+        System.out.println(cnt['a']);
+        
+        //
+        
+        int index = 0;
+        
+        int lens = s.length();
+        int lenp = p.length();
+        boolean success = true;
+        
+        while(index < lens){
+            
+            int[] tmp = new int[256];
+            Arrays.fill(tmp, 0);
+            
+            tmp = cnt.clone();
+            
+
+            
+            success = true;
+            
+            for(int j = index; j < index + lenp ; j++){
+
+                if( j >= lens){
+                    success = false;
+                    break;
+                }
+                
+                if(--tmp[s.charAt(j)] < 0){
+
+                    
+                    success = false;
+                    break;
+                }
+                
+
+            }
+            
+            if(success){
+                res.add(index);
+            }
+            
+            ++index;
+            
+            
+        }
+        
+        return res;
+        
+    }
+}
