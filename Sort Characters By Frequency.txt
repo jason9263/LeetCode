@@ -1,0 +1,51 @@
+public class Solution {
+    public String frequencySort(String s) {
+        if(s == null || s.length() <= 2){
+            return s;
+        }
+        
+        Map<Character, Integer> jmap = new HashMap<Character, Integer>();
+        
+        for(int i = 0; i < s.length(); i++){
+            char tmp = s.charAt(i);
+            
+            if(!jmap.containsKey(tmp)){
+                jmap.put(tmp,1);
+            }else{
+                jmap.put(tmp,jmap.get(tmp)+1);
+            }
+            
+        }
+        
+        PriorityQueue<Character> jheap = new PriorityQueue<Character>(s.length(), new Comparator<Character>(){
+            
+         public int compare(Character c1, Character c2){
+             return jmap.get(c2) - jmap.get(c1);
+         }   
+        }
+            );
+            
+            
+            
+        for(char c : jmap.keySet()){
+                jheap.offer(c);
+        }
+            
+            
+        StringBuilder jsb = new StringBuilder();
+        
+        while(!jheap.isEmpty()){
+            
+            char tmp = jheap.poll();
+            
+            int count = jmap.get(tmp);
+            
+            for(int i = 0; i < count; i++){
+                jsb.append(tmp);
+            }
+        }
+        
+        return jsb.toString();
+
+    }
+}
