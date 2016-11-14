@@ -1,0 +1,36 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int longestConsecutive(TreeNode root) {
+        //avoid global variable
+        //thread safe
+        return (root== null) ? 0 :Math.max(helper(root.left,1,root.val), helper(root.right,1,root.val));
+    }
+    
+    
+    public int helper(TreeNode root, int cur , int target){
+        if(root == null){
+            return cur;
+        }
+        
+        if(root.val - target == 1){
+            cur++;
+        }else{
+            cur = 1;
+        }
+        
+        int left = helper(root.left,cur,root.val);
+        int right = helper(root.right,cur,root.val);
+        
+        return Math.max( Math.max(left,right), cur);
+        
+        
+    }
+}

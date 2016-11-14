@@ -1,0 +1,31 @@
+public class Solution {
+    public int integerReplacement(int n) {
+        
+        double tmpn = n;
+        
+        int count = 0;
+        
+        if(tmpn == 1){
+            return count;
+        }
+        
+        while(tmpn > 1){
+            if(tmpn % 2 == 0){
+                tmpn = tmpn /2;
+                count++;
+            }
+            
+            else if((tmpn+1) % 4 == 0 && (tmpn-1)!= 2){
+                tmpn += 1;
+                count++;
+                System.out.println(tmpn);
+            }else{
+                tmpn -= 1;
+                count++;
+            }
+            
+        }
+        
+        return count;
+    }
+}
