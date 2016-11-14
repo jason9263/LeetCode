@@ -1,0 +1,29 @@
+public class Solution {
+    public int maxProduct(int[] nums) {
+        if(nums.length == 1){
+            return nums[0];
+        }
+        
+        int oldmax = 1;
+        int max = 1;
+        int min = 1;
+        int res = nums[0];
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            oldmax = Math.max(1,max);
+            
+            if(nums[i ] > 0){
+                max = oldmax * nums[i];
+                min = min * nums[i];
+            }else{
+                max = min * nums[i];
+                min = oldmax * nums[i];
+            }
+            
+            res = Math.max(res,max);
+
+        }
+            return res;
+    }
+}
