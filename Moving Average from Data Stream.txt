@@ -1,0 +1,36 @@
+//using the queue data structure to 
+
+public class MovingAverage {
+
+
+    public Queue<Integer> jq ;
+    public int len = 0;
+    public int sum = 0;
+    
+    /** Initialize your data structure here. */
+    public MovingAverage(int size) {
+        jq = new LinkedList<Integer>();
+        len = size;
+    }
+    
+    public double next(int val) {
+        int tmp = 0;
+        
+        if(jq.size() == len){
+            tmp = jq.peek();
+            jq.poll();
+        }
+        
+        jq.offer(val);
+        sum -=tmp;
+        sum +=val;
+        return (double) sum/jq.size();
+        
+    }
+}
+
+/**
+ * Your MovingAverage object will be instantiated and called as such:
+ * MovingAverage obj = new MovingAverage(size);
+ * double param_1 = obj.next(val);
+ */
