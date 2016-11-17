@@ -1,21 +1,42 @@
 public class Solution {
     public int[] getModifiedArray(int length, int[][] updates) {
-     
-     int [] tmpres = new int[length+1];
-     int [] res = new int[length];
-     for(int[] tmp : updates){
-         tmpres[tmp[0]] += tmp[2];
-         tmpres[tmp[1]+1] -= tmp[2];
-     }
-     
-     
-     int tmp = 0;
-     
-     for(int i = 0 ; i < length; i++){
-        tmp +=tmpres[i];
-        res[i] = tmp;
-     }
-     
+        
+        if(length <= 0 ){
+            return null;
+        }
+        
+        
+        int[] res = new int[length];
+                
+        if(updates.length == 0 || updates[0].length == 0){
+           return res; 
+        }  
+        
+        int m = updates.length;
+        int n = updates[0].length;
+        
+        int sum[] = new int[length+1];
+        
+     for(int[] t: updates){
+         
+            sum[t[0]] += t[2];
+            
+            sum[t[1]+1] -= t[2];
+            
+            
+        }
+        
+       
+
+       
+        for(int i = 1 ; i < length; i++ ){
+            sum[i] += sum[i-1];
+            res[i] = sum[i];
+        }
+        
+        res[0] = sum[0];
+        
+        
         return res;
     }
 }
