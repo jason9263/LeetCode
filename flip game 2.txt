@@ -23,3 +23,8 @@ public class Solution {
 
     }
 }
+
+
+
+
+if the opponent can win or not, if the opponent cannot win, get, we win.

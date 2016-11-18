@@ -21,6 +21,7 @@ public class MovingAverage {
         sum += val;
 
         window[insert] = val;
+        
         insert = (insert + 1) % window.length;
 
         return (double) sum/n;
