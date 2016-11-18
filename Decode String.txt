@@ -42,3 +42,53 @@ public class Solution {
         
     }
 }
+
+
+
+public class Solution {
+    public String decodeString(String s) {
+        Stack<Integer> sint = new Stack<Integer>();
+        Stack<String> sstr = new Stack<String>();
+        
+        sstr.push("");
+        
+        
+        for(int i = 0; i < s.length(); i++){
+            
+            char tmp = s.charAt(i);
+            
+            if(tmp >='0' && tmp <= '9'){
+                int start = i;
+                while(s.charAt(i+1) >= '0' && s.charAt(i+1) <= '9'){
+                    i++;
+                }
+                
+                int fre = Integer.parseInt(s.substring(start,i+1));
+                sint.push(fre);
+            }
+            
+            else if(tmp == '['){
+                sstr.push("");
+                
+                
+            }else if(tmp == ']'){
+                StringBuilder tmps = new StringBuilder();
+                int fre = sint.pop();
+                String pops = sstr.pop();
+                
+                for(int j = 0; j < fre;j++){
+                    tmps.append(pops);
+                }
+                
+                sstr.push(sstr.pop() +tmps.toString());
+            }else{
+                sstr.push(sstr.pop()+tmp);
+            }
+
+            
+        }
+        
+        return sstr.pop();
+        
+    }
+}
