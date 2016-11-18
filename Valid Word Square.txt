@@ -1,31 +1,23 @@
 public class Solution {
     public boolean validWordSquare(List<String> words) {
-        //corner case
         if(words == null || words.size() == 0){
             return true;
         }
         
         
         for(int i = 0; i < words.size(); i++){
-            String js = words.get(i);
-            
-            for(int j = 0; j < js.length(); j++){
+            for(int j = 0 ; j < words.get(i).length(); j++){
                 
-                if( j >= words.size()  || words.get(j).length() <= i    ){
-                    return false;
-                }
-                
-                
-                if(js.charAt(j) != words.get(j).charAt(i) ){
+                if( j >= words.size()  || i >=  words.get(j).length() ||words.get(i).charAt(j) != words.get(j).charAt(i)){
                     return false;
                 }
                 
                 
             }
-            
         }
         
         
         return true;
+        
     }
 }
