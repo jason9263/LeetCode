@@ -39,7 +39,11 @@ public class Solution {
             id = parent[id];
         }
 
-
+        while(parent[idx] != idx){
+            int tmp = parent[idx];
+            parent[idx] = id;
+            idx = tmp;
+        }
 
         return id;
         
