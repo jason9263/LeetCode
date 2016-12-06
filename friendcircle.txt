@@ -1,0 +1,89 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * Created by Administrator on 2016/12/6.
+ */
+public class FriendCircle {
+
+    public static void main(String[] args) throws IOException {
+        Scanner in = new Scanner(System.in);
+        final String filename = System.getenv("OUTPUT_PATH");
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
+        int res;
+
+        int _friends_size = 0;
+        _friends_size = Integer.parseInt(in.nextLine().trim());
+        String[] _friends = new String[_friends_size];
+        String _friends_item;
+
+        for (int _friends_i = 0; _friends_i < _friends_size;_friends_i++){
+            try{
+                _friends_item = in.nextLine();
+
+            }catch (Exception e){
+                _friends_item = null;
+            }
+            _friends[_friends_i] = _friends_item;
+        }
+
+        res = friendCircle(_friends_size,_friends);
+        bw.write(String.valueOf(res));
+        bw.newLine();
+
+        bw.close();
+
+    }
+
+    public static int friendCircle(int n, String[] friends){
+
+        int[] parent = new int[n];
+        int count = n;
+
+        for (int i = 0; i < n; i++){
+            parent[i] = i;
+        }
+
+        for (int i = 0; i < friends.length;i++){
+            char[] tmp = friends[i].toCharArray();
+            int lentmp = tmp.length;
+            for(int j = 0; j < lentmp;j++){
+                if (tmp[j] == 'Y'){
+                    int p1 = helper(parent,i);
+                    int p2 = helper(parent,j);
+
+                    if(p1 != p2){
+                        count--;
+                        parent[p2] = p1;
+                    }
+
+                }
+            }
+        }
+
+
+        return count;
+    }
+
+    public static int helper(int[] parent, int id){
+        int idx = id;
+
+        while(parent[id] != id){
+            parent[id] = parent[parent[id]];
+            id = parent[id];
+        }
+
+        int tmp = 0;
+
+        while(parent[idx] != idx){
+            tmp = parent[idx];
+            parent[idx] = id;
+            idx = tmp;
+        }
+        return 0;
+    }
+
+
+}
