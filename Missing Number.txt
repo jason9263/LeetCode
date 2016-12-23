@@ -1,0 +1,13 @@
+public class Solution {
+    public int missingNumber(int[] nums) {
+        long sum = 0;
+        
+        for(int tmp:nums){
+            sum += tmp;
+        }
+        
+        long presum = (nums.length *(nums.length+1))/2;
+        
+        return (int)(  presum - sum);
+    }
+}
