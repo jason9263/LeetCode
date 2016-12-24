@@ -1,0 +1,68 @@
+public class Solution {
+    public int totalHammingDistance(int[] nums) {
+        
+        int res = 0;
+        if(nums == null || nums.length == 0 || nums.length == 1){
+            return res;
+        }
+        
+        Arrays.sort(nums);
+        int tmpres = 0;
+        int tmpstep = 0;
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            if(i-1 >=0 && nums[i] == nums[i-1]){
+                
+            }else{
+            tmpres = 0;    
+            for(int j = i+1; j < nums.length; j++){
+                
+                tmpstep = Integer.bitCount(nums[i]^nums[j]);
+                
+                while(j+1 < nums.length && nums[j] == nums[j+1]){
+                    tmpres += tmpstep;
+                    j++;
+                }
+                
+                tmpres += tmpstep;
+                
+                
+            }    
+            
+            }
+            
+
+            
+            res += tmpres;
+        }
+        
+        return res;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////
+///
+///
+public class Solution {
+    public int totalHammingDistance(int[] nums) {
+        
+        int res = 0;
+        int n = nums.length;
+        
+        for(int i = 0; i < 32; i++){
+            int cnt = 0;
+            
+            for(int tmp : nums){
+                if((tmp&( 1<< i)) != 0){
+                    cnt++;
+                }
+            }
+            
+            res += cnt * (n-cnt);
+           
+        }
+            return res;
+    }
+    
+
+}
