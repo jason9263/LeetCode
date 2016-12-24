@@ -1,0 +1,11 @@
+public class Solution {
+    public int countSegments(String s) {
+        String js = s.trim();
+        if(js.length() == 0){
+            return 0;
+        }else{
+            String[] jsarray = js.split("\\s+");
+            return jsarray.length;
+        }
+    }
+}
