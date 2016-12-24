@@ -1,0 +1,30 @@
+public class Solution {
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        //
+        Map<Integer, Integer> jmap = new HashMap<Integer,Integer>();
+        for(int tmp:nums){
+            jmap.put(tmp, jmap.getOrDefault(tmp,0) +1);
+        }
+        
+        //
+        TreeMap<Integer, List<Integer>> jtreemap = new TreeMap<>();
+        
+        for(int num:jmap.keySet()){
+            int fre = jmap.get(num);
+            if(!jtreemap.containsKey(fre)){
+                jtreemap.put(fre, new ArrayList<Integer>());
+            }
+            jtreemap.get(fre).add(num);
+        }
+        //
+        
+        List<Integer> res = new LinkedList<Integer>();
+        
+        while(res.size() < k){
+            Map.Entry<Integer, List<Integer>> tmpentry = jtreemap.pollLastEntry();
+            res.addAll(tmpentry.getValue());
+        }
+        
+        return res;
+    }
+}
