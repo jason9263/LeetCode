@@ -1,0 +1,47 @@
+public class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisties ) {
+        
+        int[] indeg = new int[numCourses];
+        
+        for(int i = 0; i < numCourses; i++){
+            indeg[i] = 0;
+        }
+        
+        for(int i = 0; i < prerequisties.length; i++){
+            indeg[prerequisties[i][1]]++;
+        }
+        
+        //
+        Queue<Integer> jq = new LinkedList();
+        for(int i = 0; i < numCourses;i++){
+            if(indeg[i] == 0){
+                jq.offer(i);
+            }
+        }
+        
+        //
+        int cnt = 0;
+        
+        while(jq.size() > 0){
+            int top = jq.poll();
+            
+            cnt++;
+            
+            for(int i = 0; i < prerequisties.length; i++){
+                
+                if(prerequisties[i][0] == top){
+                    if(--indeg[prerequisties[i][1]] == 0){
+                        jq.offer(prerequisties[i][1]);
+                    }
+                }
+            }
+            
+            
+            
+        }
+        
+        return cnt == numCourses;
+        
+        
+    }
+}
