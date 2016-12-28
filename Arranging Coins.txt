@@ -1,0 +1,8 @@
+public class Solution {
+    public int arrangeCoins(int n) {
+        
+        long tmp = 8*(long)n +1;
+        
+        return (int)(Math.floor((Math.sqrt(tmp)-1)/2));
+    }
+}

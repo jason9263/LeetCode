@@ -1,0 +1,47 @@
+public class Solution {
+    public String countAndSay(int n) {
+        if(n <= 0){
+            return null;
+        }
+        
+
+        
+        int index = 1;
+        
+        String tmpres = "1";
+        
+        while(index < n){
+            
+            tmpres = helper(tmpres);
+            index++;
+            
+        }
+        
+        return tmpres;
+        
+    }
+    
+    public String helper(String s){
+        String res = "";
+        int len = s.length();
+        s = s + "#";
+        
+        for(int i = 0; i < len; i++){
+            int count = 1;
+            char tmp = s.charAt(i);
+            
+            while(s.charAt(i) == s.charAt(i+1)){
+                count++;
+                i++;
+            }
+            
+            res = res + Integer.toString(count) + Character.toString(tmp);
+            
+            
+        }
+        
+        return res;
+    }
+    
+    
+}
