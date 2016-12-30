@@ -1,0 +1,42 @@
+public class Solution {
+    public boolean isSubsequence(String s, String t) {
+        
+        int i = 0;
+        int j = 0; 
+        
+        int lens = s.length();
+        int lent = t.length();
+        
+        if(lens > lent){
+            return false;
+        }
+        
+        
+        
+        while(i < lens && j < lent){
+            
+            char tmp = s.charAt(i);
+            
+            while(t.charAt(j) != tmp){
+                j++;
+                if(j >= lent){
+                    return false;
+                }
+            }
+            
+            
+            if(tmp == t.charAt(j)){
+                i++;
+                j++;
+            }
+
+        }
+        
+        if(i < lens){
+            return false;
+        }
+        
+        return true;
+        
+    }
+}
