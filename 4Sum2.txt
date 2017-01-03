@@ -1,0 +1,34 @@
+public class Solution {
+    public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+        
+                
+        int target = -1;
+        int res = 0;
+        
+        if(A == null || B == null || C== null || D == null || A.length  == 0 || B.length == 0 || C.length == 0 || D.length == 0){
+            return res;
+        }
+        
+        Map<Integer, Integer> jmap = new HashMap<Integer, Integer>();
+        
+        for(int i = 0; i < A.length; i++){
+            for(int j = 0; j < B.length; j++){
+                target = A[i] + B[j];
+                jmap.put(target,jmap.getOrDefault(target,0)+1);
+            }
+        }
+        
+
+        
+        
+        for(int i = 0; i < C.length; i++){
+            for(int j = 0; j < D.length; j++){
+                target = -(C[i] + D[j]);
+                res += jmap.getOrDefault(target,0);
+            }
+        }
+        
+        
+        return res;
+    }
+}
