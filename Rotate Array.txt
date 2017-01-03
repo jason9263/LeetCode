@@ -1,0 +1,36 @@
+public class Solution {
+    public void rotate(int[] nums, int k) {
+        
+        k = k %nums.length;
+        
+        if(k <= 0){
+            return;
+        }
+        
+        
+        helper(nums, nums.length-k,nums.length-1);
+        helper(nums,0, nums.length-k-1);
+        helper(nums,0,nums.length-1);
+        
+        
+        
+        
+    }
+    
+    
+    public void helper(int[] nums, int start, int end){
+        int tmp = -1;
+        int index = 0;
+        
+        for(int i = start; i <= (start+end)/2; i++){
+            tmp = nums[i];
+            nums[i] = nums[end-index];
+            nums[end-index] = tmp;
+            index++;
+        }
+        
+    }
+    
+    
+    
+}
