@@ -1,0 +1,92 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        
+        Stack<TreeNode> js = new Stack<TreeNode>();
+        StringBuilder jstr = new StringBuilder();
+        
+        
+        if(root == null){
+            return jstr.append("null").toString();
+        }
+        
+        js.push(root);
+        
+        
+        while(js.size() > 0){
+            TreeNode tmp = js.pop();
+            jstr.append(tmp.val).append(",");
+            
+            if(tmp.right != null){
+                js.push(tmp.right);
+            }
+            
+            
+            if(tmp.left != null){
+                js.push(tmp.left);
+            }
+            
+        }
+        
+        
+        return jstr.toString();
+
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        
+            if(data.equals("null")){
+                return null;
+            }
+            
+            String[] datas = data.split(",");
+            
+            Queue<Integer> resq = new LinkedList<Integer>();
+            for(String tmp : datas){
+                resq.add(Integer.parseInt(tmp));
+            }
+            
+            return result(resq);
+            
+    }
+    
+    
+    
+    public TreeNode result(Queue<Integer> resq){
+        
+                if(resq.isEmpty()){
+            return null;
+        }
+
+     
+     Queue<Integer> leftq = new LinkedList<Integer>();
+     
+     TreeNode root = new TreeNode(resq.poll());
+     while(resq.size() > 0 && resq.peek() < root.val){
+         leftq.add(resq.poll());
+     }
+     
+     root.left = result(leftq);
+     root.right = result(resq);
+     
+     return root;
+        
+    }
+
+    
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));
