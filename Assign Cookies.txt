@@ -1,0 +1,31 @@
+public class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        
+        int res = 0;
+        if(g == null || s == null || g.length == 0 || s.length == 0){
+            return res;
+        }
+        
+        
+        Arrays.sort(g);
+        Arrays.sort(s);
+        
+        int indexs = 0;
+        int indexg = 0;
+        
+        while(indexs < s.length && indexg < g.length){
+            if(s[indexs] >= g[indexg]){
+                indexs++;
+                indexg++;
+                res++;
+            }else{
+                indexs++;
+            }
+        }
+        
+        
+        return res;
+        
+        
+    }
+}
