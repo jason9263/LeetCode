@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int rob(TreeNode root) {
+        int res = 0;
+        
+        if(root == null){
+            return 0;
+        }
+        
+        
+        if(root.left != null){
+            res += rob(root.left.left) + rob(root.left.right);
+        }
+        
+        if(root.right != null){
+            res += rob(root.right.left) + rob(root.right.right);
+        }
+        
+        return Math.max(res + root.val, rob(root.left)+rob(root.right)   );
+
+    }
+}
