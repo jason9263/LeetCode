@@ -1,0 +1,37 @@
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new LinkedList<String>();
+        String tmp = "";
+        int left = n;
+        int right = n;
+        helper(n,tmp, res, left, right);
+        return res;
+    }
+    
+    
+    public void helper(int n, String tmp , List<String> res, int left, int right){
+        if(left > right){
+            return;
+        }
+        
+        if(left== right &&right == 0){
+            res.add(new String(tmp));
+        }else{
+                   
+        if(left > 0){
+            helper(n, tmp+"(" , res, left-1, right);
+        }
+        
+        if(right > 0){
+             helper(n, tmp +")", res,left, right-1); 
+        }
+       
+        }
+
+        
+    }
+    
+    
+    
+    
+}
