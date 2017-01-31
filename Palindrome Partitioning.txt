@@ -1,0 +1,54 @@
+public class Solution {
+    public List<List<String>> partition(String s) {
+    
+    
+    List<List<String>> res = new LinkedList<List<String>>();
+    
+    List<String> out = new LinkedList<String>();
+    
+    
+    helper(res,out,0,s);
+    
+    return res;    
+    
+    }
+    
+    
+    public void helper(List<List<String>> res, List<String> out, int start, String s){
+        
+        if(start == s.length()){
+            res.add(new LinkedList<String>(out));
+            return ;
+        }
+        
+        for(int i = start+1; i <= s.length(); i++){
+            
+            String tmp = s.substring(start,i);
+            if(ispalin(tmp)){
+                out.add(tmp);
+                helper(res,out,i,s);
+                out.remove(out.size()-1);
+            }else{
+                continue;
+            }
+        }
+    }
+    
+    public boolean ispalin(String s){
+        int left = 0;
+        int right = s.length()-1;
+        
+        while(left < right){
+            if(s.charAt(left) != s.charAt(right)){
+                return false;
+            }else{
+                left++;
+                right--;
+            }
+        }
+        
+        return true;
+        
+    }
+    
+}
