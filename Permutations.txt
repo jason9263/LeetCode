@@ -1,0 +1,42 @@
+public class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new LinkedList<List<Integer>>();
+        
+        
+        helper(res,  0 , nums);
+        
+        return res;
+    }
+    
+    public void helper(List<List<Integer>> res, int start, int[] nums){
+        
+        if(start == nums.length){
+            List<Integer> jlist = new LinkedList<Integer>();
+            for(int tmp:nums){
+                jlist.add(tmp);
+            }
+            res.add(jlist);
+            return;
+        }
+        
+        
+        for(int i = start; i < nums.length; i++ ){
+            
+            swap(start, i , nums);
+            
+            helper(res, start+1, nums);
+            
+            swap(start, i ,nums);
+        }
+
+    }
+    
+    public void swap( int i , int j, int[] nums){
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+    
+    
+    
+}
