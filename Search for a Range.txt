@@ -1,0 +1,76 @@
+public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        
+        
+        int[] res = new int[2];
+        res[0] = -1;
+        res[1] = -1;
+        
+        
+        if(nums == null || nums.length == 0){
+            return res;
+        }
+        
+        
+        int mid = bins(nums,target);
+
+        
+        
+        if(mid == -1){
+            return res;
+        }else{
+            int left = mid;
+            int right = mid;
+            
+            while((left -1 >= 0) && (nums[left-1] == nums[mid]) ){
+                left--;
+            }
+            
+            
+            while(right+1 <= nums.length-1 && (nums[mid] == nums[right+1])){
+                right++;
+            }
+            
+            
+            res[0] = left;
+            res[1] = right;
+            
+            return res;
+            
+        }
+        
+        
+        
+    }
+    
+    public int bins(int[] nums, int target){
+        
+        int left = 0;
+        int right = nums.length-1;
+        
+        while(left <= right){
+            
+            int mid = left +(right - left)/2;
+            
+          
+               
+            if(nums[mid] == target){
+                
+             
+                
+                return mid;
+            }else if(nums[mid] < target){
+                left = mid +1;
+            }else{
+                right = mid-1;
+            }
+            
+        }
+        
+        
+        return -1;
+        
+    }
+    
+    
+}

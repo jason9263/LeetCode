@@ -1,0 +1,45 @@
+public class Solution {
+    public int evalRPN(String[] tokens) {
+        int res = 0;
+        
+        Stack<Integer> js = new Stack<Integer>();
+        
+        for(String tmp : tokens){
+            
+            if(tmp.equals("+") || tmp.equals("-") || tmp.equals("*")|| tmp.equals("/")){
+                if(js.size() < 2){
+                    break;
+                }
+                
+                int var1 = js.peek();
+                js.pop();
+                int var2 = js.peek();
+                js.pop();
+                
+                int tmpres = 0;
+                
+                if(tmp.equals("+")){
+                    tmpres = var1+ var2;
+                    js.push(tmpres);
+                }else if(tmp.equals("-")){
+                    tmpres = var2 -var1;
+                     js.push(tmpres);
+                }else if(tmp.equals("*")){
+                    tmpres = var1 * var2;
+                     js.push(tmpres);
+                }else if(tmp.equals("/")){
+                    tmpres = var2/ var1;
+                     js.push(tmpres);
+            }
+                
+            }
+            else{
+                    js.push(Integer.valueOf(tmp));
+                }
+
+        }
+        
+        
+        return js.peek();
+    }
+}
