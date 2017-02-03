@@ -1,0 +1,50 @@
+public class Solution {
+    public String multiply(String num1, String num2) {
+       
+       String res = "";
+       
+        int cnt = 0;
+        
+        if(num2.equals("0") || num1.equals("0")){
+            return "0";
+        }
+        
+        
+                
+        int k = num1.length() + num2.length() ;
+        int[] tmp = new int[k-1];
+        
+        for(int i = num1.length()-1; i >=0; i--){
+            for(int j = num2.length()-1; j >=0; j--){
+                
+                
+                tmp[i+j] += ((num1.charAt(i)-'0')*(num2.charAt(j)-'0'));
+            }
+        }
+        
+        
+        for(int i = k-2; i >= 0; i--){
+            int tmpres = tmp[i] + cnt;
+            res = String.valueOf(tmpres%10) + res;
+            
+            cnt = tmpres/10;
+            
+        }
+        
+        
+        if(cnt > 0){
+            res = String.valueOf(cnt) + res;
+        }else{
+            
+        }
+        
+        
+        if(res.length() == 0){
+            res = "0";
+        }
+        
+        return res;
+        
+      
+    }
+}
