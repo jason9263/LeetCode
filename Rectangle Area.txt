@@ -1,0 +1,27 @@
+public class Solution {
+    public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        
+        
+                int[] col = {A,C,E,G};
+        int[] row = {B,F,D,H};
+        
+        Arrays.sort(col);
+        Arrays.sort(row);
+        
+        int rec1 = (D-B)*(C-A);
+        int rec2 = (H-F)*(G-E);
+        
+        
+        if(B >= H || F >= D || C<= E || A>= G){
+            return rec1 + rec2;
+        }else{
+              return rec1 + rec2 - (col[2] - col[1])*(row[2] - row[1]);
+        }
+        
+
+        
+      
+        
+        
+    }
+}
