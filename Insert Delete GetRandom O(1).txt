@@ -1,60 +1,72 @@
 public class RandomizedSet {
     
-    public ArrayList<Integer> nums;
-    public HashMap<Integer,Integer> locs;
+    public HashMap<Integer, Integer> jhash = new HashMap<Integer, Integer>();
+    public ArrayList<Integer> jarr = new ArrayList<Integer>();
+    public Random jr = new Random();
     
-    java.util.Random rand = new java.util.Random();
-    
-    
-
     /** Initialize your data structure here. */
     public RandomizedSet() {
-        nums = new ArrayList<Integer>();
-        locs = new HashMap<Integer,Integer>();
-        
+
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        boolean contain = locs.containsKey(val);
-        if(contain){
+        if(jhash.containsKey(val)){
             return false;
+        }else{
+            int len = jarr.size();
+            
+            jarr.add(val);
+            jhash.put(val, len);
+            
+            return true;
         }
-        
-        locs.put(val,nums.size());
-        nums.add(val);
-        
-        
-        return true;
     }
     
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
-        
-        boolean contain = locs.containsKey(val);
-        if(!contain){
+        if(jhash.containsKey(val)){
+            
+            
+            int pos = jhash.get(val);
+            int len = jarr.size();
+            int tmpval = -1;
+            
+            if(pos < len-1){
+                tmpval = jarr.get(len-1);
+                jhash.put(tmpval,pos);
+                jarr.set(pos,tmpval);
+            }
+            
+            jarr.remove(jarr.size() - 1);
+            
+            jhash.remove(val);
+            
+            return true;
+            
+        }else{
+            
             return false;
+          
         }
-        
-        int loc = locs.get(val);
-        
-        if(loc < nums.size() -1){
-            int lastone = nums.get(nums.size() -1);
-            nums.set(loc, lastone);
-            locs.put(lastone,loc);
-        }
-        
-        
-        locs.remove(val);
-        nums.remove(nums.size()-1);
-        
-        return true;
-        
     }
     
     /** Get a random element from the set. */
     public int getRandom() {
-        return nums.get(rand.nextInt(nums.size()));
+
+
+        
+        if(jarr.size() > 0){
+            
+            int tmp = jr.nextInt(jarr.size());
+            
+            System.out.println(tmp + "  " + jarr.size());
+            
+            return jarr.get(tmp);
+        }
+        
+        return 0;
+
     }
 }
 
