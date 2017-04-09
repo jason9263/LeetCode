@@ -1,0 +1,82 @@
+public class Solution {
+    public boolean isOneEditDistance(String s, String t) {
+        if(s == null && t.length()==1){
+            return true;
+        }
+        
+        if(t == null && s.length() == 1){
+            return true;
+        }
+        
+        if(s != null && t != null){
+            int lens = s.length();
+            int lent = t.length();
+            
+            if(Math.abs(lens - lent) > 1){
+                return false;
+            }
+            
+            if(lens == lent){
+                return helpeq(s,t);
+            }else if(lens - lent == 1){
+                return helpdiff(s,t);
+            }else if(lent - lens == 1){
+                return helpdiff(t,s);
+            }
+            
+            return true;
+
+        }else{
+            return false;
+        }
+
+    }
+    
+    public boolean helpdiff(String s, String t){
+        int indexs = 0;
+        int indext = 0;
+        int lens = s.length();
+        int num = 0;
+        
+        for(int i = 0; i < lens; i++){
+            if((indext <= lens-2) && s.charAt(indexs) == t.charAt(indext) ){
+                        indexs++;
+                        indext++;
+            }else{
+                
+                num++;
+                indexs++;
+                
+                if(num > 1){
+                    return false;
+                }
+                
+            }
+            
+        }
+        return true;
+        
+    }
+    
+
+    
+    public boolean helpeq(String s, String t){
+        int lens = s.length();
+        int num = 0;
+        
+        for(int i = 0; i < lens; i++){
+            if(s.charAt(i) == t.charAt(i)){
+                
+            }else{
+                num++;
+                if(num > 1){
+                    return false;
+                }
+            }    
+        }
+    
+        return num == 1?true:false;
+        
+    }
+
+}
