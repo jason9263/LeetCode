@@ -1,0 +1,43 @@
+public class Solution {
+    public boolean checkRecord(String s) {
+    
+    int lens = s.length();
+    
+    if(lens <= 1){
+        return true;
+    }
+    
+    int cnta = 0;
+    int sign = 0;
+    
+    s = s.trim();
+    s = s.toLowerCase();
+    
+    for(int i = 0; i < lens; i++){
+        char tmp = s.charAt(i);
+        if(tmp == 'a'){
+            cnta++;
+            
+            if(cnta >= 2){
+                return false;
+            }
+            sign = 0;
+            
+        }else if(tmp == 'l'){
+            if(sign == 0){
+                sign++;
+            }else if(sign == 1){
+                sign++;
+            }else if(sign == 2){
+                return false;
+            }   
+             
+        }else{
+            sign = 0;
+        }
+    }
+    
+    return true;    
+   
+    }
+}
