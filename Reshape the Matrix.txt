@@ -1,0 +1,35 @@
+public class Solution {
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        if(nums == null || nums.length == 0 || nums[0].length== 0){
+            return nums;
+        }
+        
+        int row = nums.length;
+        int col = nums[0].length;
+        
+        if(row*col != r*c){
+            return nums;
+        }
+        
+        int[][] res = new int[r][c];
+        int indexsum = 0;
+        int indexr = 0;
+        int indexc = 0;
+        
+        for(int i = 0; i < row; i++){
+            for(int j = 0; j < col; j++){
+                
+                
+                indexr = indexsum/c;
+                indexc = indexsum%c;
+                
+                res[indexr][indexc] = nums[i][j];
+                indexsum++;
+            }
+        }
+        
+        
+        return res;
+        
+    }
+}
