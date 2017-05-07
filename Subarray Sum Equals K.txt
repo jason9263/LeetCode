@@ -1,0 +1,61 @@
+public class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int result = 0;
+        long[] res = new long[nums.length+1];
+    
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            res[i+1] = res[i] + (long)nums[i];
+
+        }
+        
+        
+        for(int i = 1; i < nums.length+1;i++){
+            for(int j = 0; j < i; j++){
+               long tmp = res[i] - res[j];
+                if(tmp == k){
+                    result++;
+                }
+            }
+        }
+        
+
+        return result;
+        
+    }
+}
+
+
+
+public class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int result = 0;
+        long[] res = new long[nums.length+1];
+    
+        HashMap<Long,Integer> jmap = new HashMap<Long,Integer>();
+        jmap.put((long)0,1);
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            res[i+1] = res[i] + (long)nums[i];
+            
+   
+            if(jmap.containsKey(res[i+1]-k)){
+                result = result + jmap.get(res[i+1] -k);
+            }
+            
+            if(jmap.containsKey(res[i+1])){
+                int value = jmap.get(res[i+1]);
+                jmap.put(res[i+1],value+1);
+            }else{
+                jmap.put(res[i+1],1);
+            }
+        
+
+        }
+
+        return result;
+        
+    }
+}

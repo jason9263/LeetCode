@@ -1,0 +1,62 @@
+public class Solution {
+    public int jump(int[] nums) {
+        
+        if(nums == null || nums.length == 0 || (nums.length == 1 && nums[0] < 0)){
+            return -1;
+        }
+        
+        if(nums.length == 1 && nums[0] >= 0){
+            return 0;
+        }
+        
+        
+        Queue<Integer> jq = new PriorityQueue<Integer>();
+        int len = 0;
+        int nextlen = 0;
+        int res = 0;
+        
+        jq.add(0);
+        len = 1;
+
+        int index = 1;
+        int length = nums.length-1;
+        int pre = Integer.MIN_VALUE;
+
+    
+         
+        while(jq.size() > 0){
+            int tmp = jq.poll();
+              
+            pre = Math.max(pre, tmp+ nums[tmp] );
+            
+         
+            
+            while( index <= pre ){
+                               
+                jq.add(index);
+                
+                if(index >= length){
+                    return res+1;
+                }
+                
+                index++;
+                
+                nextlen++;
+            }
+            
+            
+            len--;
+            
+            if(len == 0){
+                len = nextlen;
+                nextlen = 0;
+                res++;
+            }
+            
+            
+        }
+        
+
+        return res;
+    }
+}

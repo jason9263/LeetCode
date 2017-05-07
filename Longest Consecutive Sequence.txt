@@ -1,0 +1,58 @@
+public class Solution {
+    
+    public HashMap<Integer,Integer> jmap = new HashMap<Integer,Integer>();
+    public int res = Integer.MIN_VALUE;
+    
+    public int longestConsecutive(int[] nums) {
+        
+        
+
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        
+
+        
+        for(int i = 0; i < nums.length; i++){
+            jmap.put(nums[i],i);
+        }
+        
+        for(int i = 0; i < nums.length;i++){
+            int tmp = nums[i];
+            if(jmap.containsKey(tmp)){
+                helper(nums,jmap,tmp);
+            }    
+            
+        }
+        
+        return res;
+        
+    }
+    
+    
+    public void helper(int[]nums,HashMap<Integer,Integer> jmap,int tmp){
+        int left = jmap.get(tmp);
+        int right = left;
+        int protmp = tmp;
+        
+        while(jmap.containsKey(protmp+1)){
+            right++;
+            protmp++;
+            jmap.remove(protmp);
+        }
+        
+        
+        protmp = tmp;
+        
+        while(jmap.containsKey(protmp-1)){
+            left--;
+            protmp--;
+            jmap.remove(protmp);
+        }
+        
+        
+        res = Math.max(res,right-left+1);
+    }
+    
+    
+}

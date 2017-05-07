@@ -1,0 +1,87 @@
+public class Solution {
+    
+    public int res = 0;
+    
+    public int findBlackPixel(char[][] picture, int N) {
+
+        
+        if(picture == null){
+            return res;
+        }
+        
+        int cntrow = picture.length;
+        int cntcol = picture[0].length;
+        
+        if(N > cntrow || N > cntcol){
+            return res;
+        }
+        
+        HashMap<Integer,HashSet<Integer>> row = new HashMap<Integer,HashSet<Integer>>();
+        HashMap<Integer,HashSet<Integer>> col = new HashMap<Integer,HashSet<Integer>>();
+        
+        
+        for(int i = 0; i < cntrow; i++){
+            row.put(i,new HashSet<Integer>());
+        }
+        
+        for(int j = 0; j < cntcol; j++){
+            col.put(j,new HashSet<Integer>());
+        }
+        
+        
+        for(int i = 0; i < cntrow; i++){
+            for(int j = 0; j < cntcol; j++){
+                if(picture[i][j] == 'B'){
+                   
+                    row.get(i).add(j);
+                    col.get(j).add(i);
+                    
+                }
+            }
+        }
+        
+        HashSet<Integer> colset = new HashSet<Integer>();
+        
+        for(int i = 0; i < cntrow; i++){
+            for(int j = 0; j < cntcol; j++){
+                if(picture[i][j] == 'B' && row.get(i).size() == N && col.get(j).size() == N && !colset.contains(j)){
+                    
+                helper(row,col,j);
+                
+                colset.add(j);
+                
+                }
+            }
+        }
+        
+        return res;
+        
+        
+    }
+    
+    public void helper(HashMap<Integer,HashSet<Integer>> row, HashMap<Integer,HashSet<Integer>> col,int j){
+        
+        Integer[] rowindex = col.get(j).toArray(new Integer[col.get(j).size()]);
+        
+        for(int i = 0; i < rowindex.length-1; i++ ){
+            if(row.get(rowindex[i]).equals(row.get(rowindex[i+1])) ){
+                
+            }else{
+                return;
+            }
+        }
+        
+        
+        res = res + col.get(j).size();
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
