@@ -1,0 +1,34 @@
+public class Solution {
+    public int findMaxLength(int[] nums) {
+        int res = 0;
+        if(nums == null || nums.length == 0){
+            return res;
+        }
+        
+        
+        HashMap<Integer,Integer> jmap = new HashMap<Integer,Integer>();
+        
+        int len = nums.length;
+        jmap.put(0,-1);
+        
+        int sum = 0;
+        
+        for(int i = 0; i < len; i++){
+            
+            sum = sum + (nums[i] == 1?1:-1);       
+            
+            if(jmap.containsKey(sum)){
+                
+                res = Math.max(res, i - jmap.get(sum));
+                
+            }else{
+                jmap.put(sum,i);
+            }
+            
+        }
+        
+        return res;
+        
+        
+    }
+}
