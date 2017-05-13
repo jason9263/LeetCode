@@ -1,0 +1,33 @@
+public class Solution {
+    public int distributeCandies(int[] candies) {
+        int res = 0;
+        
+        if(candies ==  null || candies.length == 0){
+            return res;
+        }
+        
+        
+        HashSet<Integer> jset = new HashSet<Integer>();
+        
+        for(int i = 0; i < candies.length; i++){
+            if(jset.contains(candies[i])){
+                
+            }else{
+                jset.add(candies[i]);
+            }
+        }
+        
+        
+        int numset = jset.size();
+        int numc = candies.length;
+        
+        
+        if(numc >= 2*numset){
+            return numset;
+        }else{
+            return numc/2;
+        }
+        
+        
+    }
+}
