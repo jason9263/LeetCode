@@ -1,0 +1,34 @@
+public class Codec {
+
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        int n = 100000 + rnd.nextInt(9000000);
+        String  shortUrl = "http://tinyurl.com/" + String.valueOf(n);
+        
+        jmap.put(shortUrl,longUrl);
+        
+        return shortUrl;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+        
+        String res  = "";
+        
+        if(jmap.containsKey(shortUrl)){
+            return jmap.get(shortUrl);
+        }else{
+            return res;
+        }
+        
+        
+        
+    }
+    
+    private HashMap<String,String> jmap = new HashMap<String,String>();
+    private Random rnd = new Random();
+}
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(url));

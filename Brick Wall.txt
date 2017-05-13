@@ -1,0 +1,32 @@
+public class Solution {
+    public int leastBricks(List<List<Integer>> wall) {
+        HashMap<Integer,Integer> jmap = new HashMap<Integer,Integer>();
+        int res = 0;
+        int cnt = 0;
+        if(wall == null || wall.size() == 0){
+            return res;
+        }
+        
+        int len = wall.size();
+        for(int i = 0; i < len; i++){
+            int n = wall.get(i).size();
+            List<Integer> tmp = new ArrayList<Integer>();
+            tmp = wall.get(i);
+            int sum = 0;
+            for(int j = 0; j < n-1; j++){
+                sum = sum + tmp.get(j);
+                if(jmap.containsKey(sum)){
+                    jmap.put(sum, jmap.get(sum)+1);
+                }else{
+                    jmap.put(sum ,1);
+                }
+                
+                cnt = Math.max(cnt,jmap.get(sum));
+            }
+        }
+        
+        
+        return (len - cnt);
+
+    }
+}
