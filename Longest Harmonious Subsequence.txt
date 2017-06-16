@@ -1,0 +1,47 @@
+public class Solution {
+    public int findLHS(int[] nums) {
+        
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        
+        int res = Integer.MIN_VALUE;
+        
+        Arrays.sort(nums);
+        
+        for(int i = 0; i < nums.length; i++){
+            int tmp = nums[i];
+            int tmpres = 0;
+            int tmpindex = -1;
+            
+            while(i+1 < nums.length && nums[i+1] == tmp){
+                tmpres++;
+                i++;
+            }
+        
+            tmpindex = i;
+            boolean sign = false;
+            
+            while(i+1 < nums.length && nums[i+1] - tmp == 1){
+                sign = true;
+                tmpres++;
+                i++;
+            }
+            
+            
+            if(sign == false){
+               
+                tmpres = 0;
+            }
+            
+            
+            res = Math.max(res, tmpres);
+            
+            i = tmpindex;
+            
+        }
+        
+        return res== 0 ? 0: res+1;
+
+    }
+}

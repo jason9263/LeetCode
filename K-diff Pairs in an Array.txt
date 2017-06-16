@@ -1,37 +1,32 @@
 public class Solution {
     public int findPairs(int[] nums, int k) {
-        
-                int res = 0;
-                
-                if(nums == null || nums.length == 0 || k < 0){
-                    return res;
-                }
-                
-        Arrays.sort(nums);
-        
-        Map<Integer,Integer> jmap = new HashMap<Integer,Integer>();
-        
-        for(int tmp : nums){
-            jmap.put(tmp, jmap.getOrDefault(tmp,0) + 1);
+        if(nums == null || nums.length == 0 || k < 0){
+            return 0;
         }
         
         
-        for(Map.Entry<Integer, Integer> entry : jmap.entrySet()){
-            
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        
+        int cnt = 0;
+        
+        for(int i : nums){
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
             if(k == 0){
                 if(entry.getValue() >= 2){
-                    res++;
+                    cnt++;
                 }
             }else{
-                if(jmap.containsKey(entry.getKey() + k)){
-                    res++;
+                if(map.containsKey(entry.getKey()+k)){
+                    cnt++;
                 }
             }
-            
         }
         
         
+        return cnt;
         
-        return res;
     }
 }
