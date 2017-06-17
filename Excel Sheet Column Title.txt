@@ -1,0 +1,30 @@
+public class Solution {
+    public String convertToTitle(int n) {
+        
+        String res = "";
+         
+        if(n <= 0){
+            return res;
+        }else{
+           
+            
+            while(n > 0){
+                if(n % 26 == 0){
+                    res += (char)'Z';
+                    n = n - 26;
+                }else{
+                    res += (char)((n % 26) + 'A' - 1);
+                    n = n - n % 26;
+                }
+                
+                System.out.println(res);
+                
+                n /= 26;
+
+            }
+
+        }
+        
+        return new StringBuilder(res).reverse().toString();
+    }
+}
