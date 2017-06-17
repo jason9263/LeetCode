@@ -1,0 +1,11 @@
+public class Solution {
+    public String intToRoman(int num) {
+        String res = "";
+        String[] vt = {"","M","MM","MMM"};
+        String[] vh = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        String[] vd = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        String[] v = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
+        
+        return res + vt[num/1000] + vh[(num%1000 )/100] + vd[(num%100)/10] + v[num % 10];
+    }
+}

@@ -1,0 +1,77 @@
+public class Solution {
+    public List<List<Integer>> palindromePairs(String[] words) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        if(words == null || words.length == 0){
+            return res;
+        }
+        
+        Map<String,Integer> map = new HashMap<String,Integer>();
+        
+        for(int i = 0; i < words.length; i++){
+            map.put(words[i],i);
+        }
+        
+        
+        for(int i = 0; i < words.length; i++){
+            
+            for(int j = 0; j <= words[i].length(); j++){
+                
+                String str1 = words[i].substring(0,j);
+                String str2 = words[i].substring(j);
+                
+                if(helper(str1)){
+                    String tmps = new StringBuilder(str2).reverse().toString();
+                    
+                    if(map.containsKey(tmps) && map.get(tmps) != i){
+                        List<Integer> tmpres = new ArrayList<Integer>();
+                        tmpres.add(map.get(tmps));
+                        tmpres.add(i);
+                        res.add(tmpres);
+                    }
+
+                }
+                
+                
+                if(helper(str2)){
+                    String tmps = new StringBuilder(str1).reverse().toString();
+                    
+                    if(map.containsKey(tmps) && map.get(tmps) != i && str2.length() !=0){
+                        List<Integer> tmpres = new ArrayList<Integer>();
+                        tmpres.add(i);
+                        tmpres.add(map.get(tmps));
+                        res.add(tmpres);
+                    }
+                    
+                }
+            }
+        }
+
+        
+        return res;
+    }
+    
+    
+    public boolean helper(String s){
+        if(s.length() == 0){
+            return true;
+        }else{
+            int l = 0;
+            int r = s.length()-1;
+            
+            while(l < r){
+                if(s.charAt(l) == s.charAt(r)){
+                    l++;
+                    r--;
+                }else{
+                    return false;
+                }
+            }
+            
+            return true;
+            
+        }
+    }
+    
+    
+}
