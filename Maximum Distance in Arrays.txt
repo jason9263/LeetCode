@@ -1,0 +1,42 @@
+public class Solution {
+    public int maxDistance(List<List<Integer>> arrays) {
+        if(arrays == null || arrays.size() == 0 || arrays.size() == 1){
+            return 0;
+        }
+        
+        
+        
+        int len = arrays.size();
+        int[] max = new int[len];
+        int[] min = new int[len];
+        
+        HashMap<Integer,Integer> minmap = new HashMap<Integer,Integer>();
+        HashMap<Integer,Integer> maxmap = new HashMap<Integer,Integer>();
+        
+        for(int i = 0 ; i < len; i++){
+            List<Integer> tmplist = new ArrayList<Integer>();
+            
+            tmplist = arrays.get(i);
+            max[i] = tmplist.get(tmplist.size() -1);
+            min[i] = tmplist.get(0);
+            
+            maxmap.put(max[i],i);
+            minmap.put(min[i],i);
+        }
+        
+        
+        Arrays.sort(max);
+        Arrays.sort(min);
+        
+        if(maxmap.get(max[len-1]) != minmap.get(min[0])){
+            return max[len-1] - min[0];
+        }else{
+            
+            
+            return Math.max( max[len-2] - min[0], max[len-1] - min[1]);
+        }
+        
+        
+        
+    }
+}

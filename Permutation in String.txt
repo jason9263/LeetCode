@@ -1,0 +1,67 @@
+public class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        
+        if(s2 == null || s2.length() == 0){
+            return false;
+        }
+        
+        if(s1 == null || s1.length() == 0 || s1.length() > s2.length()){
+            return false;
+        }
+        
+        HashMap<String ,Integer> map = new HashMap<String,Integer>();
+        int lens1 = s1.length();
+        int lens2 = s2.length();
+        
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+        
+        //s1
+        int[] ints1 = new int[26];
+        for(int i = 0; i < 26; i++){
+            ints1[i] = 0;
+        }
+        
+        for(int i = 0; i < lens1 ; i++){
+            ints1[s1.charAt(i) - 'a']++;
+        }
+        
+        
+        //s2 
+        int[] ints2 = new int[26];
+        
+        for(int i = 0; i < 26; i++){
+            ints2[i] = 0;
+        }
+        
+        for(int i = 0; i < lens1; i++){
+            ints2[s2.charAt(i) - 'a']++;
+        }
+        
+        int[] tmps = ints2.clone();
+        
+        map.put(Arrays.toString(tmps),lens1-1);
+        
+        for(int i = lens1; i < lens2; i++){
+            ints2[s2.charAt(i - lens1) - 'a']--;
+            ints2[s2.charAt(i) - 'a']++;
+            
+            int[] tmpstr = ints2.clone();
+            
+            map.put(Arrays.toString(tmpstr),i);
+
+        }
+ 
+        System.out.println(map.size());
+        
+        if(map.containsKey(Arrays.toString(ints1))){
+            return true;
+        }else{
+            return false;
+        }
+
+        
+    }
+    
+    
+}
