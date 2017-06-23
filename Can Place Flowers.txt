@@ -1,0 +1,32 @@
+public class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        String tmps = "";
+        if(flowerbed[0] == 0){
+            tmps = "0";
+        }
+        
+        for(int i = 0; i < flowerbed.length; i++){
+            tmps = tmps + String.valueOf(flowerbed[i]);
+        }
+        
+        if(flowerbed[flowerbed.length-1] == 0){
+            tmps = tmps +"0";
+        }
+        
+        
+        String[] words = tmps.split("1");
+        
+        int result = 0;
+        
+        for(int i = 0; i < words.length; i++){
+            result = result + (words[i].length() - 1 )/2;
+        }
+       
+        if(result >= n){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+}
