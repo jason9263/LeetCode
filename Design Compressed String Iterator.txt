@@ -1,0 +1,69 @@
+public class StringIterator {
+    
+    
+    public char curchar = 'a';
+    public int curint = 0;
+    
+    public String tmps = "";
+    public int index = 0;
+    
+    public StringIterator(String compressedString) {
+        tmps = compressedString;    
+        curchar = tmps.charAt(index++);
+        int tmpint = index;
+        
+        while(index < tmps.length() && tmps.charAt(index) >= '0' && tmps.charAt(index) <= '9'){
+            index++;
+        }
+        
+        curint = Integer.valueOf(tmps.substring(tmpint, index));
+
+    }
+    
+    public char next() {
+        if(curint > 0){
+            char tmpchar = curchar;
+            curint--;
+            
+            if(curint == 0){
+                int tmpint = -1;
+                
+                if(index < tmps.length()){
+                    
+                    curchar = tmps.charAt(index++);
+                    tmpint = index;
+                    
+                    while(index < tmps.length() && tmps.charAt(index) <='9' && tmps.charAt(index) >= '0'){
+                        index++;
+                        
+                      
+                    }
+                    
+                    curint = Integer.valueOf(tmps.substring(tmpint,index));
+
+                }
+            }
+            
+            return tmpchar;
+        }else{
+            return ' ';
+        }
+    }
+    
+    public boolean hasNext() {
+
+        if(curint > 0){
+
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+/**
+ * Your StringIterator object will be instantiated and called as such:
+ * StringIterator obj = new StringIterator(compressedString);
+ * char param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */\
