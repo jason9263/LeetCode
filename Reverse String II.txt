@@ -1,0 +1,45 @@
+public class Solution {
+    
+    public StringBuilder tmps = new StringBuilder();
+    
+    public String reverseStr(String s, int k) {
+        
+        for(int i = 0; i < s.length(); i = i + 2*k){
+            
+            int pos = i + 2*k >= s.length() ? s.length() : i + 2 *k;
+            
+            helper(s.substring(i,pos),k);
+        }
+        
+        
+        return tmps.toString();
+        
+    }
+    
+    public void helper(String s, int k ){
+        int len = s.length() ;
+        
+        if(len < k ){
+            
+            StringBuilder tmpsb = new StringBuilder(s);
+            
+            tmps.append(tmpsb.reverse().toString());
+            
+        }else if(len == 2*k) {
+            
+            StringBuilder tmpsb = new StringBuilder(s.substring(0,k));
+            tmpsb = tmpsb.reverse();
+            tmpsb.append(s.substring(k,2*k));
+            
+            tmps.append(tmpsb.toString());
+        }else {
+            StringBuilder tmpsb = new StringBuilder(s.substring(0,k));
+            tmpsb = tmpsb.reverse();
+            tmpsb.append(s.substring(k,s.length()));
+            tmps.append(tmpsb.toString());
+        }
+        
+        
+        
+    }
+}
