@@ -1,0 +1,20 @@
+public class Solution {
+    public String simplifyPath(String path) {
+        String[] word = path.split("/");
+        Stack<String> s = new Stack<String>();
+        
+        for(String tmp : word){
+            if(!s.isEmpty() && tmp.equals("..")){
+                s.pop();
+            }else if(!tmp.equals("") && !tmp.equals(".") && !tmp.equals("..")){
+                s.push(tmp);
+            }
+        }
+        
+        List<String> list = new ArrayList<String>(s);
+        
+        return "/" + String.join("/",list);
+        
+        
+    }
+}
