@@ -1,0 +1,62 @@
+public class Solution {
+    public int calculate(String s) {
+        s = s.trim();
+        int res = 0;
+        int sign = 1;
+        
+        int len = s.length();
+        int mode = -1;
+        
+        Stack<Integer> st = new Stack<Integer>();
+        
+        for(int i = 0; i < len; i++){
+            if(s.charAt(i) >= '0' && s.charAt(i) <= '9'){
+                int num = 0;
+                
+                while(i < len && s.charAt(i) >= '0' && s.charAt(i) <= '9'){
+                    num = num * 10 + s.charAt(i) - '0';
+                    i++;
+                }
+                i--;
+                if(mode == -1){
+                    st.push(sign*num);
+                }else if(mode == 1){
+                    st.push(sign*num);
+                }else if(mode == 2){
+                    st.push(sign*num);
+                }else if(mode == 3){
+                    int tmp = st.pop();
+                    st.push(tmp*num);
+                    
+                }else if(mode == 4){
+                    int tmp = st.pop();
+                    st.push(tmp/num);
+                }
+                
+                
+            }else if(s.charAt(i) == '+'){
+                mode = 1;
+                sign = 1;
+            }else if(s.charAt(i) == '-'){
+                mode = 2;
+                sign = -1;
+            }else if(s.charAt(i) == '*'){
+                mode = 3;
+                sign = 1;
+            }else if(s.charAt(i) == '/'){
+                mode = 4;
+                sign = 1;
+            }
+        }
+        
+        int tmpres = 0;
+        
+        while(st.size() > 0){
+            tmpres += st.pop();
+        }
+        
+        
+        
+        return tmpres;
+    }
+}

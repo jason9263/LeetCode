@@ -1,0 +1,45 @@
+public class Solution {
+    public int calculate(String s) {
+        s = s.trim();
+        
+        int res = 0;
+        int sign = 1;
+        
+        Stack<Integer> st = new Stack<Integer>();
+        
+        for(int i = 0 ; i < s.length(); i++){
+            char tmpc = s.charAt(i);
+            if(tmpc >= '0' && tmpc <= '9'){
+                int num = 0;
+                
+                while( i < s.length() && s.charAt(i) >= '0' && s.charAt(i) <='9' ){
+                    num = num * 10  + s.charAt(i) - '0';
+                    i++;
+                }
+                
+                res += sign*num;
+                i--;
+                
+            }else if(tmpc == '+'){
+                sign = 1;
+            }else if(tmpc == '-'){
+                sign = -1;
+            }else if (tmpc == '('){
+                st.push(res);
+                st.push(sign);
+                res = 0;
+                sign = 1;
+                
+            }else if(tmpc == ')'){
+                res = res*st.peek();
+                st.pop();
+                res += st.peek();
+                st.pop();
+            }
+        }
+        
+        return res;
+        
+        
+    }
+}
