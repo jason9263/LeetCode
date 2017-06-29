@@ -1,0 +1,56 @@
+public class Solution {
+    public List<Integer> findSubstring(String s, String[] words) {
+        
+        List<Integer> res = new ArrayList<Integer>();
+        
+        
+        if(s == null || words == null || s.length() == 0 || words.length == 0){
+            return res;
+        }
+        
+        
+
+        HashMap<String, Integer> map = new HashMap<String,Integer>();
+        
+        for(String tmp:words){
+            map.put(tmp,map.getOrDefault(tmp,0)+1);
+        }
+        int unitlen = words[0].length();
+        int len = words.length;
+        
+        
+        for(int i = 0; i <= s.length() - unitlen*len; i++){
+            if(helper(map,s, unitlen, len,i)){
+                res.add(i);
+            }
+        }
+
+        return res;
+    }
+    
+    private boolean helper(Map<String,Integer> map, String s, int unitlen, int len , int start){
+        HashMap<String , Integer> tmpmap = new HashMap<String,Integer>(map);
+        int end = start + unitlen * len;
+        
+        for(int i = start; i < end; i = i + unitlen){
+            String tmps = s.substring(i,i+unitlen);
+            if(tmpmap.containsKey(tmps)){
+                
+                if(tmpmap.get(tmps) > 0){
+                   tmpmap.put(tmps, tmpmap.get(tmps)-1); 
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+        }
+        
+        
+        return true;
+        
+    }
+    
+    
+}

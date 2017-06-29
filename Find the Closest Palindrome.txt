@@ -1,0 +1,59 @@
+public class Solution {
+    
+    private void update(String val){
+        
+        try{
+            
+            long tmp = Long.parseLong(val);
+            if(tmp == n){
+                return;
+            }
+            
+            if(Math.abs(tmp - n) < diff || (Math.abs(tmp - n) == diff && tmp < ans)){
+                ans = tmp;
+                diff = Math.abs(tmp -n);
+            }
+            
+            
+            
+            
+        }catch(Exception  e){
+            
+        }
+        
+        
+        
+    }
+    
+    
+    private void concat(long leftHalf){
+        String s = "" + leftHalf;
+        String rs = new StringBuilder(s).reverse().toString();
+        update(s+rs);
+        update(s+ rs.substring(1));
+
+    }
+    
+    
+    
+    
+    
+    public long ans = 0;
+    public long diff = Long.MAX_VALUE;
+    public long n = 0;
+    
+    public String nearestPalindromic(String n) {
+        this.n = Long.parseLong(n);
+        diff = Long.MAX_VALUE;
+        
+        long leftHalf = Long.parseLong(n.substring(0, (n.length() + 1)/2));
+        
+        concat(leftHalf - 1);
+        concat((leftHalf-1)*10 + 9);//1
+        concat(leftHalf);
+        concat(leftHalf+1);
+        concat((leftHalf+1)/10);
+        
+        return "" + ans;
+    }
+}
