@@ -1,0 +1,45 @@
+public class Solution {
+    public int coinChange(int[] coins, int amount) {
+        
+        int res = -1;
+        if(coins == null || coins.length == 0){
+            return res;
+        }
+        
+        
+        Arrays.sort(coins);
+        
+        int[] num = new int[amount+1];
+        for(int i = 0; i < amount+1; i++){
+            num[i] = -1;
+        }
+        
+        num[0] = 0;
+                
+        for(int i = 1; i <= amount; i++){
+            
+            int tmps = helper(coins,num,i);
+            
+            num[i] = tmps; 
+            
+        }
+        return num[amount];
+    }
+    
+    private int helper(int[] coins, int[] num, int tmp){
+        int res = Integer.MAX_VALUE;
+        int len = coins.length;
+               
+        for(int i = 0; i < len; i++){
+            int diff = tmp- coins[i];
+            
+            if(diff >= 0 && num[diff] != -1){
+                res = Math.min(res,num[diff]+1 );
+            }
+        }
+
+        return res == Integer.MAX_VALUE ? -1:res;
+    }
+
+    
+}
