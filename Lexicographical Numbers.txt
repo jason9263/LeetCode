@@ -1,26 +1,28 @@
 public class Solution {
     public List<Integer> lexicalOrder(int n) {
-        List<Integer> res = new LinkedList<Integer>();
-        int tmp = 1;
+   
+        
+        List<Integer> res = new ArrayList<Integer>();
+        int cur = 1;
         
         for(int i = 1; i <= n; i++){
-            res.add(tmp);
+            res.add(cur);
             
-            if(tmp *10 <=n){
-                tmp = tmp*10;
-            }else if( tmp %10 != 9 && tmp +1 <= n){
-                tmp++;
+            if(cur*10 <= n){
+                cur *= 10;
+               
+            }else if( cur % 10 != 9 && cur +1 <= n){
+                cur += 1;
+               
             }else{
                 
-                while( (tmp/10)%10 == 9 ){
-                    tmp = tmp/10;
+                while((cur/10) % 10 == 9){
+                    cur = cur/10;
                 }
                 
-                tmp = tmp/10;
-                tmp++;
-                
+                cur = cur/10 + 1;
             }
-
+            
         }
         
         return res;
