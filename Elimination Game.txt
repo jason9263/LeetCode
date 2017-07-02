@@ -1,0 +1,20 @@
+public class Solution {
+    public int lastRemaining(int n) {
+        return helper(n, true);
+    }
+    
+    public int helper(int n , boolean left2right){
+        if(n == 1){
+            return 1;
+        }else if(left2right){
+            
+            return 2*helper(n/2, false);
+            
+            
+        }else {
+            return 2*helper( n/2, true) - 1 + n%2;
+        }
+    }
+    
+    
+}

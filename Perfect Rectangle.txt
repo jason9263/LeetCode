@@ -1,0 +1,74 @@
+public class Solution {
+    public boolean isRectangleCover(int[][] rectangles) {
+
+
+        if(rectangles == null || rectangles[0].length == 0){
+            return false;
+        }
+
+        int l = Integer.MAX_VALUE;
+        int b = Integer.MAX_VALUE;
+        
+        int r = Integer.MIN_VALUE;
+        int t = Integer.MIN_VALUE;
+        
+        int sum = 0;
+        
+        
+                //
+        Arrays.sort(rectangles, new Comparator<int[]>()
+        {
+            public int compare(int[] a, int[] b){
+                if(a[0] > b[0]){
+                    return 1;
+                }else if(a[0] == b[0]){
+                    return a[1] - b[1];
+                }else{
+                    return -1;
+                }
+
+            }
+        }
+        );
+        
+        
+        //
+        
+        l = rectangles[0][0];
+        
+        for(int i = 0; i < rectangles.length; i++){
+            
+            b = Math.min(b , rectangles[i][1]);
+            r = Math.max(r, rectangles[i][2]);
+            t = Math.max(t,rectangles[i][3]);
+            
+            sum = sum + (rectangles[i][3] - rectangles[i][1])*(rectangles[i][2] - rectangles[i][0]);
+            
+            for(int j = i+1; j < rectangles.length; j++){
+                
+                if(rectangles[j][0] >= rectangles[i][2]){
+                    
+                    break;
+                    
+                }else{
+                    
+                    if(rectangles[j][1] >= rectangles[i][3] || rectangles[i][1] >= rectangles[j][3]){
+                        
+                    }else{
+                        return false;
+                    }
+                    
+                    }
+                }
+            }
+    
+        
+        int area = (r - l) * (t- b);
+
+        if(area == sum){
+            return true;
+        }
+        
+        return false;
+    }
+}
