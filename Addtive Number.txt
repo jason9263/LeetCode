@@ -1,0 +1,67 @@
+import java.math.*;
+
+public class Solution {
+    public boolean isAdditiveNumber(String num) {
+        
+        if(num == null || num.length() < 3){
+            return false;
+        }
+        
+        
+        for(int i = 1; i < num.length(); i++){
+            
+            String a = num.substring(0,i);
+            
+            if(a.length() > 1 && a.charAt(0) == '0'){
+                return false;
+            }
+            
+            for(int j = i+1; j <= num.length() - a.length(); j++){
+                
+                String b = num.substring(i,j);
+                
+                if(b.length() > 1 && b.charAt(0) == '0'){
+                    break;
+                }
+
+                
+                if(helper(num.substring(a.length() + b.length()), a, b)){            
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+    
+    
+    public boolean helper(String num, String a, String b){
+        if(num.length() == 0){
+            return false;
+        }else{
+            
+            BigInteger na = new BigInteger(a);
+            BigInteger nb = new BigInteger(b);
+            
+            BigInteger nc = na.add(nb);
+            String tmps = nc.toString();
+
+            
+            if(num.startsWith(tmps)){
+                
+          
+                
+                if(num.substring(tmps.length()).length() == 0){
+                    return true;
+                }else{
+                    return helper(num.substring(tmps.length()), nb.toString(), nc.toString());
+                }
+                
+                
+            }else{
+                return false;
+            }
+        }
+
+    }
+}
