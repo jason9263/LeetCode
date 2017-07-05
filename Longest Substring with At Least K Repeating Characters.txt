@@ -1,0 +1,56 @@
+public class Solution {
+    
+    public static int maxLen = 0;
+    
+    public int longestSubstring(String s, int k) {
+        return helper(s,k);
+    }
+    
+    public static int helper(String s , int k){
+        if(s == null || s.length() == 0 || s.length() < k){
+            return 0;
+        }
+        
+        HashMap<Character,Integer> map = new HashMap<Character, Integer>();
+        for(int i = 0; i < s.length(); i++){
+            char tmpc = s.charAt(i);
+            map.put(tmpc, map.getOrDefault(tmpc,0)+1);
+        }
+        
+        String splits = "";
+        
+        for(Map.Entry<Character,Integer> entry : map.entrySet()){
+            if(entry.getValue() > 0 && entry.getValue() < k){
+                splits = splits + entry.getKey();
+            }
+        }
+        
+        
+        System.out.println(splits);
+
+        
+        if(splits.length() == 0){
+            maxLen = Math.max(maxLen, s.length());
+            return maxLen;
+        }
+        
+    
+        
+        String[] words = s.split("["+splits+"]");
+      
+        
+        if(words == null || words.length == 0){
+              
+            return 0;
+        }
+        
+        for(String tmps : words){
+            maxLen = Math.max(maxLen , helper(tmps,k));
+        }
+        
+        
+        return maxLen;
+    }
+    
+    
+}
