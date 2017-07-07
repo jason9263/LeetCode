@@ -17,3 +17,19 @@ public class Solution {
         return max;
     }
 }
+
+
+
+public class Solution {
+    public int maxProfit(int[] prices) {
+        int maxcur = 0, maxsofar = 0;
+
+        for(int i = 0; i < prices.length-1; i++){
+            maxcur = Math.max(0, maxcur += prices[i+1] - prices[i]);
+            maxsofar = Math.max(maxcur, maxsofar);
+        }
+        
+        
+        return maxsofar;
+    }
+}
