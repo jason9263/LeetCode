@@ -1,30 +1,39 @@
 public class Solution {
     public int maxRotateFunction(int[] A) {
-                
-        int max = Integer.MIN_VALUE;
-        int sum = 0;
-        int len = A.length;
-        int presum = 0;
+      if(A == null || A.length == 0){
+          return 0;
+      }  
         
-        if(len == 0 || len == 1){
-            return 0;
+      long max = Integer.MIN_VALUE;     
+      long sum = 0;
+       int n = A.length ;
+        
+      for(int i = 0; i < n; i++){
+          sum += A[i];
+      }
+        
+      long[] dp = new long[n];
+      long tmpsum = 0;
+      for(int i = 0; i < n; i++){
+            tmpsum += i*A[i];
+      }   
+        dp[0] = tmpsum;
+        max = Math.max(max,tmpsum);
+        
+        int times = n -1;
+        int index = 1;
+        while(times > 0){
+            tmpsum = 0;
+            tmpsum = dp[index-1] + sum - (n)*(A[n-index]);
+            
+            dp[index] = tmpsum;
+            max = Math.max(max,tmpsum);
+            times--;
+            index++;
         }
         
         
-        for(int i = 0; i < len; i++){
-            sum = sum + A[i];
-            presum  = presum + i* A[i];
-        }
-        
-        
-        
-        for(int i = len-1; i >= 0; i--){
-            int tmp = sum + presum - (len)*A[i];
-            presum = tmp;
-            max = Math.max(max,tmp);
-        }
-        
-        
-        return max;
+    return (int)max;
+         
     }
 }

@@ -8,44 +8,25 @@
  * }
  */
 public class Solution {
-    
-    int cnt = 0;
-    List<Integer> jlist = new ArrayList<Integer>();
-    
     public int pathSum(TreeNode root, int sum) {
-        
-        helper(root, 0, sum, jlist);
-        
-        
-        return cnt;
-    }
-    
-    
-    public void helper(TreeNode root, int sum, int target, List<Integer> jlist){
-        
         if(root == null){
-            return ;
+            return 0;
+        }else{
+            return helper(root,sum, 0) + pathSum(root.left,sum) + pathSum(root.right,sum);
         }
         
-        sum += root.val;
         
-        jlist.add(sum);
-        
-        if(sum == target){
-            cnt++;
-        }
-        
-        for(int i = 0; i < jlist.size()-1; i++){
-            int tmp = sum - jlist.get(i);
-            if(tmp == target){
-                cnt++;
-            }
-        }
-        
-        helper(root.left, sum, target, jlist);
-        helper(root.right, sum, target,jlist);
-        
-        jlist.remove(jlist.size()-1);
         
     }
+    
+    public int helper(TreeNode root, int sum , int cur){
+        if(root == null){
+            return 0;
+        }else{
+            cur = cur + root.val;
+            return (sum == cur ? 1: 0) + helper(root.left, sum, cur) + helper(root.right,sum, cur );
+        }
+    }
+    
+    
 }
