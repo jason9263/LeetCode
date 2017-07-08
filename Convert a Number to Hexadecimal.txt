@@ -1,25 +1,25 @@
 public class Solution {
     public String toHex(int num) {
-
         
-        long n  = num & 0x00000000ffffffffL;
+        long tmp = num & 0x00000000ffffffffL;
         
-        char[] alpha = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+        char[] map = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
         
+        StringBuilder sb = new StringBuilder();
         
-        StringBuilder tmps = new StringBuilder();
-        
-        while( n > 0){
-            tmps.insert(0, alpha[(int)(n % 16)]);
-            n = n /16;
+       
+        while(tmp > 0){
+            sb.insert(0,map[(int)(tmp % 16)]);
+            tmp = (long)(tmp/16);
+            
         }
         
         
-        if(num == 0){
+        if(sb.length() == 0){
             return "0";
-        }else{
-            return tmps.toString();
         }
         
+        
+        return sb.toString();
     }
 }
