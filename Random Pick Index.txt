@@ -1,0 +1,40 @@
+public class Solution {
+    
+    public HashMap<Integer, List<Integer>> map = new HashMap<Integer, List<Integer>>();
+    
+    public Solution(int[] nums) {
+        int index = 0;
+    for(int tmp : nums){
+        if(map.containsKey(tmp)){
+            map.get(tmp).add(index);
+        }else{
+            List<Integer> tmplist = new ArrayList<Integer>();
+            tmplist.add(index);
+            map.put(tmp,tmplist);
+        }
+        
+        index++;
+    }
+        
+    }
+    
+    public int pick(int target) {
+        if(map.containsKey(target)){
+            List<Integer> tmplist = new ArrayList<Integer>();
+            tmplist = map.get(target);
+            Random rand = new Random();
+            
+            int num = rand.nextInt(tmplist.size()) ;
+
+            return tmplist.get(num);
+        }else{
+            return -1;
+        }
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int param_1 = obj.pick(target);
+ */

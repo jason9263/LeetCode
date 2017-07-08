@@ -1,0 +1,47 @@
+public class Solution {
+    public String removeKdigits(String num, int k) {
+        if(num == null || num.length() == 0){
+            return "0";
+        }
+        int len = num.length();
+        
+        Stack<Character> stack = new Stack<Character>();
+        
+        for(int i = 0; i < len; i++){
+            while(k > 0 && stack.size() > 0 && stack.peek() > num.charAt(i)){
+                stack.pop();
+                k--;
+            }
+            
+            stack.push(num.charAt(i));
+            
+        }
+        
+        // 11111111
+        while(k > 0){
+            stack.pop();
+            k--;
+        }
+        
+        
+        StringBuilder sb = new StringBuilder();
+        
+        while(!stack.isEmpty()){
+            sb.append(stack.pop());
+        }
+        
+        sb.reverse();
+        
+        while(sb.length() > 1 && sb.charAt(0) == '0'){
+            sb.deleteCharAt(0);
+        }
+        
+        if(sb.length() == 0){
+            return "0";
+        }
+        
+        
+        return sb.toString();
+
+    }
+}
