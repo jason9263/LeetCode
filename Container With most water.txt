@@ -1,31 +1,22 @@
 public class Solution {
     public int maxArea(int[] height) {
-        
-        int res = 0;
-        
-        
-        if(height == null || height.length == 1 ){
-            return res;
-        }
-        
-        
         int left = 0;
-        int right = height.length-1;
+        int right = height.length - 1;
+        
+        int maxArea = 0;
         
         
         while(left < right){
+            maxArea = Math.max(maxArea , Math.min(height[left], height[right]) * (right - left));
             
-            res = Math.max(res, Math.min(height[left], height[right])*(right - left));
-            
-            if(height[left] > height[right]){
-                right--;
-            }else{
+            if(height[left] < height[right]){
                 left++;
+            }else{
+                right--;
             }
             
         }
         
-        return res;
-
+        return maxArea;
     }
 }
