@@ -1,0 +1,44 @@
+public class Solution {
+    public int largestPalindrome(int n) {
+        int res = 0;
+        
+        if(n == 1){
+            return 9;
+        }
+        
+        
+        long top = (long)Math.pow(10,n)-1;
+        long low = (long)Math.pow(10,n-1);
+        
+        outloop:
+        for(long i = top ; i >= low; i--){
+            long tmp = helper(i);
+            
+            for(long j = top ; j >= low; j--){
+                if(tmp / j > top){
+                    break;
+                }
+                
+                if(tmp % j == 0){
+                    System.out.println(tmp);
+                   res =  (int)(tmp % 1337);
+                    break outloop;
+                }
+            }
+        }
+        
+        return res;
+        
+        
+    }
+    
+    public long helper(long tmp){
+        StringBuilder sb = new StringBuilder(String.valueOf(tmp));
+        sb.reverse();
+        
+        String result = String.valueOf(tmp) + sb.toString();
+        return Long.parseLong(result);
+        
+    }
+    
+}
