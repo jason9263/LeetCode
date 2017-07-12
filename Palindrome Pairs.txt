@@ -1,76 +1,72 @@
 public class Solution {
     public List<List<Integer>> palindromePairs(String[] words) {
+        
+        HashMap<String,Integer> map = new HashMap<>();
+        int len = words.length;
+        
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         
-        if(words == null || words.length == 0){
+        if(words == null || words.length < 2){
             return res;
         }
         
-        Map<String,Integer> map = new HashMap<String,Integer>();
-        
-        for(int i = 0; i < words.length; i++){
+        for(int i = 0; i < len; i++){
             map.put(words[i],i);
         }
         
-        
-        for(int i = 0; i < words.length; i++){
-            
-            for(int j = 0; j <= words[i].length(); j++){
+        for(int i = 0; i < len; i++){
+            String tmps = words[i];
+            for(int j = 0; j <= tmps.length(); j++){
+                String s1 = tmps.substring(0,j);
+                String s2 = tmps.substring(j);
                 
-                String str1 = words[i].substring(0,j);
-                String str2 = words[i].substring(j);
-                
-                if(helper(str1)){
-                    String tmps = new StringBuilder(str2).reverse().toString();
+                if(helper(s1)){
+                    String res2 = new StringBuilder(s2).reverse().toString();
                     
-                    if(map.containsKey(tmps) && map.get(tmps) != i){
+                    if(map.containsKey(res2)  && map.get(res2) != i){
+                        int pos = map.get(res2);
                         List<Integer> tmpres = new ArrayList<Integer>();
-                        tmpres.add(map.get(tmps));
+                        tmpres.add(pos);
                         tmpres.add(i);
-                        res.add(tmpres);
-                    }
-
-                }
-                
-                
-                if(helper(str2)){
-                    String tmps = new StringBuilder(str1).reverse().toString();
-                    
-                    if(map.containsKey(tmps) && map.get(tmps) != i && str2.length() !=0){
-                        List<Integer> tmpres = new ArrayList<Integer>();
-                        tmpres.add(i);
-                        tmpres.add(map.get(tmps));
+                        
                         res.add(tmpres);
                     }
                     
                 }
+                
+                if(helper(s2)){
+                    String res1 = new StringBuilder(s1).reverse().toString();
+                    
+                    if(map.containsKey(res1) && map.get(res1) != i && s2.length() != 0){
+                        int pos = map.get(res1);
+                        List<Integer> tmpres = new ArrayList<Integer>();
+                        
+                        tmpres.add(i);
+                        tmpres.add(pos);
+                        res.add(tmpres);
+                    }
+                }
+                
             }
+            
         }
-
-        
-        return res;
+            return res; 
     }
     
-    
-    public boolean helper(String s){
-        if(s.length() == 0){
-            return true;
-        }else{
-            int l = 0;
-            int r = s.length()-1;
+    public boolean helper(String tmp){
+        int left = 0;
+        int right = tmp.length()-1;
+        
+        while(left < right){
             
-            while(l < r){
-                if(s.charAt(l) == s.charAt(r)){
-                    l++;
-                    r--;
-                }else{
-                    return false;
-                }
+            if(tmp.charAt(left) == tmp.charAt(right)){
+                left++;
+                right--; 
+            }else{
+                return false;
             }
-            
-            return true;
-            
         }
+        return true;
     }
     
     
