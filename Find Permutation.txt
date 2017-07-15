@@ -1,0 +1,45 @@
+public class Solution {
+    public int[] findPermutation(String s) {
+        int n = s.length();
+        int[] arr = new int[n+1];
+        
+        for(int i = 0; i <= n;i++){
+            arr[i] = i+1;
+        }
+        
+        for(int h = 0; h < n; h++){
+            if(s.charAt(h) == 'D'){
+                int l = h;
+                
+                while(h < n && s.charAt(h) == 'D'){
+                    h++;
+                }
+  
+                arr = reverse(arr,l,h);
+
+                
+            }
+        }
+        
+        return arr;
+    }
+    
+    public int[] reverse(int[] arr, int l ,int h){
+        int tmp = -1;
+        
+        while(l < h){
+            tmp = arr[l];
+            arr[l] = arr[h];
+            arr[h] = tmp;
+            
+            l++;
+            h--;
+        }
+
+        int n = arr.length;
+
+        return arr;
+    }
+    
+    
+}
