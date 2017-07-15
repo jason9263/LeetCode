@@ -1,0 +1,12 @@
+public class Solution {
+    public String complexNumberMultiply(String a, String b) {
+        
+        String[] aword = a.split("\\+|i");
+        String[] bword = b.split("\\+|i");
+        
+        int part1 = Integer.valueOf(aword[0]) * Integer.valueOf(bword[0]) - Integer.valueOf(aword[1])*Integer.valueOf(bword[1]);
+        int part2 = Integer.valueOf(aword[0])*Integer.valueOf(bword[1]) + Integer.valueOf(aword[1])*Integer.valueOf(bword[0]);
+        
+        return String.valueOf(part1)+"+"+String.valueOf(part2)+"i";
+    }
+}
