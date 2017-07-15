@@ -8,55 +8,56 @@
  * }
  */
 public class Solution {
-    public List<Double> averageOfLevels(TreeNode root) {
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> res = new LinkedList<Integer>();
+        
         Queue<TreeNode> que = new LinkedList<TreeNode>();
-        List<Double> res = new LinkedList<Double>();
+        
         if(root == null){
             return res;
         }
         
         if(root.left == null && root.right == null){
-            res.add((double)root.val);
+            res.add(root.val);
             return res;
         }
         
         que.add(root);
-        
         int curlen = 1;
-        int newlen = 0;
-        double sum = 0;
-        int tmplen = 0;
+        int max = Integer.MIN_VALUE;
+        int nextlen = 0;
         
         while(que.size() > 0){
-           
             
-            sum = 0;   
-            newlen = 0;
-            tmplen = curlen;
+            max = Integer.MIN_VALUE;
+            nextlen = 0;
             
             while(curlen > 0){
-                TreeNode tmp = que.poll();   
+                
+               
+                
+                TreeNode tmp = que.poll();
+                max = Math.max(tmp.val,max);
                 curlen--;
-                sum += tmp.val;
                 
                 if(tmp.left != null){
                     que.add(tmp.left);
-                      newlen++;
+                    nextlen++;
                 }
-               
+                
                 if(tmp.right != null){
                     que.add(tmp.right);
-                      newlen++;
+                    nextlen++;
                 }
                 
             }
             
-            curlen = newlen;
-            res.add((double)(sum/tmplen));
+            curlen = nextlen;
+            res.add(max);
             
         }
         
+        
         return res;
- 
     }
 }
