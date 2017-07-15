@@ -1,0 +1,33 @@
+public class Solution {
+    public String optimalDivision(int[] nums) {
+        StringBuilder ans = new StringBuilder();
+        
+        if(nums == null){
+            return ans.toString();
+        }
+        
+        if(nums.length == 1){
+            return String.valueOf(nums[0]);
+        }
+        
+        if(nums.length == 2){
+            return String.valueOf(nums[0]) + "/" + String.valueOf(nums[1]);
+        }
+        
+        String res = "";
+        
+        res = res + String.valueOf(nums[0]) + "/(";
+        
+        int len = nums.length;
+        
+        for(int i = 1; i < len-1; i++ ){
+            res += String.valueOf(nums[i]) +"/";
+        }
+        
+        res += String.valueOf(nums[len-1]);
+        
+        res += ")";
+        
+        return res;
+    }
+}
