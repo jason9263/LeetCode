@@ -1,0 +1,43 @@
+public class Solution {
+    public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
+        List<int[]> res = new ArrayList<int[]>();
+        TreeMap<Long,List<int[]>> tm= new TreeMap<Long,List<int[]>>();
+        
+        
+        int m = Math.min(nums1.length,k);
+        int n = Math.min(nums2.length,k);
+        long tmpsum = 0;
+        
+        for(int i = 0 ; i < m; i++){
+            for(int j = 0; j < n; j++){
+                tmpsum = nums1[i] + nums2[j];
+                int[] pos = {nums1[i] ,nums2[j]};
+                if(tm.containsKey(tmpsum)){
+                    
+                    tm.get(tmpsum).add(pos);;
+                }else{
+                   List<int[]> tmpres = new ArrayList<int[]>();
+                    tmpres.add(pos);
+                    tm.put(tmpsum,tmpres);
+                }
+            }
+        }
+        
+        int index = 0;
+            for(Map.Entry<Long,List<int[]>> tmp : tm.entrySet()){
+                List<int[]> tmpres = tmp.getValue();
+                
+                for(int j = 0; j < tmpres.size(); j++){
+                    
+                    if(index < k){
+                        res.add(tmpres.get(j));
+                        index++;
+                    }else{
+                        return res;
+                    }
+
+                }
+            }
+        return res;
+    }
+}
