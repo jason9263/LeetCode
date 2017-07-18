@@ -7,7 +7,7 @@ public class Solution {
         int i = Integer.MAX_VALUE;//31 1//1 + 31 0
         
         while((m&i) != (n&i) ){
-            d <<=1;
+            i <<=1;
         }
         
         return m&i;
