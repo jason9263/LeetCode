@@ -1,48 +1,19 @@
 public class Solution {
     public double myPow(double x, int n) {
-        if(n == 0){
-            return 1;
-        }
-
-        if(x == 0){
-            return 0;
-        }
-
-        if(n == Integer.MIN_VALUE){
-            if(x == 1){
-                return 1;
+        double res = 1.0;
+        
+        for(int i = n; i != 0; i/= 2){
+            
+            if(i % 2 != 0){
+                res = res * x;
             }
-
-            if(x > 1){
-                return 0;
-            }
-
-            if(x > 0 && x < 1){
-                return Double.MAX_VALUE;
-            }
-
+                x = x*x;
+            
+            
         }
-
-        if(n < 0){
-            n = -n;
-            x = 1/x;
-            return helper(x,n);
-        }
-
-        return helper(x,n);
-
-    }
-
-
-    public double helper(double x, int n){
-        if(n == 1){
-            return x;
-        }
-
-        if(n == 0){
-            return 1;
-        }
-
-        return (n % 2 == 0)? helper(x*x,n/2) : x*helper(x*x,n/2);
+        
+        
+        return n < 0 ? 1/res : res;
+        
     }
 }
