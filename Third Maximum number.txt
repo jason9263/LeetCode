@@ -1,57 +1,25 @@
 public class Solution {
     public int thirdMax(int[] nums) {
-        //
-        long max, mid, small;
-        int count;
+        PriorityQueue<Integer> p = new PriorityQueue<Integer>(Collections.reverseOrder());
+        HashSet<Integer> set = new HashSet<Integer>();
         
-        max = mid = small = Long.MIN_VALUE;
         
-        count = 0;
-        
-        for(int x : nums){
-            
-
-            
-            if(x == max || x == mid ){
-                continue;
-            }
-            
-            
-            
-            if(x > max){
-                small = mid;
-                mid = max;
-                
-                max = x;
-                count++;
-                
-              
-                
-            }else if(x > mid){
-                small = mid;
-                mid = x;
-                
-                count++;
-             
-                
-            }else if( x > small){
-                
-                small = x;
-                count++;
-                
+        for(int i = 0; i < nums.length; i++){
+            if(set.contains(nums[i])){
                
-                
-            }
+            }else{
+                p.add(nums[i]);
+            }    
+            
+            set.add(nums[i]);
         }
         
-        
-        if(count >= 3){
-            return (int)small;
-        }else{
-            return (int)max;
-        }
-        
-        
+    if(p.size() >= 3){
+        p.poll();
+        p.poll();
+        return p.poll();
+    }
+        return p.poll();
         
         
     }
