@@ -1,31 +1,23 @@
 public class Solution {
     public int strStr(String haystack, String needle) {
-
-    if(needle == null || needle.length() == 0){
-        return 0;
-    }
-    
-    if(haystack == null || haystack.length() < needle.length()){
-        return -1;
-    }
-    
-    int haylen = haystack.length();
-    int needlen = needle.length();
-    int diff = haylen - needlen;
-    
-    for(int i = 0; i <= diff; i++){
-        if(haystack.substring(i,i+needlen).equals(needle)){
-            return i;
-        }else{
-            continue;
+        if(haystack == null|| needle == null ||  needle.length() > haystack.length()){
+            return -1;
         }
+        
+        if(needle.length() == 0 && haystack.length() == 0){
+            return 0;
+        }
+        
+        int haylen = haystack.length();
+        int needlelen = needle.length();
+        
+        for(int i= 0 ; i <= haylen - needlelen ; i++ ){
+            if(haystack.substring(i).startsWith(needle)){
+                return i;
+            }
+        }
+        
+        return -1;
+        
     }
-    
-    
-    return -1;
-    
-    }
-    
-    
-
 }

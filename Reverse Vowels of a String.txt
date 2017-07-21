@@ -1,36 +1,51 @@
 public class Solution {
     public String reverseVowels(String s) {
-        String vow = "aeiouAEIOU";
-        int first = 0;
-        int last = s.length()-1;
-        
-        char[] vowarray = s.toCharArray();
-        
-        
-        while(first < last){
-            
-            while(first < last && vow.indexOf(vowarray[first]) == -1){
-                first++;
-            }
-            
-            
-            while(first < last && vow.indexOf(vowarray[last]) == -1){
-                last--;
-            }
-            
-            
-            char tmp = vowarray[first];
-            vowarray[first] = vowarray[last];
-            vowarray[last] = tmp;
-            
-            first++;
-            last--;
-            
-            
-            
+        if(s == null || s.length() == 0){
+            return s;
         }
+
+        int left = 0;
+        int right = s.length()-1;
+        StringBuilder sb = new StringBuilder(s);
         
-        return String.valueOf(vowarray);
+        
+        while(left < right){
+            while(left < right && !helper(sb.charAt(left))){
+                left++;
+            }    
+            
+            while(left < right && !helper(sb.charAt(right))){
+                right--;
+            }
+            
+            
+            if(left < right){
+                swap(sb,left,right);
+                left++;
+                right--;
+            }else{
+                break;
+            }
+
+        }
+              
+        return sb.toString();
         
     }
+    
+    public boolean helper(char c){
+      
+        if(c == 'a'|| c == 'e'||c == 'i'|| c == 'o'|| c == 'u'|| c =='A'|| c=='E'|| c=='I'|| c == 'O'||c =='U'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void swap(StringBuilder sb, int i , int j){
+        char tmp = sb.charAt(i);
+        sb.setCharAt(i,sb.charAt(j));
+        sb.setCharAt(j,tmp);
+    }
+
 }
