@@ -1,11 +1,20 @@
 public class Solution {
     public int countSegments(String s) {
-        String js = s.trim();
-        if(js.length() == 0){
+        if(s == null || s.length() == 0){
             return 0;
-        }else{
-            String[] jsarray = js.split("\\s+");
-            return jsarray.length;
         }
+        
+        String[] words = s.split(" ");
+        int res = 0;
+        
+        for(int i = 0; i < words.length; i++){
+           
+            
+            if(!words[i].equals("")){
+                res++;
+            }
+        }
+        
+        return res;
     }
 }
