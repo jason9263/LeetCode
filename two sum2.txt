@@ -1,32 +1,23 @@
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
+        
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         int[] res = new int[2];
         
-        
-        int len = numbers.length;
-        
-        if(numbers == null || numbers.length <= 1){
-            return res;
-        }
-        
-        
-        int left = 0;
-        int right = len -1;
-        
-        
-        for(int i = 0; i < len; i++){
-            int tmp = numbers[left] + numbers[right];
-            if( tmp == target){
-                res[0] = left + 1;
-                res[1] = right +1;
+        for(int i = 1; i <= numbers.length;i++){
+            int tmp = target - numbers[i-1];
+            
+            if(map.containsKey(tmp)){
+                res[0] = map.get(tmp);
+                res[1] = i;
                 break;
-            }else if(tmp < target){
-                left++;
-            }else {
-                right--;
+            }else{
+                map.put(numbers[i-1],i);    
             }
+            
         }
         
-        return res;
+        return res;   
+        
     }
 }
