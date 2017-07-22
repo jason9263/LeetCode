@@ -1,0 +1,30 @@
+public class Solution {
+    public boolean checkRecord(String s) {
+     HashMap<Character,Integer>  map = new HashMap<Character,Integer>();
+        if(s == null || s.length() == 0){
+            return false;
+        }
+        int cntA = 0;
+        int cntL = 0;
+        
+        for(int i = 0; i < s.length(); i++){
+            char tmpc = s.charAt(i);
+            if(tmpc == 'A'){
+                cntA++;
+                if(cntA > 1){
+                    return false;
+                }
+                
+            }
+            
+            else if(tmpc == 'L'){
+                    if(s.substring(i).startsWith("LLL")){
+                        return false;
+                    } 
+            }
+        }
+
+        return true;
+        
+    }
+}
