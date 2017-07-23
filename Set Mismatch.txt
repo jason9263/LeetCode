@@ -1,0 +1,25 @@
+public class Solution {
+    public int[] findErrorNums(int[] nums) {
+        int len = nums.length;
+        
+        int[] res = new int[len+1];
+        
+        for(int i = 1; i <= len; i++){
+            res[nums[i-1]]++;
+        }
+        
+        int[] jres = new int[2];
+        for(int i = 1; i <= len; i++){
+            if(res[i] == 0){
+                jres[1] = i;
+            }else if(res[i] == 2){
+                
+                jres[0] = i;
+            }
+        }
+        
+        
+        return jres;
+        
+    }
+}
