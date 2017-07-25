@@ -1,0 +1,45 @@
+
+
+public class Solution {
+    public String licenseKeyFormatting(String S, int K) {
+        S = S.toUpperCase();
+        
+        String[] words = S.split("-");
+        
+        StringBuilder sb = new StringBuilder();
+        StringBuilder res = new StringBuilder();
+        
+        for(int i = 0; i < words.length; i++){
+            sb.append(words[i]);
+        }
+        
+        int cnt = sb.length()% K;
+        
+        if(cnt == 0){
+            for(int i = 0; i+K <= sb.length(); i+=K ){
+                res.append(sb.substring(i,i+K));
+                res.append("-");
+            }    
+        }else{
+            
+            res.append(sb.substring(0,cnt));
+            res.append("-");
+            
+            for(int i = cnt; i + K <= sb.length(); i+=K){
+                res.append(sb.substring(i,i+K));
+                res.append("-");
+            }
+            
+            
+        }
+        
+        if(res.length() >= 1){
+             res.setLength(res.length()-1);
+        }
+        
+       
+        
+        return res.toString();
+        
+    }
+}
