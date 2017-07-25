@@ -1,29 +1,38 @@
 public class Solution {
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        
-        Arrays.sort(nums);
-        
-        Set<List<Integer>> set = new HashSet<List<Integer>>();
+    public List<List<Integer>> findSubsequences(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
-        
         List<Integer> out = new ArrayList<Integer>();
         
-        helper(set,out,nums,0);
+        Set<List<Integer>> set = new HashSet<List<Integer>>();
+        int start = 0;
+        helper(set,out,nums,start);
         
         for(List<Integer> tmp : set){
             res.add(tmp);
         }
-        
         return res;
     }
     
+    
     public void helper(Set<List<Integer>> set, List<Integer> out, int[] nums, int start){
-        set.add(new ArrayList<Integer>(out));
+     
+        if(out.size() >= 2){
+            set.add(new ArrayList<Integer>( out));
+        }
         
         for(int i = start; i < nums.length; i++){
+            
+         if( out.size() == 0 || nums[i] >= out.get(out.size()-1)){
+                            
             out.add(nums[i]);
             helper(set,out,nums,i+1);
             out.remove(out.size()-1);
-        } 
+                
+            }
+
+        }
+        
     }
+    
+    
 }
