@@ -1,47 +1,26 @@
 public class Solution {
     public boolean canPermutePalindrome(String s) {
-        Set<Character> set = new HashSet<Character>();
-        for(int i = 0; i < s.length(); ++i){
-            if(!set.contains(s.charAt(i))){
-                set.add(s.charAt(i));
-            }else{
-                set.remove(s.charAt(i));
-            }
-        }
-
-        return set.size() == 0 || set.size() == 1;
-    }
-}
-
-
-
-public class Solution {
-    public boolean canPermutePalindrome(String s) {
+        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
         
-        int[] map = new int[256];
         
         for(int i = 0; i < s.length(); i++){
-            int temp = s.charAt(i);
-            if(map[temp] == 0){
-                map[temp]++;
-            }else if(map[temp] == 1){
-                map[temp]--;
+            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);    
+        }
+        
+        int odd = 0;
+        int even = 0;
+        
+        for(Map.Entry<Character,Integer> tmp:map.entrySet()){
+            if((tmp.getValue() & 1) == 1){
+                odd++;
+                if(odd >= 2){
+                    return false;
+                }
+            }else{
+                even++;
             }
-                
-            
         }
         
-        int sum = 0;
-        
-        for(int i = 0; i < 256; i++){
-            sum = sum + map[i];    
-        }
-        
-        if(sum == 0 || sum == 1){
-            return true;
-        }else{
-            return false;
-        }
-        
+        return true;
     }
 }
