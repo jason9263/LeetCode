@@ -1,66 +1,97 @@
 public class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        
-        if(s2 == null || s2.length() == 0){
+        boolean res = false;
+        int len = s1.length();
+               
+        boolean[] visited = new boolean[len];
+        Arrays.fill(visited,false);
+        StringBuilder out = new StringBuilder();
+        if(s1.length() > s2.length()){
             return false;
         }
-        
-        if(s1 == null || s1.length() == 0 || s1.length() > s2.length()){
-            return false;
-        }
-        
-        HashMap<String ,Integer> map = new HashMap<String,Integer>();
-        int lens1 = s1.length();
-        int lens2 = s2.length();
-        
-        s1 = s1.toLowerCase();
-        s2 = s2.toLowerCase();
-        
-        //s1
-        int[] ints1 = new int[26];
-        for(int i = 0; i < 26; i++){
-            ints1[i] = 0;
-        }
-        
-        for(int i = 0; i < lens1 ; i++){
-            ints1[s1.charAt(i) - 'a']++;
-        }
-        
-        
-        //s2 
-        int[] ints2 = new int[26];
-        
-        for(int i = 0; i < 26; i++){
-            ints2[i] = 0;
-        }
-        
-        for(int i = 0; i < lens1; i++){
-            ints2[s2.charAt(i) - 'a']++;
-        }
-        
-        int[] tmps = ints2.clone();
-        
-        map.put(Arrays.toString(tmps),lens1-1);
-        
-        for(int i = lens1; i < lens2; i++){
-            ints2[s2.charAt(i - lens1) - 'a']--;
-            ints2[s2.charAt(i) - 'a']++;
-            
-            int[] tmpstr = ints2.clone();
-            
-            map.put(Arrays.toString(tmpstr),i);
 
-        }
- 
-        System.out.println(map.size());
+        res = helper(out,s1,s2,visited,s1.length(),res);
         
-        if(map.containsKey(Arrays.toString(ints1))){
-            return true;
+        return res;
+    }
+    public boolean helper(StringBuilder out, String s1,String s2,boolean[] visited,int len,boolean res){
+        if(out.length() == len){
+            
+
+            
+            if(s2.contains(out.toString())){
+                res= res|true;
+            }else{
+                res = res|false;
+            }
         }else{
+            
+            for(int i = 0; i < len; i++){
+                if(visited[i] == true){
+                    continue;
+                }
+                
+                out.append(s1.charAt(i));
+                visited[i] = true;
+                
+                res = helper(out,s1,s2,visited,len,res);
+                
+                out.deleteCharAt(out.length()-1);
+                visited[i] = false;
+            }
+
+        }
+        
+        return res;
+    }
+
+}
+
+
+
+
+
+
+public class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        
+        if(len1 > len2){
             return false;
         }
-
         
+        int[] count = new int[26];
+        for(int i = 0; i < len1; i++){
+            count[s1.charAt(i) - 'a']++;
+            count[s2.charAt(i) - 'a']--;
+        }
+        if(allZero(count)){
+            return true;
+        }
+        
+        for(int i = len1; i < len2 ; i++){
+            count[s2.charAt(i) -'a']--;
+            count[s2.charAt(i - len1)-'a' ]++;
+            
+            if(allZero(count)){
+                return true;
+            }
+            
+        }
+        
+        return false;
+        
+    }
+    
+    public boolean allZero(int[] count){
+        for(int i = 0; i < 26; i++){
+            if(count[i] != 0){
+                return false;
+            }
+        }
+        
+        return true;
     }
     
     
