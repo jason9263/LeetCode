@@ -1,69 +1,54 @@
 public class Solution {
     public void nextPermutation(int[] nums) {
-        
-        if(nums.length <= 1){
+        int n = nums.length;
+        if(n < 2){
             return;
         }
         
-        int len =  nums.length ;
-        int index = len -1;
-        
+        int index = n-1;
         while(index > 0){
-            if(nums[index-1] < nums[index]){
+            if(nums[index - 1] < nums[index]){
                 break;
-            }else{
-               index--;
             }
+            index--;
         }
         
         if(index == 0){
-           System.out.println("Jason");
-            reversearray(nums,0, len-1);
+            reverseSort(nums,0,n-1);
+            return;
+        }else{
+            int val = nums[index-1];
+            int j = n-1;
+            while(j> index){
+                if(nums[j] > val){
+                    break;
+                }
+                j--;
+            }
+            
+            swap(nums,j,index-1);
+            reverseSort(nums,index,n-1);
             return;
         }
-        else{
-            
-        int val = nums[index-1];
-        
-        int j = len-1;
-        
-        while(j >= index){
-            if(nums[j] > val){
-                break;
-            }
-            j--;
-        }
-        
-        
-        swap(index-1,j,nums);
-        
-        reversearray(nums,index,len-1);
-        
-        return;
-            
-        }
 
     }
     
-    public void swap(int i, int j, int[] nums){
-        int tmp = nums[i];
+    public void swap(int[] nums, int i , int j){
+        int tmp = 0;
+        tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
-
     }
     
-    public void reversearray(int[] nums, int start, int end){
-        
+    public void reverseSort(int[] num, int start, int end){
         if(start > end){
             return;
         }
         
-      
-        for(int i = start; i<= (end+start)/2; i++){
-          
-            swap(i,start+end-i,nums);
+        for(int i = start; i <= start+ (end - start)/2; i++){
+            swap(num,i,start+end-i);
         }
+        
     }
-    
-    
+
 }
