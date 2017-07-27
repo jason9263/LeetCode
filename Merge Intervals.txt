@@ -9,45 +9,31 @@
  */
 public class Solution {
     public List<Interval> merge(List<Interval> intervals) {
-        
-        //sort the interval
-        
         if(intervals.size() <= 1){
             return intervals;
         }
-
-        Collections.sort(intervals, new Comparator<Interval> () {
-            public int compare(Interval i1, Interval i2){
-                return Integer.compare(i1.start, i2.start);
-            }
-        });
         
-                
+        
+        intervals.sort((i1,i2) -> Integer.compare(i1.start, i2.start));
+        
         List<Interval> result = new LinkedList<Interval>();
         
         int start = intervals.get(0).start;
         int end = intervals.get(0).end;
         
-        
-        for(Interval segement: intervals){
-            if(segement.start <= end){
-                end = Math.max(segement.end, end);
+        for(Interval interval : intervals){
+            if(interval.start <= end){
+                end = Math.max(end, interval.end);
             }else{
-                
-                Interval seg = new Interval(start, end);
-                
-                result.add(seg);
-                
-                start = segement.start;
-                
-                end  = segement.end;
+                result.add(new Interval(start,end));
+                start = interval.start;
+                end = interval.end;
             }
-            
         }
         
-        
-        result.add(new Interval(start,end));
+        result.add(new Interval(start, end));
         return result;
+        
         
     }
 }
