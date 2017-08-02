@@ -1,34 +1,27 @@
 public class Solution {
     public int[][] reconstructQueue(int[][] people) {
-       
         
-        if(people == null || people.length == 0 || people[0].length == 0){
-            return new int[0][0];
-        }
-        
-        int m = people.length;
-        int n = people[0].length;
-                
-      
         Arrays.sort(people, (a,b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
-      
         
-        List<int[]> res = new ArrayList<int[]>();
+        int[][] result = new int[people.length][2];
+        List<int[]> res = new ArrayList<>();
         
-        for(int[] tmp : people){
-            int[] ntmp = {tmp[0],tmp[1]};
-            res.add(tmp[1],ntmp);
+        for(int i = 0; i < people.length; i++){
+            
+            int[] tmp = new int[2];
+            tmp = people[i];
+            res.add(tmp[1],tmp);
+            
+        }
+        
+        for(int i = 0; i < people.length; i++){
+            
+            result[i][0] = res.get(i)[0];
+            result[i][1] = res.get(i)[1];
+            
         }
         
         
-        int[][] finalres = new int[m][n];
-        int i = 0;
-        for(int[] tmp : res){
-            finalres[i][0] = tmp[0];
-            finalres[i][1] = tmp[1];
-            i++;
-        }
-        
-        return finalres;
+        return result;
     }
 }

@@ -1,50 +1,30 @@
 public class Solution {
     public boolean canJump(int[] nums) {
+        boolean res = true;
         
-        boolean res = false;
-        
-        if(nums == null || nums.length == 0){
-            return false;
-        }
-        
-        if(nums.length == 1 && nums[0] < 0){
-            return false;
-        }
-        
-        
-        if(nums.length == 1 && nums[0] >= 0){
-            return true;
+        if(nums == null || nums.length == 0 || nums.length == 1){
+            return res;
         }
         
         int len = nums.length;
         
-        boolean[] tf = new boolean[len];
+        boolean[]  dp = new boolean[len];
         
-        for(int i = 0; i < len; i++){
-            tf[i] = false;
-        }
-        
-        tf[0] = true;
+        dp[0] = true;
         
         
-        for(int i = 1; i < len; i++){
-            if(tf[i] == true){
-                
-            }else{
-             for(int j = i-1; j >=0;j--){
-                if(tf[j] && (nums[j]  >= i-j )){
-                    tf[i] = true;
+        
+        for(int i = 1 ; i < len; i++){
+            for(int j = i-1; j >= 0; j--){
+                if(dp[j] && nums[j] >= (i-j)){
+                    dp[i] = true;
                     break;
                 }
-            }
-                
-            }
+            }       
+
         }
         
-        
-        
-        return tf[len-1];
-        
-        
+        res = dp[len-1];
+        return res;
     }
 }
