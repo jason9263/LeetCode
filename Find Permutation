@@ -1,0 +1,37 @@
+public class Solution {
+    public int[] findPermutation(String s) {
+        int n = s.length()+1;
+        int[] res = new int[n];
+        int len = s.length();
+        
+        for(int i = 0 ; i < n; i++){
+            res[i] = i+1;
+        }
+        
+        for(int i = 0; i < len; i++){
+            if(s.charAt(i) == 'D'){
+                int start = i;
+                while(i < len && s.charAt(i) == 'D'){
+                    i++;
+                }
+                
+                swap(res,start,i);
+                i--;
+            }
+        }
+        
+        return res;
+
+    }
+    
+    public void swap(int[] res, int start, int end){
+        while(start < end){
+            int tmp = res[start];
+            res[start] = res[end];
+            res[end] = tmp;
+            start++;
+            end--;
+        }
+    }
+
+}
