@@ -1,0 +1,33 @@
+public class Solution {
+    public void reverseWords(char[] s) {
+        
+        int len = s.length;
+        
+        reverse(s,0,len-1);
+        
+        for(int i = 0; i < len; i++){
+            if(s[i] != ' '){
+                int start = i;
+                
+                while(i < len && s[i] != ' '){
+                    i++;    
+                }
+                
+                reverse(s,start,i-1); 
+                i--;
+            }
+        }
+        
+    }
+    
+    public void reverse(char[] s, int l , int r){
+        while(l < r){
+            char tmp = s[l];
+            s[l++] = s[r];
+            s[r--] = tmp;
+        }
+    }
+    
+    
+    
+}

@@ -1,41 +1,40 @@
-// a k f  这些都可以算作是一类的
-// String.format 函数
-// 然后 就是 dif + 26 
-// 
-
-
 public class Solution {
     public List<List<String>> groupStrings(String[] strings) {
+        List<List<String>> res = new ArrayList<List<String>>();
         
-        Map<String, List<String>> jmap = new HashMap<String, List<String>>();
+        HashMap<String, List<String>> map = new HashMap<String, List<String>>();
         
-        Arrays.sort(strings);
         
-        for(String js : strings){
+        for(String tmp : strings){
+            
+            int offset = tmp.charAt(0) - 'a';
             String key = "";
             
-            for(int i = 1; i < js.length(); i++){
-                key += String.format("%2d", (js.charAt(i) - js.charAt(i-1) + 26)% 26 );
+            for(int i = 0; i < tmp.length(); i++){
                 
+                char c  = (char)(tmp.charAt(i) - offset);
                 
+                if(c < 'a'){
+                    c = (char)(c + 26);
+                }
+                
+                key += c;
             }
             
-            List<String> jlist = new ArrayList<String>();
-            
-            if(!jmap.containsKey(key)){
-              
-                jlist.add(js);
-                jmap.put(key,jlist);
+            if(map.containsKey(key)){
+                map.get(key).add(tmp);
             }else{
-                
-               jmap.get(key).add(js);
+                List<String> tmplist = new ArrayList<String>();
+                tmplist.add(tmp);
+                map.put(key,tmplist);
             }
             
         }
         
+        for(List<String> tmp : map.values()){
+            res.add(tmp);
+        }
         
-        return new ArrayList<List<String>> (jmap.values());
-        
-        
+        return res;
     }
 }
