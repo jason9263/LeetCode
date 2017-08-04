@@ -1,55 +1,60 @@
 public class Solution {
     public String minWindow(String s, String t) {
         
-        String res = "";
-        
         if(t.length() > s.length()){
             return "";
         }
         
+        HashMap<Character, Integer> map = new HashMap<Character,Integer>();
+        int minLen = Integer.MAX_VALUE;
+        
         int left = 0;
-        int count = 0;
-        int minLen = s.length() +1;
+        int cnt = 0;
+        String res = "";
         
-        
-        HashMap<Character,Integer> map = new HashMap<Character,Integer>();
         
         for(int i = 0; i < t.length(); i++){
-            map.put(t.charAt(i), map.getOrDefault(t.charAt(i),0)+1);
+          // putorbasent
+            char tmpc = t.charAt(i);
+            if(map.containsKey(tmpc)){              
+                map.put(tmpc, map.get(tmpc)+1);
+            }else{
+                map.put(tmpc,1);
+            }
         }
         
         
-        for(int right = 0; right < s.length(); right++){
+        for(int i = 0; i < s.length(); i++){
+            char tmp = s.charAt(i);
             
-            char tmpc = s.charAt(right);
-            if(map.containsKey(tmpc)){
-                map.put(tmpc,   map.get(tmpc)-1);
-                
-                if(map.get(tmpc) >= 0){
-                    count++;
+            if(map.containsKey(tmp)){
+                int num = map.get(tmp);
+                map.put(tmp,num-1);
+                if(num-1 >= 0){
+                    cnt++;
                 }
-                
-                while(count == t.length()){
-                    
-                    if(right - left + 1 < minLen){
-                        minLen = right - left + 1;
-                        res = s.substring(left,minLen+left);
-                    }                    
-                    
-                    char leftc = s.charAt(left);
-                    if(map.containsKey(leftc)){
-                        map.put(leftc,map.get(leftc)+1);
-                        
-                        if(map.get(leftc) > 0){
-                            count--;
-                        }
-                    }
-                    
-                    left++;
-                    
-                }
-
             }
+            
+            while(cnt == t.length()){
+                
+            if(i - left + 1 < minLen){
+                minLen = i - left + 1;
+                res = s.substring(left,minLen+ left);
+            }    
+             char tmpleft = s.charAt(left);
+                
+            if(map.containsKey(tmpleft)){
+                
+                map.put(tmpleft,map.get(tmpleft)+1);
+                
+                if(map.get(tmpleft) > 0){
+                    cnt--;
+                }
+                
+             }
+                left++;
+            }
+            
         }
 
         return res;
