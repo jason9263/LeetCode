@@ -1,55 +1,63 @@
 public class WordDictionary {
-    
-    public class TrieNode{
-        public TrieNode[] children = new TrieNode[26];
-        public String item = "";
+
+    class TrieNode{
+        TrieNode[] next = new TrieNode[27];
+        String word ;
+        boolean t = false;
     }
     
-    private TrieNode root = new TrieNode();
+    public TrieNode root ;
     
-
     /** Initialize your data structure here. */
     public WordDictionary() {
-        
+        root = new TrieNode();    
     }
     
     /** Adds a word into the data structure. */
     public void addWord(String word) {
-        TrieNode node = root;
-        for(char c: word.toCharArray()){
-            if(node.children[c-'a'] == null){
-                node.children[c-'a'] = new TrieNode();
-            }
-            node = node.children[c-'a'];
+        
+        TrieNode tmpr = root;
+        
+        for(char c : word.toCharArray()){
+                int tmp = c-'a';
+                
+                if(tmpr.next[tmp] == null){
+                    tmpr.next[tmp] = new TrieNode();
+                }
+                
+                tmpr = tmpr.next[tmp];
+                
+                tmpr.t = tmpr.t | false;
+  
         }
-        node.item = word;
+        
+        tmpr.word = word;
+        tmpr.t = true;
     }
     
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public boolean search(String word) {
-        return match(word.toCharArray(),0,root);
+        return helper(word.toCharArray(), 0, root);
     }
     
-    private boolean match(char[] chs, int k, TrieNode node){
+    public boolean helper(char[] chs, int k, TrieNode node){
         if(k == chs.length){
-            return !node.item.equals("");
+            return node.t;
         }
         
         if(chs[k] != '.'){
-            return node.children[chs[k] - 'a'] != null && match(chs,k+1,node.children[chs[k] - 'a']);
+            return node.next[chs[k] -'a'] != null && helper(chs,k+1,node.next[chs[k] -'a']);
         }else{
-            for(int i = 0; i < node.children.length; i++){
-                if(node.children[i] != null){
-                    if(match(chs,k+1,node.children[i])){
+            for(int i = 0; i < node.next.length; i++){
+                if(node.next[i] != null){
+                    if(helper(chs,k+1,node.next[i])){
                         return true;
                     }
                 }
-            }
+            }        
         }
-        
         return false;
     }
-    
 }
 
 /**
