@@ -1,0 +1,480 @@
+硅谷程序员面试考点总结
+scale
+latency
+persistent store  sql nosql redundant
+
+cache communication/message
+'exclam'＝'!'
+'at'＝'@'
+'numbersign'＝'#'
+'dollar'＝'$'
+'percent'＝'%'
+'caret'＝'^'
+'ampersand'＝'&'
+'asterisk'＝'*'
+'parenleft'＝'('
+'parenright'＝')'
+'minus'＝'-'
+'underscore'＝'_'
+'equal'＝'='
+'plus'＝'+'
+'bracketleft'＝'['
+'braceleft'＝'{'
+'bracketright'＝']'
+'braceright'＝'}'
+'semicolon'＝';'
+'colon'＝':'
+'quote'＝'''
+'doublequote'＝'"'
+'backquote'＝'''
+'tilde'＝'~'
+'backslash'＝'\'
+'bar'＝'|'
+'comma'＝','
+'less'＝'<'
+'period'＝'.'
+'greater'＝'>'
+'slash'＝'/'
+'question'＝'?'
+'space'＝' '
+1.编程语言问题（以java为例）
+Java vs C++
+Abstract class vs interface
+
+
+Note few important concepts :
+empty shell ; use the key word of implement
+- Interfaces doesn’t have variables
+
+
+- Virtual class can have variables unlike interfaces.
+    - We use override keyword to override any method defined in parent virtual class.
+extends 
+subclass override the method define in the virtual class
+
+
+
+pass by reference vs pass by value
+Final/Finally/Finalize
+static
+volatile
+Primitive types
+overriding vs overloading
+Public static void main(String[] args)
+Checked / unchecked exception
+Garbage collection
+JVM
+Java object class method
+Java Serialization
+Java heap/stack
+Java thread
+Java 8 vs. java7
+
+    1. What is Big O?
+O(1)/Constant Complexity: Constant.
+O(log n)/Logarithmic Complexity: Not as good as constant, but still pretty good.
+O(n)/Linear Complexity: The larger the data set, the time taken grows proportionately.
+O(n log n):
+O(n^2)/Quadratic Complexity:
+O(2^n): Exponential Growth!
+O(n!): Factorial
+
+1.List
+ArrayList vs LinkedList
+Vector vs ArrayList
+Use Array implement ArrayList.
+2.Set
+TreeSet VS HashSet
+HashMap vs HashSet
+
+    1. Map
+Collision resolution: Separate chainning/Linear Probing
+HashMap原理
+HashMap vs TreeMap
+HashMap vs Hashtable
+HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap
+LinkededHashMap
+
+
+    1. Arrays
+
+Collections.sort()
+Arrays.sort()
+array1.equals(array2);
+Arrays.equals(array1, array2);
+Array equals vs deepEquals
+
+    1. Stack
+
+Recursion
+DFS
+
+    1. Queue
+First in First out
+BFS
+Deque：Arraydeque/Linkedlist
+Blockingqueue
+    2. Sort
+比较排序： bubble sort/selection sort/insert sort (n^2)
+mergesort/quicksort/heapsort (nlogn)
+非比较排序：count sort，radix sort，bucket sort
+    3. heap
+Priority Queue
+Comparator vs Comparable
+
+9.Tree
+Binary Tree
+k叉树
+B树/B+ 树
+K-d Tree
+Trie Tree
+Segment Tree
+
+    1. 算法题
+Reverse Linkedlist
+Binary Tree Upside Down
+Lowest Common Ancestor of a Binary Tree
+Happy Number
+Copy List with Random Pointer
+Binary Search in unkown size rotated array
+rand2()->rand3(); rand3()->rand5()
+Product of Array Except Self
+How to check if given four points form a square
+Topological sorting
+The idea is that you have 25 horses, a 5 lane track, no timer, and want to find the fastest 3 horses. How many races can you do it in?
+    2. CS fundamentals
+1.组成原理：
+反码和补码：
+什么是cache？
+内存和硬盘
+
+2.操作系统：
+线程和进程的区别
+并发和并行
+线程的生命周期
+什么是死锁？
+3.计算机网络:
+输入www.google.com 会发生什么？（confluent／houzz／yahoo）
+
+    1. TCP 三次握手，TCP/UDP 区别；
+    2. http/https 区别；http request：post／get ；http port 80 ssl;
+3.Public key/Private key;
+    3. HTTP 401, 403, or 404 Error
+    4. Client/Server Model
+
+
+4.软件工程以及Linux：
+Unitest
+Design pattern:Singleton/Factory
+Linux Commands: kill -9 / scp / telnet / ps/ sort/ grep/less
+
+    1. 数据库
+1.Design a database
+1.员工信息管理数据库
+2.设计一个电商数据库
+2.SQL知识点：
+建立表格：按需建表
+主键Primary Key
+副键Foreign Key
+数据类型Data Type
+数据类Number: Int, smallint, bigint, decimal
+字串类String: Char, varchar
+日期类Date: datetime
+Null or Not Null
+表与表之间的关系：一对多 （其他类型：一对一，多对多）
+ER图Entity Relationship Diagram
+
+
+
+3.基础语句：
+Select…From…基本返回语句
+Where…and…查找前后条件均符合的记录
+Subquery 子查询句
+…Inner Join…on…
+Self Join
+Group by 组合项
+Order by…DESC 降序排序
+Count(), Sum() 计数，总计（Aggregate Function并集功能，还有avg, first, last, max, min）
+
+Top 3 前3项记录
+Where…in () 查找符合in后条件的记录
+Union VS. Union All 去重复项合表VS.不去重复项合表
+Rank()over(order by…) 按照…排序（结合where可用于查找第几项）
+Having查找并集后的记录，即在结果中查找
+Where VS. Having 查找单一记录（在过程中查找），查找并集记录（在结果中查找）
+4.SQL索引
+什么是索引？
+为什么索引更快？
+何时建立索引有效？
+
+    1. OOD
+Design a chess game
+Design a Elevator system
+Design a parking lot
+Design a file system
+Design a blackjack card game
+    2. System design
+如何设计Uber;
+如何设计netflix;
+如何设计facebook;
+如何设计whatsapp;
+
+
+适用人群：Entry ~ Junoir level 北美IT公司Full time求职者
+如何设计whatsapp;
+
+
+String.join 
+
+ArrayDeque
+
+Deque
+
+StringBuilder.setCharAt(i, ch);
+
+list.add(0, word);
+
+A class is a blueprint which you use to create objects. An object is an instance of a class - it's a concrete 'thing' that you made using a specific class. 
+
+方便在没有创建对象的情况下来进行调用（方法/变量）。
+　很显然，被static关键字修饰的方法或者变量不需要依赖于对象来进行访问，只要类被加载了，就可以通过类名去进行访问。
+
+inherit
+capuslationmultistate
+
+一、final
+        根据程序上下文环境，Java关键字final有“这是无法改变的”或者“终态的”含义，它可以修饰非抽象类、非抽象类成员方法和变量。你可能出于两种理解而需要阻止改变：设计或效率。
+        final类不能被继承，没有子类，final类中的方法默认是final的。
+        final方法不能被子类的方法覆盖，但可以被继承。
+        final成员变量表示常量，只能被赋值一次，赋值后值不再改变。
+        final不能用于修饰构造方法。
+        注意：父类的private成员方法是不能被子类方法覆盖的，因此private类型的方法默认是final类型的。
+    private class IntervalComparator implements Comparator<Interval>{
+        public int compare(Interval a, Interval b){
+            return a.start - b.start;
+        }
+    }
+
+    1. 了解你所面试的公司：产品，成立时间，融资，竞争对手；
+    2. 分析算法的时间和空间复杂度（Big-O)；
+    3. java/c++ 熟练掌握一门，python面试算法题其实也ok。
+    4. 对语言的细节特性有足够的理解，理解语言之间的差异，比如解释执行vs编译执行，java jvm, garbage collection等；
+    5. 最好熟悉一门脚本编程语言如Python/ruby；
+    6. 至少知道两种n*log(n)的排序算法，比如快速排序和归并排序。merge sort 很重要，比如K-way merge sorts；
+    7. 掌握二分查找思想及应用场景，灵活处理类似问题，比如search in a sorted array查找、实现sqrt()等问题；
+    8. Hashtable: 透彻理解Hashtable的原理、性能、碰撞处理，并能用array (in your favorate language) 来实现一个简单的hashtable，考虑多线程的情况；对于java的hashmap 要了解java hashmap和hashtable区别，concurrenthashmap, linkedhashmap.
+    9. Binary Search Tree的基本操作比如添加、删除节点，树与其他数据结构的相互转化, BST删除节点操作基本都会挂。
+    10. 二叉树的各种遍历算法（前序、中序、后序、层序），根据遍历结果重建二叉树；
+    11. K-ary trees（一个树有k个children)/trie-tree的实现算法和应用场景；
+    12. 大体了解一种平衡树，比如(red/black tree, splay tree or AVL tree) , 比如知道treemap的内部实现是red/black tree， 了解database index 所用的b+ tree/b tree.
+    13. 理解Min/Max heap的实现、各种操作时间复杂度和应用场景，熟练解决查找top(N)类型问题；
+    14. Graph在内存中的三种构造方式(objects and pointers, matrix, and adjacency list)；
+    15. 遍历算法BFS/DFS，分析时间和空间复杂度，以及具体实现
+    16. 结合Graph常考的算法比如拓扑排序，最短路径以及最小生成树算法
+    17. 掌握基本的Dynamic programing的思想，熟练解决基本的DP问题，比如两字符串的最长子串，字符串之间的edit distance等；
+    18. 理解操作系统中的进程、线程、以及它们之间的区别，理解系统并发操作中的常见问题（死锁），以及如何使用locks, mutexes, semaphores来解决并发问题。
+    19. 理解面向对象设计（封装、继承、多态），能把一个模糊定义的业务需求用OO的方式抽象（比如设计电梯、停车场等）；设计模式：Singleton（线程安全版本）、factory等；
+    20. java primitive type的内存(boolean: 1 byte, int: 4 bytes, long: 8 bytes)，了解基本位操作；
+    21. 理解分布式系统的基本概念，解决的问题以及分布式系统设计中CAP(Consistency, Availability, Partition)一致性、可用性、高性能之间的trade-offs；
+    22. 了解一些网络的基本知识tcp/ip三次握手, http/https区别，输入http://www.google.com 这个网址后会发生什么；
+    23. linux基本命令: kill -9, scp, ps -ef, netstat;
+    24. sql数据库基本知识：join，index，简单的sql语句：从table中找出成绩第二好的学生姓名；sql与nosql数据库区别，简单了解几种nosql数据库；
+
+
+
+
+1.编程语言问题（以java为例）
+    * Java vs C++
+    * Abstract class vs interface
+    * pass by reference vs pass by value
+    * Final/Finally/Finalize
+    * static
+    * volatile
+    * Primitive types
+    * overriding vs overloading
+    * Public static void main(String[] args)
+    * Checked / unchecked exception
+    * Garbage collection
+    * Java object class method
+    * Java Serialization
+    * Java heap/stack
+    * Java thread
+    * Java 8 vs. java7
+
+2. 数据结构
+2.0. What is Big O?
+
+    * O(1)/Constant Complexity: Constant.
+    * O(log n)/Logarithmic Complexity: Not as good as constant, but still pretty good.
+    * O(n)/Linear Complexity: The larger the data set, the time taken grows proportionately.
+    * O(n log n):
+    * O(n^2)/Quadratic Complexity:
+    * O(2^n): Exponential Growth!
+    * O(n!): Factorial
+
+2.1.List
+
+    * ArrayList vs LinkedList
+    * Vector vs ArrayList
+    * Use Array implement ArrayList.
+
+2.2.Set
+
+    * TreeSet VS HashSet
+    * HashMap vs HashSet
+
+2.3. Map
+
+    * Collision resolution: Separate chainning/Linear Probing
+    * HashMap原理
+    * HashMap vs TreeMap
+    * HashMap vs Hashtable
+    * HashMap Vs. ConcurrentHashMap Vs. SynchronizedMap
+    * LinkededHashMap
+
+2.4. Arrays
+
+    * Collections.sort()
+    * Arrays.sort()
+    * array1.equals(array2);
+    * Arrays.equals(array1, array2);
+    * Array equals vs deepEquals
+
+2.5. Stack
+
+    * Recursion
+
+2.6. Queue
+
+    * First in First out
+    * Deque：Arraydeque/Linkedlist
+    * Blockingqueue
+
+2.7. Sort
+
+    * 比较排序： bubble sort/selection sort/insert sort (n^2)
+
+mergesort/quicksort/heapsort (nlogn)
+
+    * 非比较排序：count sort，radix sort，bucket sort
+
+2.8. heap
+
+    * Priority Queue
+    * Comparator vs Comparable
+
+2.9.Tree
+
+    * Binary Tree
+    * B树/B+ 树
+    * K-d Tree
+    * Trie Tree
+    * Segment Tree
+
+3. 算法题
+    * Reverse Linkedlist
+    * Binary Tree Upside Down
+    * Lowest Common Ancestor of a Binary Tree
+    * Happy Number
+    * Copy List with Random Pointer
+    * Binary Search in unkown size rotated array
+    * rand2()->rand3(); rand3()->rand5()
+    * Product of Array Except Self
+    * How to check if given four points form a square
+    * Topological sorting
+    * The idea is that you have 25 horses, a 5 lane track, no timer, and want to find the fastest 3 horses. How many races can you do it in?
+
+4. CS fundamentals
+4.1.组成原理：
+
+    * 反码和补码：
+    * 什么是cache？
+    * 内存和硬盘
+
+4.2.操作系统：
+
+    * 线程和进程的区别
+    * 并发和并行
+    * 线程的生命周期
+    * 什么是死锁？
+
+4.3.计算机网络:
+输入www.google.com 会发生什么？（confluent／houzz／yahoo）
+
+    * 1. TCP 三次握手，TCP/UDP 区别；
+    * 2. http/https 区别；http request：post／get ；http port 80 ssl;
+    * 3.Public key/Private key;
+    * 4. HTTP 401, 403, or 404 Error
+    * 5. Client/Server Model
+
+4.4.软件工程以及Linux：
+
+    * Unitest
+    * Design pattern:Singleton/Factory
+    * Linux Commands: kill -9 / scp / telnet / ps/ sort/ grep/less
+
+5. 数据库
+5.1.Design a database
+
+    * 员工信息管理数据库
+    * 设计一个电商数据库
+
+5.2.SQL知识点：
+
+    * 建立表格：按需建表
+    * 主键Primary Key
+    * 副键Foreign Key
+    * 数据类型Data Type
+    * 数据类Number: Int, smallint, bigint, decimal
+    * 字串类String: Char, varchar
+    * 日期类Date: datetime
+    * Null or Not Null
+    * 表与表之间的关系：一对多 （其他类型：一对一，多对多）
+    * ER图Entity Relationship Diagram
+
+5.3.基础语句
+
+    * Select…From…基本返回语句
+    * Where…and…查找前后条件均符合的记录
+    * Subquery 子查询句
+    * …Inner Join…on…
+    * Self Join
+    * Group by 组合项
+    * Order by…DESC 降序排序
+    * Count(), Sum() 计数，总计（Aggregate Function并集功能，还有avg, first, last, max, min）
+    * Top 3 前3项记录
+    * Where…in () 查找符合in后条件的记录
+    * Union VS. Union All 去重复项合表VS.不去重复项合表
+    * Rank()over(order by…) 按照…排序（结合where可用于查找第几项）
+    * Having查找并集后的记录，即在结果中查找
+    * Where VS. Having 查找单一记录（在过程中查找），查找并集记录（在结果中查找）
+
+5.4.SQL索引：
+
+    * 什么是索引？
+    * 为什么索引更快？
+    * 何时建立索引有效？
+
+6. OOD
+    * Design a chess game
+    * Design a Elevator system
+    * Design a parking lot
+    * Design a file system
+    * Design a blackjack card game
+
+7. System design
+    * 如何设计Uber;
+    * 如何设计netflix;
+    * 如何设计facebook;
+    * 如何设计whatsapp;
+
+BitTiger近期的课程：
+
+
+
+
+
+
+
+
+
