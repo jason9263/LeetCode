@@ -4,24 +4,19 @@ public class Solution {
             return false;
         }
         
-        int res = 0;
+        int sum = 0;
         
         for(int i = 2; i <= Math.sqrt(num); i++){
-            
             if(num % i == 0){
-                if(i != num/i){
-                    res += i + num/i;
-                }else{
-                    res += i;
-                }
-            }    
-            
-            
+                System.out.println(i +"   " + num/i);
+                
+                sum += (i + num/i);
+            }
         }
         
-        res++;
+        sum++;
         
-        return res == num ? true:false;
+        return sum == num;
         
     }
 }

@@ -11,21 +11,25 @@ public class Solution {
     public String tree2str(TreeNode t) {
         if(t == null){
             return "";
-        }else {
-            String left = tree2str(t.left);
-            String right = tree2str(t.right);
-            
-            if(left.equals("") && right.equals("")){
-               
-                return String.valueOf(t.val);
-            }else if(left.equals("")){
-                return String.valueOf(t.val) +"(" +")" + "("+ right +")";
-            }else if(right.equals("")){
-                return String.valueOf(t.val) + "(" + left +")";
-            }else{
-                return String.valueOf(t.val) + "(" + left +")" + "(" + right +")";
-            }
-            
         }
+        String res = t.val + "";
+        
+        String left = tree2str(t.left);
+        String right = tree2str(t.right);
+        
+        if(left.equals("") && right.equals("")){
+            return res;
+        }
+        
+        if(left.equals("")){
+            return res + "()"  +"(" +right +")";
+        }
+        
+        if(right.equals("")){
+            return res + "(" + left + ")";
+        }
+   
+        return res + "(" + left + ")" + "(" + right + ")";
+
     }
 }

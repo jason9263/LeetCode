@@ -1,22 +1,23 @@
 public class Solution {
     public boolean judgeSquareSum(int c) {
-        boolean res = false;
-        int len = (int)Math.sqrt(c/2);
-        HashSet<Integer> set = new HashSet<Integer>();
-        
-        for(int i = 0; i <= len; i++){
-            set.add(i*i);
+        if(c < 0){
+            return false;
         }
-        int len2 = (int)Math.sqrt(c);
-        int tmp = -1;
         
-        for(int i = len; i <= len2; i++){
-            tmp = i*i;
-            if(set.contains(c - tmp)){
+        int left = 0; 
+        int right = (int)(Math.sqrt(c));
+        
+        while(left <= right){
+            int cur = left* left + right * right;
+            if(cur == c){
                 return true;
+            }else if(cur > c){
+                right--;
+            }else{
+                left++;
             }
         }
-
-        return res;
+        
+        return false;
     }
 }

@@ -19,11 +19,18 @@ public class Solution {
                 h--;
             }
             
+            if(l < h){
+                            
             char tmp = chars[l];
             chars[l] = chars[h];
             chars[h] = tmp;
             l++;
             h--;
+            }else{
+                break;
+            }
+            
+
         }
         
         return new String(chars);
