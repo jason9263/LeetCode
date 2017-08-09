@@ -1,116 +1,81 @@
 public class Solution {
-    
-    public Map<String,List<String>> map;
-    public List<List<String>> results;
-    
+    // use a hashmap to store words and their corresponding depths.
+    HashMap<String,Integer> path = new HashMap<String,Integer>();
+
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         
-        String start = beginWord;
-        String end = endWord;
-        HashSet<String> dict = new HashSet<String>(wordList);
+        List<List<String>> res = new ArrayList<>();
         
+        List<String> tmp = new ArrayList<>();
         
-        results = new ArrayList<List<String>>();
-        if(dict.size() == 0){
-            return results;
+        Set<String> set = new HashSet<>(wordList);
+        // beginWord is not in the wordlist, but the endword is ! check the endword first
+        if (beginWord == null || endWord == null || !set.contains(endWord)) 
+            return res;
+        
+        bfs(beginWord, endWord, set);
+        
+        dfs(endWord, beginWord, set, tmp, res);
+        
+        return res;
+    }
+    private void dfs(String beginWord, String endWord, Set<String> set, List<String> tmp_path, List<List<String>> res) {
+        if (beginWord.equals(endWord)) {
+            tmp_path.add(beginWord);
+            Collections.reverse(tmp_path);
+            res.add(tmp_path);
+            return;
         }
+
+        if (path.get(beginWord) == null) 
+            return;
+        tmp_path.add(beginWord);
         
+        int nextDepth = (int) path.get(beginWord) - 1;
         
-        int min = Integer.MAX_VALUE;
-        
-        Queue<String> queue = new ArrayDeque<String>();
-        queue.add(start);
-        
-        map = new HashMap<String , List<String>>();
-        
-        Map<String,Integer> ladder = new HashMap<String,Integer>();
-        
-        for(String string : dict){
-            ladder.put(string, Integer.MAX_VALUE);
-        }
-        
-        ladder.put(start,0);
-        
-        dict.add(end);
-        
-        //BFS dijistra search
-        while(!queue.isEmpty()){
-            
-            String word = queue.poll();
-         
-            
-            int step = ladder.get(word)+1;
-            
-            if(step > min){
-                break;
-            }
-            
-            for(int i = 0; i < word.length(); i++){
-                StringBuilder builder = new StringBuilder(word);
-                
-                for(char ch = 'a'; ch <='z'; ch++){
-                    builder.setCharAt(i,ch);
-                    String new_word = builder.toString();
-                   
-                    
-                    if(ladder.containsKey(new_word)){
- 
-                        if(step > ladder.get(new_word)){
-                            continue;
-                        }else if(step < ladder.get(new_word)){
-                            queue.add(new_word);
-                            ladder.put(new_word,step);
-                        }else{
-                            //It is the Key line. If one word already appeared in one ladder.
-                            //Do not insert the same word inside the queue twice.
-                            //Otherwise it gets
-                        }
-                    
-                    
-                    if(map.containsKey(new_word)){
-                        map.get(new_word).add(word);
-                    }else{
-                        List<String> list = new LinkedList<String>();
-                        list.add(word);
-                        map.put(new_word,list);
-                        
-                    }
-                    
-                    
-                    if(new_word.equals(end)){
-                        min = step;
-                    }
-                    
-                   }
+        for (int i = 0; i < beginWord.length(); i++) {
+            char[] ca = beginWord.toCharArray();
+            for (char c = 'a'; c <= 'z'; c++) {
+                if (ca[i] == c) continue;
+                ca[i] = c;
+                String newWord = new String(ca);
+                if (path.get(newWord) != null && path.get(newWord) == nextDepth) {
+                    List<String> new_tmp_path = new ArrayList<>(tmp_path);
+                    dfs(newWord, endWord, set, new_tmp_path, res);
                 }
             }
         }
-        
-        //begin backtracking
-        LinkedList<String> result = new LinkedList<String>();
-        backTrace(end, start, result);
-        
-        return results;
-
     }
-    
-    
-    private void backTrace(String word, String start, List<String> list){
-        if(word.equals(start)){
-            list.add(0,start);
-            results.add(new ArrayList<String>(list));
-            list.remove(0);
-            return;
-        }
+    private void bfs(String start, String end, Set<String> set) {
+        Queue<String> queue = new LinkedList<>();
+        queue.add(start);
+        path.put(start, 0);
+        String current;
         
-        list.add(0,word);
-        if(map.get(word)!= null){
-            for(String s : map.get(word)){
-                backTrace(s,start,list);
+        while (!queue.isEmpty()) {
+            current = queue.poll();
+            
+            if (current == end) 
+                continue;
+            
+            for (int i = 0; i < current.length(); i++) {
+                char[] ca = current.toCharArray();
+                for (char c = 'a'; c <= 'z'; c++) {
+                    if (ca[i] == c) 
+                        continue;
+                    ca[i] = c;
+                    
+                    String newWord = new String(ca);
+                    // if newWord is the same as the endword or wordlist contains newWord
+                    if (newWord.equals(end) || set.contains(newWord)) {
+                        if (path.get(newWord) == null) {
+                            int depth = path.get(current);
+                            path.put(newWord, depth + 1);
+                            queue.add(newWord);
+                        }
+                    }
+                }
             }
         }
-
-        list.remove(0);        
     }
- 
 }
