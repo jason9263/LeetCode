@@ -1,81 +1,85 @@
 public class Solution {
-    // use a hashmap to store words and their corresponding depths.
+    
     HashMap<String,Integer> path = new HashMap<String,Integer>();
-
+    
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-        
         List<List<String>> res = new ArrayList<>();
-        
         List<String> tmp = new ArrayList<>();
-        
         Set<String> set = new HashSet<>(wordList);
-        // beginWord is not in the wordlist, but the endword is ! check the endword first
-        if (beginWord == null || endWord == null || !set.contains(endWord)) 
+        
+        if(beginWord == null || endWord == null || !set.contains(endWord)){
             return res;
+        }
         
-        bfs(beginWord, endWord, set);
-        
-        dfs(endWord, beginWord, set, tmp, res);
-        
+        bfs(beginWord,endWord,set);
+        dfs(endWord,beginWord,set,tmp,res);
         return res;
     }
-    private void dfs(String beginWord, String endWord, Set<String> set, List<String> tmp_path, List<List<String>> res) {
-        if (beginWord.equals(endWord)) {
+    
+    private void dfs(String beginWord,String endWord, Set<String> set, List<String> tmp_path,List<List<String>> res){
+        if(beginWord.equals(endWord)){
             tmp_path.add(beginWord);
             Collections.reverse(tmp_path);
             res.add(tmp_path);
             return;
         }
-
-        if (path.get(beginWord) == null) 
+        
+        if(path.get(beginWord) == null){
             return;
+        }
+        
         tmp_path.add(beginWord);
         
-        int nextDepth = (int) path.get(beginWord) - 1;
+        int nextDepth = (int) path.get(beginWord)-1;
         
-        for (int i = 0; i < beginWord.length(); i++) {
+        for(int i = 0; i < beginWord.length(); i++){
             char[] ca = beginWord.toCharArray();
-            for (char c = 'a'; c <= 'z'; c++) {
-                if (ca[i] == c) continue;
+            for(char c = 'a' ; c <= 'z'; c++){
+                if(ca[i] ==c){
+                    continue;
+                }
                 ca[i] = c;
                 String newWord = new String(ca);
-                if (path.get(newWord) != null && path.get(newWord) == nextDepth) {
+                if(path.get(newWord) != null && path.get(newWord) == nextDepth){
                     List<String> new_tmp_path = new ArrayList<>(tmp_path);
-                    dfs(newWord, endWord, set, new_tmp_path, res);
+                    dfs(newWord,endWord,set,new_tmp_path,res);
                 }
             }
         }
+        
     }
-    private void bfs(String start, String end, Set<String> set) {
+    
+    private void bfs(String start,String end, Set<String> set){
         Queue<String> queue = new LinkedList<>();
         queue.add(start);
-        path.put(start, 0);
-        String current;
+        path.put(start,0);
+        String current = "";
         
-        while (!queue.isEmpty()) {
+        while(!queue.isEmpty()){
             current = queue.poll();
-            
-            if (current == end) 
+        
+            if(current == end){
                 continue;
+            }
             
-            for (int i = 0; i < current.length(); i++) {
-                char[] ca = current.toCharArray();
-                for (char c = 'a'; c <= 'z'; c++) {
-                    if (ca[i] == c) 
-                        continue;
-                    ca[i] = c;
-                    
-                    String newWord = new String(ca);
-                    // if newWord is the same as the endword or wordlist contains newWord
-                    if (newWord.equals(end) || set.contains(newWord)) {
-                        if (path.get(newWord) == null) {
-                            int depth = path.get(current);
-                            path.put(newWord, depth + 1);
-                            queue.add(newWord);
-                        }
+        for(int i = 0; i < current.length(); i++){
+            char[] ca = current.toCharArray();
+            for(char c = 'a' ; c <= 'z' ; c++){
+                if(ca[i] == c){
+                    continue;
+                }
+                ca[i] = c;
+                String newWord = new String(ca);
+                
+                if(newWord.equals(end) || set.contains(newWord)){
+                    if(path.get(newWord ) == null){
+                        int depth = path.get(current);
+                        path.put(newWord, depth+1);
+                        queue.add(newWord);
                     }
                 }
             }
         }
     }
+  }
 }
