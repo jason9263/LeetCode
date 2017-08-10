@@ -8,55 +8,39 @@
  * }
  */
 public class Solution {
-    public List<Double> averageOfLevels(TreeNode root) {
-        Queue<TreeNode> que = new LinkedList<TreeNode>();
-        List<Double> res = new LinkedList<Double>();
-        if(root == null){
-            return res;
-        }
+public List<Double> averageOfLevels(TreeNode root) {
+    List<Double> result = new ArrayList<>();
+    Queue<TreeNode> q = new LinkedList<>();
+    
+    Queue<TreeNode> p = new LinkedList<>();
+    p.add(null);
+    p.add(root);
+    
+    if(root == null) 
+        return result;
+    
+    q.add(root);
+    
+    while(!q.isEmpty()) {
         
-        if(root.left == null && root.right == null){
-            res.add((double)root.val);
-            return res;
-        }
+        int n = q.size();
         
-        que.add(root);
-        
-        int curlen = 1;
-        int newlen = 0;
-        double sum = 0;
-        int tmplen = 0;
-        
-        while(que.size() > 0){
-           
+        double sum = 0.0;
+        for(int i = 0; i < n; i++) {
             
-            sum = 0;   
-            newlen = 0;
-            tmplen = curlen;
+            TreeNode node = q.poll();
+            sum += node.val;
             
-            while(curlen > 0){
-                TreeNode tmp = que.poll();   
-                curlen--;
-                sum += tmp.val;
-                
-                if(tmp.left != null){
-                    que.add(tmp.left);
-                      newlen++;
-                }
-               
-                if(tmp.right != null){
-                    que.add(tmp.right);
-                      newlen++;
-                }
-                
-            }
+            if(node.left != null) 
+                q.offer(node.left);
             
-            curlen = newlen;
-            res.add((double)(sum/tmplen));
+            if(node.right != null) 
+                q.offer(node.right);
             
         }
         
-        return res;
- 
+        result.add(sum / n);
     }
+    return result;
+}
 }
