@@ -1,50 +1,29 @@
 public class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
-        
-        ArrayList<String> res = new ArrayList<String>();
-        
-        if(list1 == null || list1.length == 0 || list2 == null || list2.length == 0){
-            return null;
-        }
-        
-        HashMap<String, Integer> map2 = new HashMap<String,Integer>();
-        
-        for(int i = 0; i < list2.length; i++){
-            map2.put(list2[i],i);
-        }
-        
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        List<String> res = new ArrayList<String>();
         int min = Integer.MAX_VALUE;
         
         for(int i = 0; i < list1.length; i++){
-            if(map2.containsKey(list1[i])){
-                int tmp = i + map2.get(list1[i]);        
-                if(tmp > min){
-                    
-                }else if(tmp ==  min){
-                    res.add(list1[i]);
-                }else{
-                    res.clear();
-                    res.add(list1[i]);
-                    min = tmp;
+            map.put(list1[i], i);
+        }
+        
+        for(int j = 0 ; j < list2.length; j++){
+            
+            Integer tmpi = map.get(list2[j]);
+            
+            if( tmpi != null && (tmpi + j) <= min  ){
+              
+                if(tmpi + j < min){
+                    res = new ArrayList<>();
+                    min = tmpi +j;
+                  
                 }
+                   res.add(list2[j]);
+               
             }
         }
         
-        String[] result;
-        
-
-        
-        if(res.size() > 0){
-            result = new String[res.size()];
-            for(int i = 0; i < res.size() ; i++){
-                result[i] = res.get(i);
-            }
-        
-        }else {
-            result = new String[0];
-        }
-        
-        return result;
-        
+        return res.toArray(new String[res.size()]);
     }
 }

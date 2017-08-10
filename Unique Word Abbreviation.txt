@@ -1,47 +1,33 @@
-public class ValidWordAbbr {
+public class TwoSum {
 
-    Map<String,String> jm = new HashMap<String,String>();
-
-    public ValidWordAbbr(String[] dictionary) {
-
-        for(int i = 0; i< dictionary.length; i++){
-            String s = dictionary[i];
-            String key = helper(s);
-
-            if(jm.containsKey(key)){
-
-                if(!jm.get(key).equals(s)){
-                    jm.put(key,"");
-                }
-
-            }else{
-                jm.put(key,s);
+    /** Initialize your data structure here. */
+    public TreeMap<Integer, Integer> map;
+    public TwoSum() {
+        map = new TreeMap<Integer,Integer>();
+    }
+    
+    /** Add the number to an internal data structure.. */
+    public void add(int number) {
+        map.put(number,map.getOrDefault(number,0)+1);
+    }
+    
+    /** Find if there exists any pair of numbers which sum is equal to the value. */
+    public boolean find(int value) {
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            int i = entry.getKey();
+            int j = value - i;
+            if((i == j && map.get(i) > 1) || (i != j && map.containsKey(j))){
+                return true;
             }
-
         }
-
-    }
-
-
-    public String helper(String s){
-        if(s.length() <= 2){
-            return s;
-        }else{
-            return s.charAt(0)+Integer.toString(s.length()-2) + s.charAt(s.length()-1);
-        }
-    }
-
-
-
-    public boolean isUnique(String word) {
-
-        return  !jm.containsKey(helper(word)) || jm.get(helper(word)).equals(word);
-
+        
+        return false;
     }
 }
 
-
-// Your ValidWordAbbr object will be instantiated and called as such:
-// ValidWordAbbr vwa = new ValidWordAbbr(dictionary);
-// vwa.isUnique("Word");
-// vwa.isUnique("anotherWord");
+/**
+ * Your TwoSum object will be instantiated and called as such:
+ * TwoSum obj = new TwoSum();
+ * obj.add(number);
+ * boolean param_2 = obj.find(value);
+ */
