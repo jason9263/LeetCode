@@ -8,25 +8,28 @@
  * }
  */
 public class Solution {
-    private int maxlen = 0;
-    
+    public int max = 0;
     public int diameterOfBinaryTree(TreeNode root) {
+        
         helper(root);
-        return maxlen;
+        
+        return max;
+        
     }
     
-    public int helper(TreeNode node){
-        if(node == null){
+    public int helper(TreeNode root){
+        
+        if(root == null){
             return 0;
-        }else{
-            
-            int left = helper(node.left);
-            int right = helper(node.right);
-            
-            maxlen = Math.max(maxlen,left+right);
-            
-            return Math.max(left, right) + 1;
         }
+        
+        int left = helper(root.left);
+        int right =  helper(root.right);
+        
+        
+        max = Math.max(max, left + right);
+        
+        return Math.max(left,right) + 1;
         
     }
     
