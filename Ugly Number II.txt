@@ -1,36 +1,28 @@
 public class Solution {
     public int nthUglyNumber(int n) {
+        int[] ugly = new int[n];
+        ugly[0] = 1;
+        int index2 = 0, index3 = 0, index5 = 0;
         int factor2 = 2, factor3 = 3, factor5 = 5;
         
-        int index2 = 0,index3 = 0,index5 = 0;
-        
-        int[] res = new int[n];
-
-        res[0] = 1;
-
-        
         for(int i = 1; i < n ; i++){
-
-            int min = Math.min(Math.min(factor2,factor3), factor5);
+            int min = Math.min(Math.min(factor2, factor3), factor5);
             
-            res[i] = min;
-            
-            if(min == factor2){
-                factor2 = res[++index2]*2;
+            ugly[i] = min;
+            if(factor2 == min){
+                factor2 = 2 * ugly[++index2];
             }
             
-            if(min == factor3){
-                
-                factor3 = res[++index3]*3;
+            if(factor3 == min){
+                factor3 = 3 * ugly[++index3];
             }
             
-            if(min == factor5){
-                factor5 = res[++index5]*5;
+            if(factor5 == min){
+                factor5 = 5 * ugly[++index5];
             }
 
         }
-       
         
-        return res[n-1];
+        return ugly[n-1];
     }
 }
