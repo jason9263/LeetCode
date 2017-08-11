@@ -1,23 +1,35 @@
 public class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
-        int len = s.length();
-        boolean[] dp = new boolean[len+1];
+    public boolean wordBreak(String s, List<String> dict) {
         
-        Arrays.fill(dp,false);
+        boolean[] f = new boolean[s.length() + 1];
         
-        dp[0] = true;
+        f[0] = true;
         
-        for(int i  = 1; i <= len; i++){
-            for(int j = i-1; j >= 0; j--){
-                if(dp[j] && wordDict.contains(s.substring(j,i))){
-                    dp[i] = true;
+        
+        /* First DP
+        for(int i = 1; i <= s.length(); i++){
+            for(String str: dict){
+                if(str.length() <= i){
+                    if(f[i - str.length()]){
+                        if(s.substring(i-str.length(), i).equals(str)){
+                            f[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }*/
+        
+        //Second DP
+        for(int i=1; i <= s.length(); i++){
+            for(int j=0; j < i; j++){
+                if(f[j] && dict.contains(s.substring(j, i))){
+                    f[i] = true;
                     break;
                 }
             }
         }
         
-        
-        return dp[len];
-        
+        return f[s.length()];
     }
 }
