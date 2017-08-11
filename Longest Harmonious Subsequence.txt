@@ -1,47 +1,23 @@
 public class Solution {
     public int findLHS(int[] nums) {
+        Map<Integer, Integer> map = new HashMap<>();
         
-        if(nums == null || nums.length == 0){
-            return 0;
+        for(int tmp : nums){
+            map.put(tmp, map.getOrDefault(tmp, 0) + 1);
         }
         
-        int res = Integer.MIN_VALUE;
+        int res = 0; 
         
-        Arrays.sort(nums);
-        
-        for(int i = 0; i < nums.length; i++){
-            int tmp = nums[i];
-            int tmpres = 0;
-            int tmpindex = -1;
+        for(int key : map.keySet()){
             
-            while(i+1 < nums.length && nums[i+1] == tmp){
-                tmpres++;
-                i++;
+            Integer tmp = map.get(key+1);
+            
+            if(tmp != null){
+                res = Math.max(res, map.get(key) + tmp);
             }
-        
-            tmpindex = i;
-            boolean sign = false;
-            
-            while(i+1 < nums.length && nums[i+1] - tmp == 1){
-                sign = true;
-                tmpres++;
-                i++;
-            }
-            
-            
-            if(sign == false){
-               
-                tmpres = 0;
-            }
-            
-            
-            res = Math.max(res, tmpres);
-            
-            i = tmpindex;
-            
         }
         
-        return res== 0 ? 0: res+1;
-
+        return res;
+        
     }
 }
