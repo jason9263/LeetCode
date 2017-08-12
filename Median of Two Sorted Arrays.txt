@@ -1,45 +1,68 @@
 public class Solution {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int len1 = nums1.length;
-        int len2 = nums2.length;
+        int N1 = nums1.length;
+        int N2 = nums2.length;
         
-        if(len1 <  len2){
+        if(N1 < N2){
             return findMedianSortedArrays(nums2,nums1);
         }
         
-        if(len2 == 0){
-            return ((double)nums1[(len1-1)/2] + (double)nums1[len1/2])/2;
-        }
+        int lo = 0;
+        int hi = 2*N2;
         
+        while(lo <= hi){
+            int mid2 = lo + (hi - lo)/2;
+            int mid1 = N1+N2 - mid2;
+            
+            System.out.println(mid1);
+            
+            double L1 = (mid1 == 0) ?Integer.MIN_VALUE : nums1[(mid1-1)/2];
+            double L2 = (mid2 == 0)  ?Integer.MIN_VALUE : nums2[(mid2-1)/2];
         
-        int low = 0;
-        int heigh = len2*2;
+            double R1 = (mid1 == 2*N1) ? Integer.MAX_VALUE : nums1[mid1/2];
+            double R2 = (mid2 == 2* N2) ? Integer.MAX_VALUE : nums2[mid2/2];
         
-        
-        while(low <= heigh){
-            
-            int mid2 = low + (heigh -low)/2;
-            int mid1 = len1 + len2 - mid2;
-            
-            double L1 = (mid1 == 0? (double)Integer.MIN_VALUE:(double)nums1[(mid1-1)/2]);
-            double L2 = (mid2 == 0? (double)Integer.MIN_VALUE:(double)nums2[(mid2-1)/2]);
-            
-            double R1 = (mid1 == 2*len1? (double)Integer.MAX_VALUE:(double)nums1[mid1/2]);
-            double R2 = (mid2 == 2*len2? (double)Integer.MAX_VALUE:(double)nums2[mid2/2]);
-            
-            
             if(L1 > R2){
-                low = mid2+1;
+                lo = mid2 + 1;
+                
             }else if(L2 > R1){
-                heigh = mid2-1;
+               hi = mid2 -1;
             }else{
-                return (Math.max(L1,L2) + Math.min(R1,R2))/2;
+                return (Math.max(L1 , L2) + Math.min(R1, R2))/2;
             }
-
-            
         }
         
         return -1;
-
+        
     }
+}
+
+
+
+
+
+public class Solution {
+
+    
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length, n = nums2.length, left = (m + n + 1) / 2, right = (m + n + 2) / 2;
+        return (findKth(nums1, nums2, left) + findKth(nums1, nums2, right)) / 2.0;
+    }
+    
+    public int findKth(int[] nums1, int[] nums2, int k) {
+        int m = nums1.length, n = nums2.length;
+        if (m > n) 
+            return findKth(nums2, nums1, k);
+        if (m == 0) 
+            return nums2[k - 1];
+        if (k == 1) 
+            return Math.min(nums1[0], nums2[0]);
+        int i = Math.min(m, k / 2), j = Math.min(n, k / 2);
+        if (nums1[i - 1] > nums2[j - 1]) {
+            return findKth(nums1, Arrays.copyOfRange(nums2, j, n), k - j);
+        } else {
+            return findKth(Arrays.copyOfRange(nums1, i, m), nums2, k - i);
+        }
+    }
+    
 }
