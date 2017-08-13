@@ -9,82 +9,48 @@
  */
 public class Codec {
 
+    private static final String spliter = ",";
+    private static final String NN = "X";
+    
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        
-        Stack<TreeNode> js = new Stack<TreeNode>();
-        StringBuilder jstr = new StringBuilder();
-        
-        
-        if(root == null){
-            return jstr.append("null").toString();
-        }
-        
-        js.push(root);
-        
-        
-        while(js.size() > 0){
-            TreeNode tmp = js.pop();
-            jstr.append(tmp.val).append(",");
-            
-            if(tmp.right != null){
-                js.push(tmp.right);
-            }
-            
-            
-            if(tmp.left != null){
-                js.push(tmp.left);
-            }
-            
-        }
-        
-        
-        return jstr.toString();
-
+        StringBuilder sb = new StringBuilder();
+        buildString(root, sb);
+        return sb.toString();
     }
+    
+    private void buildString(TreeNode node, StringBuilder sb){
+        
+        if(node == null){
+            sb.append(NN).append(spliter);
+        }else{
+            sb.append(node.val).append(spliter);
+            buildString(node.left,sb);
+            buildString(node.right,sb);
+        }
+        
+    }
+    
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        
-            if(data.equals("null")){
-                return null;
-            }
-            
-            String[] datas = data.split(",");
-            
-            Queue<Integer> resq = new LinkedList<Integer>();
-            for(String tmp : datas){
-                resq.add(Integer.parseInt(tmp));
-            }
-            
-            return result(resq);
-            
+        Deque<String> nodes = new LinkedList<String>();
+        nodes.addAll(Arrays.asList(data.split(spliter)));
+        return buildTree(nodes);
     }
     
-    
-    
-    public TreeNode result(Queue<Integer> resq){
-        
-                if(resq.isEmpty()){
+    private TreeNode buildTree(Deque<String> nodes){
+        String val = nodes.remove();
+        if(val.equals(NN)){
             return null;
+        }else{
+            TreeNode node = new TreeNode(Integer.valueOf(val));
+            node.left = buildTree(nodes);
+            node.right = buildTree(nodes);
+            return node;
         }
-
-     
-     Queue<Integer> leftq = new LinkedList<Integer>();
-     
-     TreeNode root = new TreeNode(resq.poll());
-     while(resq.size() > 0 && resq.peek() < root.val){
-         leftq.add(resq.poll());
-     }
-     
-     root.left = result(leftq);
-     root.right = result(resq);
-     
-     return root;
         
     }
-
-    
 }
 
 // Your Codec object will be instantiated and called as such:
