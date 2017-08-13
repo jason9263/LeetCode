@@ -1,32 +1,18 @@
 public class Solution {
     public int uniquePaths(int m, int n) {
-        if(m == 1|| n == 1){
-            return 1;
+        
+            Integer[][] map = new Integer[m][n];
+        for(int i = 0; i<m;i++){
+            map[i][0] = 1;
         }
-        
-        m--;
-        n--;
-        
-        System.out.println(m);
-        
-        if(m < n){
-            
-            int tmp = n;
-            n = m;
-            m = tmp; 
+        for(int j= 0;j<n;j++){
+            map[0][j]=1;
         }
-        
-        System.out.println(m);
-        
-        long res = 1;
-        int j = 1;
-        
-        for(int i = m + 1; i <= m+n; i++,j++){
-            res *= i;
-            res /= j;
+        for(int i = 1;i<m;i++){
+            for(int j = 1;j<n;j++){
+                map[i][j] = map[i-1][j]+map[i][j-1];
+            }
         }
-
-        return (int)res;        
+        return map[m-1][n-1];
     }
-
 }
