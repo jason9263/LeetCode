@@ -13,34 +13,9 @@ public class Solution {
             return 0;
         }
         
-        if(root.left == null && root.right == null){
-            return 1;
-        }
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
         
-        int max = -1;
-        max = helper(root,1,max);
-        return max;
+        return (left == 0 || right == 0) ? right + left + 1 : Math.max(left,right)+1;
     }
-    
-    public int helper(TreeNode root, int height, int max){
-        if(root.left == null && root.right == null){
-            max = Math.max(height,max);
-           
-        }else{
-            if(root.left != null){
-               max =   helper(root.left,height+1,max);
-            }
-            
-            if(root.right != null){
-                max = helper(root.right,height+1,max);
-            }
-            
-        }
-        
-        
-        return max;
-    }
-    
-    
-    
 }
