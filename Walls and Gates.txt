@@ -1,41 +1,49 @@
 public class Solution {
+    
+    private int m;
+    private int n;
+    
     public void wallsAndGates(int[][] rooms) {
-        //corner case
         if(rooms == null || rooms.length == 0 || rooms[0].length == 0){
-            return ;
+            return;
         }
         
+        Queue<int[]> queue = new LinkedList<>();
         
-        for(int i = 0; i < rooms.length; i++){
-            for(int j = 0; j < rooms[0].length; j++){
-                if(rooms[i][j] == 0 ){
-                    helper(rooms,i, j , 0);
+        m = rooms.length;
+        n = rooms[0].length;
+        
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n ; j++ ){
+                if(rooms[i][j] == 0){
+                    queue.add(new int[]{i,j});
                 }
             }
         }
         
-        
-        
-        
-    }
-    
-    public void helper(int[][] rooms, int i , int j , int d){
-        
-        if(i < 0 || i >= rooms.length || j <0 || j >= rooms[0].length || rooms[i][j] < d){
-            return ;
+       int[][] dir = {{-1,0} , {0,1}, {1,0},{0,-1}};
+        while(!queue.isEmpty()){
+            int[] top = queue.remove();
+            for(int[] tmpdir : dir){
+                
+                int r = top[0] + tmpdir[0];
+                int c = top[1] + tmpdir[1];
+            
+                
+                if( r < 0 || r >= m || c < 0 || c >=n || rooms[r][c] == -1 
+                   || (rooms[top[0]][top[1]] == Integer.MAX_VALUE && rooms[r][c] <= rooms[top[0]][top[1]] )
+                  || rooms[r][c] <= rooms[top[0]][top[1]] + 1){
+                    
+                    continue;
+                    
+                }
+                
+                rooms[r][c] = rooms[top[0]][top[1]] + 1;
+                queue.add(new int[] {r,c});
+                
+            }
+            
         }
         
-        rooms[i][j] = d;
-        
-        
-        helper(rooms, i-1 ,j , d+1);
-        helper(rooms, i+1, j , d+1);
-        helper(rooms, i, j- 1, d+1);
-        helper(rooms, i , j+ 1, d+1);
-        
-        
     }
-    
-    
-    
 }
