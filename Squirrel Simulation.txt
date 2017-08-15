@@ -1,0 +1,18 @@
+public class Solution {
+    public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {
+        int maxdiff = Integer.MIN_VALUE;
+        int sum = 0;
+        
+        for(int[] nut: nuts){
+            
+            int dist = Math.abs(nut[0] - tree[0]) + Math.abs(nut[1] - tree[1]);
+            
+            sum = sum + 2*dist;
+            
+            maxdiff = Math.max(maxdiff, dist - Math.abs(squirrel[0] - nut[0])   - Math.abs(squirrel[1] - nut[1]));
+        }
+        
+        return sum - maxdiff;
+        
+    }
+}

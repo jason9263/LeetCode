@@ -1,42 +1,71 @@
 public class Solution {
-
-    
-    class Point {
-        int x,y,l;
-        public Point(int _x, int _y, int _l) {x=_x;y=_y;l=_l;}
+     class Point{
+        int r ;
+        int c;
+        int l;
+        
+        public Point(int r, int c, int l){
+            this.r = r;
+            this.c = c;
+            this.l = l;
+        }
+        
     }
+    
+    
+    private int m ;
+    private int n;
+
     public int shortestDistance(int[][] maze, int[] start, int[] destination) {
-        int m=maze.length, n=maze[0].length;
-        int[][] length=new int[m][n]; // record length
+        if(maze == null || maze.length == 0){
+            return 0;
+        }
         
-        for (int i=0;i<m*n;i++) 
-            length[i/n][i%n]=Integer.MAX_VALUE;
-        int[][] dir=new int[][] {{-1,0},{0,1},{1,0},{0,-1}};
+        m =  maze.length;
+        n = maze[0].length;
+        int[][] len = new int[m][n];
         
-        PriorityQueue<Point> list=new PriorityQueue<>((o1,o2)->o1.l-o2.l); // using priority queue
+        for(int i = 0; i < m*n ; i++){
+            len[i/n][i%n] = Integer.MAX_VALUE;    
+        }
         
-        list.offer(new Point(start[0], start[1], 0));
+        PriorityQueue<Point> list = new PriorityQueue<>((o1, o2) -> (o1.l - o2.l));
         
-        while (!list.isEmpty()) {
+        list.offer(new Point(start[0], start[1] ,0));
+        
+        int[][] dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
+        
+        while(!list.isEmpty()){
             
-            Point p=list.poll();
-            if (length[p.x][p.y]<=p.l) 
-                continue; // if we have already found a route shorter
-            length[p.x][p.y]=p.l;
+            Point tmp = list.poll();
             
-            for (int i=0;i<4;i++) {
-                int xx=p.x, yy=p.y, l=p.l;
-                while (xx>=0 && xx<m && yy>=0 && yy<n && maze[xx][yy]==0) {
-                    xx+=dir[i][0];
-                    yy+=dir[i][1];
+            if(len[tmp.r][tmp.c] <= tmp.l){
+                continue;
+            }
+            
+            len[tmp.r][tmp.c] = tmp.l;
+            
+            for(int[] tmpdir: dir){
+                
+                int r = tmp.r;
+                int c = tmp.c;
+                int l = tmp.l;
+                
+                while(r >= 0 && r < m && c >= 0 && c < n && maze[r][c] == 0){
+                    r += tmpdir[0];
+                    c += tmpdir[1];
                     l++;
                 }
-                xx-=dir[i][0];
-                yy-=dir[i][1];
+                
+                r -= tmpdir[0];
+                c -= tmpdir[1];
                 l--;
-                list.offer(new Point(xx, yy, l));
+                
+                list.offer(new Point(r,c,l));
             }
         }
-        return length[destination[0]][destination[1]]==Integer.MAX_VALUE?-1:length[destination[0]][destination[1]];
+        
+        return len[destination[0]][destination[1]] == Integer.MAX_VALUE ? -1: len[destination[0]][destination[1]];
+        
     }
 }

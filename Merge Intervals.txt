@@ -11,34 +11,28 @@ public class Solution {
     public List<Interval> merge(List<Interval> intervals) {
         List<Interval> res = new ArrayList<Interval>();
         
-        if(intervals == null || intervals.size() == 0){
-            return res;
+        if(intervals == null || intervals.size() <= 1){
+            return intervals;
         }
         
+        intervals.sort((a,b)-> a.start - b.start);
         
-        Collections.sort(intervals, (a,b)-> a.start - b.start);
-        
-        int end = intervals.get(0).end;
         int start = intervals.get(0).start;
+        int end = intervals.get(0).end;
         
         for(int i = 1; i < intervals.size(); i++){
-            
-            if(end >= intervals.get(i).start){
-                
-                end = Math.max(end,intervals.get(i).end);
-                
-            }else{
-                
+            if(end < intervals.get(i).start){
                 Interval tmp = new Interval(start,end);
                 res.add(tmp);
-                
                 start = intervals.get(i).start;
                 end = intervals.get(i).end;
+                
+            }else{
+                end = Math.max(end, intervals.get(i).end);
             }
         }
         
-        Interval tmp = new Interval(start,end);
-        res.add(tmp);
+        res.add(new Interval(start, end));
         
         return res;
     }

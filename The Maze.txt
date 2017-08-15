@@ -1,54 +1,57 @@
 public class Solution {
-    
-    class Point {
-        int x,y;
-        
-        public Point(int _x, int _y) 
-            {x=_x;y=_y;}
-            
-    }
+    private int m ;
+    private int n;
     
     public boolean hasPath(int[][] maze, int[] start, int[] destination) {
-        int m=maze.length, n=maze[0].length;
         
-        if (start[0]==destination[0] && start[1]==destination[1]) 
-            return true;
+        m = maze.length;
         
-        int[][] dir=new int[][] {{-1,0},{0,1},{1,0},{0,-1}};
+        if(maze == null || m == 0){
+            return false;
+        }
         
-        boolean[][] visited=new boolean[m][n];
         
-        LinkedList<Point> list=new LinkedList<>();
+        n = maze[0].length;
         
-        visited[start[0]][start[1]]=true;
+        boolean[][] visited = new boolean[m][n];
         
-        list.offer(new Point(start[0], start[1]));
+        //Arrays.fill(visited,false);
         
-        while (!list.isEmpty()) {
-            Point p=list.poll();
-            int x=p.x, y=p.y;
-            
-            for (int i=0;i<4;i++) {
-                int xx=x, yy=y;
-                while (xx>=0 && xx<m && yy>=0 && yy<n && maze[xx][yy]==0) {
-                    xx+=dir[i][0];
-                    yy+=dir[i][1];
+        Queue<int[]> q = new LinkedList<int[]>();
+        q.add(start);
+        visited[start[0]][start[1]] = true;
+        
+        int[][] dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
+        
+        while(!q.isEmpty()){
+            int[] cur = q.remove();
+            for(int[] tmpdir : dir){
+                
+                int r = cur[0];
+                int c = cur[1];
+                
+                while(r >= 0 && r < m && c >= 0 && c < n && maze[r][c] == 0){
+                    r += tmpdir[0];
+                    c += tmpdir[1];
                 }
                 
-                xx-=dir[i][0];
-                yy-=dir[i][1];
+                r -= tmpdir[0];
+                c -= tmpdir[1];
                 
-                if (visited[xx][yy]) 
+                if(visited[r][c]){
                     continue;
-                visited[xx][yy]=true;
+                }
                 
-                if (xx==destination[0] && yy==destination[1])
+                visited[r][c] = true;
+                
+                if(r == destination[0] && c == destination[1]){
                     return true;
-                list.offer(new Point(xx, yy));
+                }
+                
+                q.add(new int[] {r,c});
             }
         }
-        return false;
         
+        return false;
     }
-
 }
