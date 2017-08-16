@@ -1,64 +1,64 @@
 public class Trie {
 
-    
     class TrieNode{
-        TrieNode[] next = new TrieNode[26];
-        String word;
-        boolean t = false;
+        public char val;
+        public boolean isWord;
+        
+        TrieNode[] children = new TrieNode[26]; 
+        public TrieNode() {}
+        TrieNode(char c){
+            TrieNode node = new TrieNode();
+            node.val = c;
+        }
     }
-    
-    public TrieNode root;
+
+    private TrieNode root;
     /** Initialize your data structure here. */
     public Trie() {
-         root = new TrieNode();
+            root = new TrieNode();
+            root.val = ' ';
     }
     
     /** Inserts a word into the trie. */
     public void insert(String word) {
-        TrieNode tmpr = root;
-        for(char c : word.toCharArray()){
-            
-            int tmp = c -'a';
-            
-            if(tmpr.next[tmp] == null){
-                tmpr.next[tmp] = new TrieNode();
+        TrieNode ws = root;
+        
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            if(ws.children[c -'a'] == null){
+                ws.children[c-'a']  = new TrieNode(c);
             }
-            
-            tmpr = tmpr.next[tmp];
-            tmpr.t = tmpr.t|false;
+            ws = ws.children[c-'a'];
         }
         
-        tmpr.word = word;
-        tmpr.t = true;
+        ws.isWord = true;
+        
     }
     
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
-        TrieNode tmpr = root;
-        
-        for(char c : word.toCharArray()){
-            int tmp = c -'a';
-            
-            if(tmpr.next[tmp] == null){
+        TrieNode ws = root;
+        for(int i = 0; i < word.length(); i++){
+            char c = word.charAt(i);
+            if(ws.children[c-'a'] == null){
                 return false;
-            }else{
-                tmpr = tmpr.next[tmp];
             }
+              ws = ws.children[c-'a'];  
         }
         
-        return tmpr.t;
+        return ws.isWord;
+        
     }
     
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
-        TrieNode tmpr = root;
-        for(char c : prefix.toCharArray()){
-            int tmp = c - 'a';
-            if(tmpr.next[tmp] ==  null){
+        TrieNode ws = root;
+        for(int i = 0; i < prefix.length(); i++){
+            char c = prefix.charAt(i);
+            if(ws.children[c-'a']  == null){
                 return false;
-            }else{
-                tmpr = tmpr.next[tmp];
             }
+            ws = ws.children[c-'a'];
         }
         
         return true;

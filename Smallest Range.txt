@@ -1,0 +1,78 @@
+public class Solution {
+    class Point{
+        int r;
+        int val;
+        
+        public Point(int r, int val){
+            this.r = r;
+            this.val = val;
+        }
+    }
+    
+    public int[] smallestRange(List<List<Integer>> nums) {
+        
+        if(nums == null || nums.size() == 0){
+            return null;
+        }    
+        
+        List<Point> q = new ArrayList<Point>();
+            
+        int m = nums.size();
+        
+        for(int i = 0; i < m; i++){
+            
+            List<Integer> tmp = nums.get(i);
+            
+            for(int j = 0; j < tmp.size(); j++){
+                q.add(new Point(i,tmp.get(j)));        
+            }
+            
+        }
+        
+        Collections.sort(q,(a,b) -> a.val - b.val);
+       
+        int cnt = 0;
+        int len = nums.size();
+        
+        int[] num = new int[len];
+        int left = 0;
+        int minLen = Integer.MAX_VALUE;
+        int minLeft = 0;
+        
+        int[] res = {0,0};
+        
+        for(int i = 0; i < q.size(); i++){
+
+            if(num[q.get(i).r] == 0){
+                cnt++;
+            }
+            
+            num[q.get(i).r]++;
+            
+            while(cnt == len && left <= i ){
+                
+                 if(q.get(i).val - q.get(left).val  < minLen){
+                    minLen = q.get(i).val - q.get(left).val;
+                    res[0] = left;
+                    res[1] = i;
+                }
+                
+                if(--num[q.get(left).r] == 0){
+                    cnt--;
+                }
+                
+                left++;
+            }
+            
+        }
+        
+        
+        System.out.println(res[0] + "    " + res[1]);
+        
+        int[] ans = new int[2];
+        ans[0] = q.get(res[0]).val;
+        ans[1] = q.get(res[1]).val;
+        
+        return ans;
+    }
+}

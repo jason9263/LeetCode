@@ -1,62 +1,42 @@
 public class Solution {
     public String minWindow(String s, String t) {
+        char[] tmap = new char[256];
+        char[] smap = new char[256];
         
-        if(t.length() > s.length()){
-            return "";
+        for(char c : t.toCharArray()){
+            tmap[c]++;
         }
         
-        HashMap<Character, Integer> map = new HashMap<Character,Integer>();
         int minLen = Integer.MAX_VALUE;
-        
         int left = 0;
         int cnt = 0;
+        int len = t.length();
         String res = "";
         
-        
-        for(int i = 0; i < t.length(); i++){
-          // putorbasent
-            char tmpc = t.charAt(i);
-            if(map.containsKey(tmpc)){              
-                map.put(tmpc, map.get(tmpc)+1);
-            }else{
-                map.put(tmpc,1);
-            }
-        }
-        
-        
         for(int i = 0; i < s.length(); i++){
-            char tmp = s.charAt(i);
+        
+            smap[s.charAt(i)]++;
             
-            if(map.containsKey(tmp)){
-                int num = map.get(tmp);
-                map.put(tmp,num-1);
-                if(num-1 >= 0){
-                    cnt++;
-                }
-            }
-            
-            while(cnt == t.length()){
-                
-            if(i - left + 1 < minLen){
-                minLen = i - left + 1;
-                res = s.substring(left,minLen+ left);
+            if(tmap[s.charAt(i)] >= smap[s.charAt(i)]){
+                cnt++;
             }    
-             char tmpleft = s.charAt(left);
+            
+            while(cnt >= len && left <= i ){
+                if(i - left < minLen){
+                    minLen = i - left;
+                    res = s.substring(left, i+1);
+                }
                 
-            if(map.containsKey(tmpleft)){
-                
-                map.put(tmpleft,map.get(tmpleft)+1);
-                
-                if(map.get(tmpleft) > 0){
+                if(smap[s.charAt(left)]-- == tmap[s.charAt(left)]){
                     cnt--;
                 }
                 
-             }
                 left++;
             }
-            
-        }
 
+        }
+        
         return res;
+
     }
 }

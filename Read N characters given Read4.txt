@@ -9,30 +9,23 @@ public class Solution extends Reader4 {
      */
     public int read(char[] buf, int n) {
         
-        int count = 0;
+        int cnt = 0;
+        char[] tmp = new char[4];
         
-        char[] jbuf = new char[4];
-        
-        while(count < n){
+        while(true){
             
-            int tmp = read4(jbuf);
+            int size = read4(tmp);
             
-            if(tmp == 0){
+            if(size == 0){
                 break;
             }
             
             int index = 0;
-            
-            while(index < tmp && count < n){
-                
-                buf[count++] = jbuf[index++];
-                
+            while (cnt < n && index < size){
+                buf[cnt++] = tmp[index++];
             }
             
-            
         }
-        
-        return count;
-        
+        return cnt;
     }
 }
