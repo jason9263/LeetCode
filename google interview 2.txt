@@ -503,6 +503,37 @@ follow up：如何减少使用内存。-google 1point3acres
 
 
 
+1. ABC (gradfather北京人，gradmother台湾人) 类似 LC 359 Logger Rate Limiter，但是好像只有时间。
+Follow-up: 如果timestamp不是按照递增的时间顺序，任意顺序。
+. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+2. 美国小哥（不太说话，不太热情，迟到20分钟。。）
+题目： 给定一个数组，求数组中两个数的最大值，要求所求的两个数不连续而且数组中的数各不相同。
+Follow-up：数组中的数存在相同. Waral 鍗氬鏈夋洿澶氭枃绔�,
+
+3. 中国大姐 （Google Log组）
+1）情景题：
+  timestamp    logtype     cluster     storage size（GB） 
+      3                 gmail          A               100
+      5                 map            B               1300
+      5                 gmail          B                450.鏈枃鍘熷垱鑷�1point3acres璁哄潧
+      6                 Youtube     C                345
+      7                 map            B                300 
+求 每个logtype最近几天（比如10）的平均存储用量  GB/day. From 1point 3acres bbs
+假设输入是一个vector<Log>, Log是输入数据的结构体, m为天数
+int getAvg(vector<Log>, int m); 
+
+2） LC340变体， 输入是无限的数据流， 给一个函数getNext(), 每次调用返回一个字符，取最长substring with at most k distinct characters. (和原题区别还是很大的。)
+
+4. 中国小哥 （+ 中国小哥shadow）
+LC394 Decode String
+Follow-up: 如何验证输入的合法性。（说了下思路，先验证括号合法性然后怎样怎样， 我说C++不像Java和Python中没有函数可以用正则表达式直接处理）
+
+面的题目都不难，但是感觉答得一般。但是运气真心好！希望能有好消息！.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+
+补充内容 (2017-1-26 09:19):
+用亚麻offer催了下，今天就出了结果，跪了，已哭瞎。不过总算安心了。明年再战！
 
 
 
@@ -511,6 +542,490 @@ follow up：如何减少使用内存。-google 1point3acres
 
 
 
+18号周三面试，27号周五，大过年的打电话来说早上HC开会讨论，不让我过。
+说了我好的和不好的方面，不好的无非就是bug，不够clean，然后估计做题不够快？
+鼓励我9，10个月以后再试
+lz自己弱，心理素质不好，碰到没见过的题目就慌神，平时只在电脑上码，白板一团糟。
+
+说说题目吧，欢迎讨论。面试官都6-10年工作经验的，全部是白男，除了中午吃饭是印度gg
+有面试官问了我以前的projec，和遇到的最麻烦的bug。
+lz那天很糗，倒数第二轮面完了，我以为面试结束，东西请好，跟着面试官走出去，完全无视进来的两个人，我以为那两个人是来我这个room讨论问题的，因为没想到会有两个面试官，有一个是shadow，后来才知道，他们是来面试我的。出丑出大了. 1point 3acres 璁哄潧
+. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+1. 一个游戏，有个board，n*n吧，给定颜色，至少三种颜色。然后用户可以用手指交换相邻颜色，让水平或垂直方向如果三个cell颜色一致，就消掉，可以得分，然后换新的颜色，继续玩
+要求，初始化这个board，初始化情况，不允许有水平或者垂直方向三cell的颜色一致，另外要随机选取颜色，保证概率一致。自己写class，members什么的，
+
+2. 设计一个iterator，读取一个数字串，比如1， 36， 7， 2， 8， 10， 9， next（）返回大于5的数，
+所以hasNext() return true, next() return  36, next() return 7, hasNext()return true, next()return 8, next() return 10, next() return 9, hasNext() return false. 
+我感觉类似lc上的那个peek iterator，不知道还有更好的办法没，但是lz很粗心， 一下子就被揪出bugs，改了几次改好的
+
+3. 给一个rand（）函数可返回【0,1）的double，求半径为1的园内的点，当然是概率一致。我开始没理解意思，因为他说了园外的点，我就老纠结产生x，y看满不满足x^2+y^2<=1 的条件，如果不满足怎么办这个去了 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+后来他告诉我，rand函数产生半径，还可以产生，0-360度角度，然后sin，cos求x和y，好吧。这个确实想不到。
+
+4. lc上的serilize和deserilize原题。
+
+5. 给一个word和很多很多doc，返回包含这个word的list of doc，我用trie tree做的，面试官好像没意见，但不知道会不会有更好的办法。
+
+6. domino。每个domino2个数字组成，比如12 或者65  就是一个domino，每个box有5个 domino，比如71 89 23 64 19 21 
+让你设计一个class的addBox, 如果原先出现过就返回false，否则添加新的box，返回true
+举个例子，71 89 23 64 19 21   和12 91 32 89 46 71 其实是一个box
+其实最后要override  hashCode和equals两个method
+
+
+大概就这么多了。大家讨论下吧，也是个学习的过程。另外想问问，我只刷了lc，下一步怎么提高呢？我平时写java的码农，谢谢啦 
+
+
+
+
+1. system design: 一個distributed key-value store, where the bottlenecks might be? 提了device端的網路latency, query aggregation to reduce the number of round trips, load balancing, geo-based sharding, memory/disk, 最後提了cache, 問用哪種cache, 然後寫了LRU cache2. thesis deep dive
+3. (a) serialize/deserialize n-ary tree
+    (b) meeting room II 變種, 延伸到distributed settings. more info on 1point3acres.com
+4. (a) compress "aaabbcc" to "a3b2c2"; 
+    (b) 給一個0 or 1 nxn matrix, 找出連續最多1的長度, 可以是直的橫的或斜的, example:
+          0 1 1 0
+          0 1 1 0. 1point3acres.com/bbs
+          0 0 0 1 
+         答案是3. 四個方向(row, column, diagonal, anti-diagonal)各用一個vector存最大的值 O(n^2)
+5. 完全炸掉. 感覺就是要出難題考到你的面試官。Design LEGO, check if two legoes have the same structure. rotate也算是相同的結構, 提了用3d matrix或是graph. 最後簡短的實作確認兩個3d matrix是否相同. 鍥磋鎴戜滑@1point 3 acres
+. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+有一關表現不好還是有機會嗎? 前幾題基本上都答的很不錯...敗在lego
+
+
+
+2.2 onsite 估计快出结果了，发帖攒攒人品，感觉是55开的局面，就看面试官眼缘了 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+
+1. 给一个二维数组，一个source位置和一个goal，有的位置之间还有wall，每次移动必须朝一个方向移动到不能移动为止，问从source能不能到goal？
+问题看着很高端，其实思路就是dfs backtrack，搜到goal就返回true，follow up是求从src到goal的最短距离，这里要用dijkstra不能用bfs因为两个位置距离不一定是1
+2. 给一个围棋棋盘，和其中一个黑子，判断这个黑子是不是被吃了，面经题
+3. 给一颗binary tree，多了一条边，把这条边删掉； 实现pow（x，y），lc题
+4. 给一个string和一个string list，把所有string list里在string里match到的字符加上<b></b>, 这题可以用KMP如果你能现场写的话，楼主用的trie，勉强写完，没时间follow up，感觉还可以改进，如果要挂就挂在这里了.鏈枃鍘熷垱鑷�1point3acres璁哄潧
+5. Range query maximum, 面经题，用的segment tree，写出了几个小bug，都在提示下改好了，不知道面试官会怎么看
+.鏈枃鍘熷垱鑷�1point3acres璁哄潧
+求面试官们抬一手吧，4个多小时在白板上写了两三百行代码，感觉都做出来了，这还不过确实挺打击自信的
+
+
+
+补充内容 (2017-2-26 00:03):
+为了给大家提供点参考，补充一下两周前过了hc，现在还在team match，感觉跟google玩要有耐心
+
+
+
+
+
+电面跪了，如果哪位兄弟看到过这个题目的求解答：
+
+给一堆坐标， 找出形成面积最小长方形的四个点. 涓€浜
+
+
+
+
+1 把一棵随机的树，变成一个string序列，使得这个序列能够reconstruct the random tree. random tree 就是说这课树的任意节点可能有多个子节点
+2 颜色那一题, "red" 可以写成 rgb(255, 0, 0), 可以写成"#FF0000", 也可以写成 "#F00"的缩略形式, 其中给了一个dictionary 的map, 你可以用map<key, value>： key 是"red", value 就是"#FF0000". 其中涉及到把10进制数变成16进制数，
+3 design a snake game using javascript
+4 滑动拼图游戏，向一个方向滑动，使得相同的数字合并，比如 2 和 2 可以合并成4
+[ 1, 1, 2, 2 
+  2, 0, 3, 3   
+  0, 0, 1, 2
+  3, 3 , 1, 2 
+
+0 代表是空的不能合并
+上面数组向左滑动就变成了
+[
+2, 4, 0 , 0. 1point3acres.com/bbs
+2, 6, 0 , 0
+1, 2, 0 , 0
+6, 1,  2,  0 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+
+5 设计一个自动扫地机器人来清扫房间，要自己建模
+比如robot一开始的坐标是(0,0), 而机器人并不知道这个房间的人和情况，你要让robot清扫房间，并且要知道什么时候房间的每个角落都走到了。
+
+
+
+
+
+linkedin上hr来问，正好也在准备跳，于是就约了一个面试。拖了一个月才开始店面。白人大哥，上来随便聊聊项目经验。然后没啥废话写代码。. 1point3acres.com/bbs
+45分钟一共三道题，-google 1point3acres
+1. 给个string类型数组，去重输出一个新数组。
+2.  大数加一，输入是数组，输出也是数组。
+3. 应该算第二题的follow up，两个大数相加。LC上都有原题。. 1point3acres.com/bbs
+楼主应该算运气比较好，面完以后给hr发个邮件说面完了表示感谢，就去上班了。结果他们下午就给我打电话说让我约onsite，没想到那么快。 
+
+刚刚面试了google，觉得真心被狗日了。。。
+
+本来约的3月1号电面，结果到了点interview并没有给我打电话，恩。。被放鸽子了。。。等了10分钟给HR发了邮件重新约了3月3美东下午。
+
+嗯，没有错，还是没人给我打电话，等了10分钟再次给HR发邮件，然后过了10分钟左右终于有人给我打电话了，是个懒散的印度老大哥，我一听声音就觉得gg了。
+
+跳过寒暄直接开始做题，恩。。。为什么HR share给我的doc里只有我一个人。。。好吧这个老大哥并没HR给我的doc的连接，然后问了我邮箱重新发了我一个邮件，整个过程大概耗时10分钟，期间电话那头安静的可怕，我想找点话题聊聊大哥完全不为所动。
+
+终于开始了，进去doc傻眼了，题目只有一张简陋的手画的图，印度老大哥让我从一个树里面找出同一层里面最大的值，然后求和。。。不过不能用recursion，题目还可以，用了stack。
+. more info on 1point3acres.com
+然后一边写一边和老大哥讲解，然后老大哥那边。。。你可以听见有人在和他说话，大概是他老婆吧，然后还有走路的声音。。。估计去帮他老婆什么忙了，反正做题的时候全程没有回应，快结束了我从头对着代码和他说一遍。。他却一直说what? 。。。。讲真的我自认为口语还算不错，你这是闹哪样啊
+
+最后他在doc里划了几下代码然后说byebye了，本来6点开始，最后全部弄好大概6:35，然后花了25分钟做题到了7点最后直接挂断了。。。
+
+感觉现在的google面试真让人无语，我其实主要还是想和google cloud的人聊聊，还特意和HR说了，结果最后是这样的面试
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+
+. visit 1point3acres.com for more.
+补充内容 (2017-3-7 04:10):.1point3acres缃�
+刚收到邮件果然挂了，这次效率倒是挺高。讲真的这种面试的模式真的很蠢，我还好现在工作不错，要是刚毕业找工作遇到这种事真的挺堵心的。.1point3acres缃�
+有篇文章：Why I Don't Talk to Google Recruiters， 建议有兴趣的ke'yi'...
+
+
+
+
+分享我的google电面面经赚点经验。
+是一个国人妹子，人很好。面了两道非常简单的题。
+1. Given an array and a target number, shift the target number to the end of the array.
+Example: [2, 3, 1, 2, 4, 2, 5] target: 2 --> [3, 1, 4, 5, 2, 2]
+. 1point3acres.com/bbs
+2. Find the longes palindrome by remove or reaarange the given string.
+Example: 
+a --> a
+ab --> a or b
+aba --> aba 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+aaba --> aba
+ccaabb --> abccba or acbbca etc...
+cda --> c or d or a. more info on 1point3acres.com
+. 鐣欏鐢宠璁哄潧-涓
+
+
+
+
+
+电面白人姐姐：
+1. 给sorted array， 找出所有出现次数大于n/4的所有数字，并返回；
+2. 给你若干字符串，让你查找最长匹配的prefix;
+
+回馈地里，希望造福大家~
+
+
+
+
+前面发了L家的，现在发G家的
+2轮算法，一轮系统设计，一轮基础知识，然后一轮本专业. visit 1point3acres.com for more.
+1 轮：nextpermutation 这么简单的题楼主也吭哧半天，水平太差了。最后还剩十几分钟面试官MM居然说因为本人答得快，开始聊项目。多谢高抬贵手
+2：a)find k-th largest element from a maxheap   b)里扣128
+3： sqrt(n) , 然后引申出去考基础知识，hashmap 如何以最优空间存这个结果, search tree怎么存最优空间, 从f(n)反向求n需要什么条件，等等
+4. 设计一个订票中分配座位系统，方方面面讨论的比较多. more info on 1point3acres.com
+5. 专业知识比较水，面试官完全不是我这个方向的，以我讲为主。. Fro
+
+
+
+
+听说Google去年招了好多人，很多人都没有match 到team。现在面感觉bar会不会很高？ 有没人知道google onsite 面试题的难度跟工作经验和所面试的level有关么？个人感觉系统设计可能会有些关系，但是算法题呢？
+
+过了phone interview，纠结还要不要去onsite。看地里的面经感觉还是有点难度的，如果挂了的话，被关小黑屋，好像不是特别划算啊。。。主要是以前在没充分准备的情况下就去onsite了，挂过一次。看网上说每个人同一个职位google 只允许三次onsite， 所以有些纠结。
+
+另外，SETI 和SDE面试难度一样么？
+
+都说Google 面试题天马行空，欢迎大家发表对Google面试题难度的看法
+
+
+297. Serialize and Deserialize Binary Tree
+
+
+
+
+HR 邮件联系我，后来电话简短沟通了一下，发来了coding sample、 survey链接，跟地里之前的面经基本一致，很顺利就做完了，之后很快就有人联系我约电面。. 1point 3acres 璁哄潧
+具体题目可以参考这个帖子的二楼. From 1point 3acres bbs
+http://www.1point3acres.com/bbs/ ... &fromuid=172165
+几乎一模一样的题~
+希望大家都能顺利过关~
+
+
+
+
+
+2月底电面，给了道宽搜的题目，以及一个follow up, 自我介绍 + 解题 + 问了3个问题 总共不到25分钟，一周后HR联系说过了，但是new grad招满了，然后给我匹配了Application Engineer的职位，解释了一大堆有的没的。. 涓€浜�-涓夊垎-鍦帮紝鐙鍙戝竷
+隔天换了个HR，问我对这个职位感不感兴趣。看邮件里的意思，如果我感兴趣就move forward, 如果不感兴趣，估计就结束了。本来以为接下来要准备Onsite了，结果HR问对Java了不了解，我说了解啊，好多项目都是用java写的，然后她说接下来的phone interview 和 onsite， coding部分必须得用java写，信息很炸，一直都在用c++刷题，怎么瞬间要用java了，然后还要再phone 一轮。HR还介绍到onsite 会有3轮coding + 1轮system design。我跟她解释道自己算法都是用c++在练，但她一再强调只能用Java...只能认了，java再重刷一波。
+.鏈枃鍘熷垱鑷�1point3acres璁哄潧
+
+想问下地里的兄弟姐妹，google 的Application Engineer 和software engineer职位区别大吗？本人本科 Master读的都是software engineering。希望这不会是个坑。将来还能转回software吗？
+
+
+
+
+
+面试官打来，寒暄了一两句，就说 should we start?
+我以为像上次一样，直接一道 leetcode hard 难度拍过来，没想到竟然问基础知识！ 
+http://yonghaowu.github.io//2016/10/25/GoogleJapanInterview/
+### Do u know **memory leak*?
+c/c++, new/malloc forget to free memory delete
+C++, smart pointer, RAIIwhen we don’t use that resources(memory), will free it automaticallyreference counter(tech)golang, defer
+问内存泄漏，只有竟可能展示能力了 (装逼), 说了常见的场景，C++ 智能指针，RAII，引用计数，甚至还说了 golang 的 defer
+### Do u know some methods to solve it?
+valgrind
+问我有没有在项目中解决过，只好说实习和参加 Wine 开源项目都没有遇到过，知道可以用 valgrind，只是在 demo 用过。
+### buffer overflow?.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+array, char a[100]，boundary
+for(int i=0; i<=100; ++i) a overflow
+strcpy,strncpy
+sequence
+[0x1001, 0x1002, ..]
+[1, 2, 3, 4]
+a[4] visit another address
+cause some problems, we may modify other values, write protected area*
+use buffer overflow, execute some code
+缓冲区溢出，举了例子以及常见场景, 读写系统保护区呀， readOnly 部分，修改了其他东西
+鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+代码部分
+(Coding) Implement a key value store with an expiration date.
+example usage:
+key=url
+value=html source
+void put(int key, int value) {
+}
+int get(int key) {
+}
+一看， 特别简单，脑子进水了也能做那种。
+但没有如此简单。
+这个更偏向于跟他 clarify 这个题目，超多细节需要讨论的，因为他 put 函数原型都没有写对，过期不的字段都没有给。
+首先我问了， 如何在 put 里判断过期？没有过期的判断字段。然后他就加上了：
+void put(int key, int value, long durationMs) {}
+long getCurrentTimeMs();
+接着我问， 如果 get 时过期了怎么处理？他加上了
+const int kNotFound = -99999;
+接着开始设计 map，询问后确定可以用 C++ 的 map。
+使用 C++ unordered_map， 因为程序中并没有顺序问题。
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+struct valueWithExpirationDate {
+    long expirationDate;
+    unordered_map<int, int> hashMap;
+} val;
+随后发现问题，问道：是否需要一个全局 map？因为参数中没有； 答曰：是的；
+于是改 struct
+
+struct valueWithExpirationDate {
+    long expirationDate;
+    int  value;
+} val;
+unordered_map<int, struct valueWithExpirationDate> globalMap;
+接着开始实现 put
+. From 1point 3acres bbs
+// put the same key twice? should we cover it? Overwrite
+// One global map ?Yep.
+// Check expireateion data overflow? long can not save such huge value. no
+void put(int key, int value, long durationMs) {
+    long expirationDate = getCurrentTimeMs()+ durationMs;
+    struct valueWithExpirationDate val = {expirationDate, value};
+    globalMap[key = val;
+}
+写的时候确定：1.long 存不下 overflow 需要考虑不 2. getCurrentTimeMs 需要自己实现不 3. 重复存一个 key 怎么办； 答案在注释
+边写边解释后写 get 函数：
+. From 1point 3acres bbs
+int get(int key) {//if the value is expired?should we return the val?
+    if(!globalMap[key]) {
+        return kNotFound;
+    }
+    //found
+    if(globalMap[key].expirationDate < getCurrentTimeMs()) {
+        return kNotFound;
+    }
+    return globalMap[key].value;
+}
+你们会发现，我并没有存指针而是整个结构体，写的时候我发现了，不过想着之后可以提出来，于是接着写下去了。
+写完后问，有什么办法可以 improve 整个程序吗？
+答道：用指针而不是存 struct，把写好的程序都改成用指针。
+接着他指出，还有，你过期后。。我马上觉察，说：对，并没有删除过期的东西。
+然后他写出了函数原型：
+
+void cleanup() {
+  // remove all expired keys
+  //iterate all the members in map
+}. 鍥磋鎴戜滑@1point 3 acres
+我马上 clarify 说遍历所有 members，他说你有更好的办法吗？
+我说可以对 expiration time 排序，每次 put 的时候 clean up, 可以用 piority queue
+他说可以，我问是先写 cleanup 代码，还是用 priority queue 优化代码, 他说『优化，I am sure you can write the code, I trust you]
+举例子：
+current : 1111// {12, 1023) (14, 1234) (14, 3333(
+每次 put，就依次删除 expiration time 小的（clean up)
+向他 clarify**put is seldomely than get called? => it is good to clean up while put \c**
+如果调用 put 次数不够 get 多的话，意味着 put 之间间隔的时间很长，可以检查 clean up 并清除了
+然后因为他沉默有点次数多， 我就问了他几次，要不要写代码了，还是上面那句 LOL
+接着问我时间复杂度，分析 put
+因为用 piority queue, 每次 put 都要遍历一遍，所以需要 O(n), n 是 length of map
+接着get
+// unorded_map(hash map), O(1) apply to put func also
+这里装逼有点忘形，要补充说 put 是 O(1) 当没有用优先队列；
+随后在上面补充：
+//quick sort, heapsort, mostly O(n logn), On^2 when uses cleanup()
+有点小小的搞混了是 put 的 cleanup 用到了 piority queue，不过没写代码，我跟面试官都有一点点混了 LOL。不过幸好大致意思我们都知道。
+随后又是面试官的沉默。。
+为了利用时间，我又不得不装逼了：说因为写 golang 比较多，所以刚刚没有用 Google C++ code styple (XD)
+google C++ sytle
+_ namecapital name, sumOfAll instead of sum_of_all
+接着就到， "I think our time is up"
+我说了 "thank you" 后，迷之画风，他就说 "thanks， I think that's it" 之类的，大有结束之势。。
+这面试官怎么不套路了？我赶紧问， "could I ask you a few questions?"
+于是问了的确是编码中有点疑惑的问题：
+code review 是怎么做的
+TDD，test 写吗，先写测试还是？
+最后当然是最 xx 的问题， How is it working in google?
+
+code review, peer review
+peer review may not strict enough
+unit test every time?Is that test first?rule
+How is it working in google?
+chrome, arictue
+memory allocated, javascript -> C++, env open
+GSoC work 
+面试官变得有点话多的，的确很喜欢 Google，就说他是 做 chrome 的，做内存分布啥的，js 转 C++ 等，
+参加过 GSoC too，工作就像是在做开源项目一样，excited！
+表示 awesome！GSoC 非常棒！
+结束面试：P 
+全部时间刚刚好 40 分钟
+后记： . 1point 3acres 璁哄潧
+时间复杂度分析我出现问题了， 对优先队列和堆不够熟悉。 
+堆排序，put 复杂度是 O(n logn), get 是 O(1) 
+而优先队列在问题的场景下是用了堆实现的，所以 put 是插入，复杂度为 O(logn)，并不是堆排序的排序复杂度。
+
+
+
+这是一道以前面google碰到的面试题，实现linux下的diff。我当时没有做出来，后来发现有其他面经也提到这道题，但是没有解法。请问大家对于这题有没有什么思路？
+
+
+
+
+
+三哥哥面试， 非常不友好， 上来也不自我介绍， 直接写题. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+第一题： string replace wild card with 1 or 0；. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+第二题： 系统设计。。。。。 设计一个员工查询工资系统，要求与银行系统握手
+
+
+
+
+
+
+发个面经攒人品，. 鍥磋鎴戜滑@1point 3 acres
+其实这次面试槽点满满，不过不在这里吐了
+面的是偏前端的role 所以 有两轮专问前端，主要集中在 search, autocomplete ui, trie 这些topic 都是用javascript写. 鍥磋鎴戜滑@1point 3 acres
+还有三轮coding ， 2046 游戏划一下update board status， 看着简单其实容易有bug；乐扣三丝洞， 用常规方法秒了，然后让优化算法（虽然最后我并不觉得那是最优的。。。）；给一个unsorted array 切开分别sort 在按切的顺序合并后必须是原来的sorted array，求如何切，先是假定数字在1-n 然后去掉这个假定咋做； 乐扣额要伞；
+总体来讲算法部分有些难度，主要是思路的部分，有了思路写code很轻松，还有建议大家练习一下在题难的状态下如何情绪不受影响而写出bug free的code
+
+
+
+
+
+昨天的谷歌电面：
+1. 求出99 base7情况下的结果。 不要coding
+2. 杨辉三角，给定你row和col, 求出对应的那个val。用了dp求解的，面试官不满意，我当时也没找到合适的解法。 听说杨辉三角的值是什么多项式系数？
+3. input: list of color (6种color,是用十六进制表示的)。然后给你一个string，6位，每两位表示一个颜色。然后要求output是输出这对应于string中每一个color 在list of color中最相近的颜色。就好比你要输入的是“大红，蓝，绿”，然后list里面有"红，蓝绿。。。"，那么就输出"红蓝绿"。换句话说，就是对于每一个颜色，如果list里面有，就原样输出，如果没有，找到最相近的颜色（就是数字最相近的那个）。 我用brutal force和binary search做的。 然后面试官都不满意。。。所以最后还是没做出来。。
+不出意外，应该跪了。-google 1poi
+
+
+上周一个国人大哥，打电话给我，题目是这样的：
+一个double linklist，一堆pointer，pointer 如果指的node是连在一起的，那这堆pointer都属于一个block，问，算有几个block。
+鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+情况是：. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+1. 面试官这时候开始打字，工作去了。
+2.我说我们能不能讨论一下思路，他就嗯嗯啊啊，没有任何hint，我就说，我先说一个我马上想到的solution，不行再优化。. more info on 1point3acres.com
+3. 我就写了，说，在double linklist 里面标一个tag，然后数一下。
+.鏈枃鍘熷垱鑷�1point3acres璁哄潧
+他说，如果，linklist很长怎么办。
+4.这时候我有点犯傻，说了一个巨难写的方案，一个pointer一个的算，连在一起就merge。 问他可不可以，他说，你先写。
+
+5. 我写完了，他问复杂的，我说是 o(m^2), m is pointer 的数量，他说，其实有o(m) solution, 让我自己回去想想。
+我当时心里的草泥马在奔腾，我说，你为什么早不说，早说我就再想想了。
+
+题目没写出来optimal，技不如人，我认，这面试官，这样，我也有点气，大神们，有什么好的建议吗，我那里可以做的更好。
+谢谢大家，希望大家offer 多多！ 大家加油。我move on。
+
+. From 1point 3acres bbs
+补充内容 (2017-3-2 04:33):
+输入: 一个head node，一个 node pointer vector。
+
+补充内容 (2017-3-2 04:33):
+我觉得 union find+ hashmap 应该是对的。. visit 1point3acres.com for more.
+
+补充内容 (2017-3-2 04:33):
+我觉得 union find+ hashmap 应该是对的。
+
+
+
+题目非常简单：给一个字符串，其中有换行符，再给一个offset，问offset这个字符在第几行。遍历直接数换行符就行了。followup，多次call相同的字符串但是不同的offset怎么办？楼主说把所有换行符的位置放在数组里，每次二分查找，然后写code。这么简单的binary search写的一塌糊涂，bug重重。。。
+
+
+
+EE PhD转CS，看着周围同学朋友全部转行了，也觉得EE太没有钱途了。从去年9月开始刷题。今年2月开始投简历。
+现在leetcode题目涨的太快，刷题压力越来越大。开始每天坚持10道，1个月把免费题目刷一遍，混了脸熟，买了账户后把付费题刷的七七八八，也不知道有没有完整的刷过一遍。
+第一个onsite是FB，自己觉得面的不错（题目都写得差不多啊，system design也说了很多啊），可是后面看着面经后才知道fb的风格完全不是那么回事，没有一轮两道题并却bug free就危险。. 1point3acres.com/bbs
+后面就没有onsite来，都是phone，groupon的phone问了很多操作系统，c++的继承多态，设计模式一些问题。可是我一个EE狗转行，平时也就用matlab写几行代码，虽然用c++刷的，可是leetcode也没让我用继承多态，虚函数这些东西啊。平时是看过，不用我哪里记得住，挂的妥妥的。
+中间投了其它公司，比如dropbox, twitter, pinterest, snapchat, yelp, yahoo. 基本上是晚上投，第二天早上就说背景不match，伤不起啊。
+
+只有最后一个g家了。onsite前觉得自己都没有机会了，之前一个礼拜高强度重新过了一个leetcode，只看思路（要不然思路都没有，就完全没有机会了啊），还有看地里的面经都过了一遍。很幸运的是，碰到的题目基本上都是中规中矩的题目。签过协议，等过段时间后再把面经送上。
+
+EE转行太不容易，背景不match，得到onstie的机会没有几个，所以一定要把握好。今年FB感觉招很多人，面之前一定要把FB的题背的很熟很熟，上来少废话，直接写题（一说什么cornercases，时间就不够了）。不过我碰到了2道没有见过的题，那是运气不好：)。
+
+刷题真是一个体力活，白天上班，晚上还有两娃要来骚扰我。真没有多少时间。。不过现在想想，那是自己安慰自己。白天不忙的时候就可以来一道，看看思路也是好的啊。晚上睡觉前想一遍今天刷的题，强化记忆也是有帮助的。我家两娃每天睡觉前都说，“爸爸去刷题吧！”。这7，8个以来周末都没有带他们出门，都是老婆一拖二。回头想想这也挺幸福的经历。
+
+和一起刷题的小伙伴讨论真的很重要。讨论可以发现很多问题，觉得自己懂了，其实真没有懂，这次g家的onsite就碰到一道skyline的变形体，刚好和别人一起讨论过，后来在leetcode上也写过各种自己人为加入的bug（看那些testcase没有过），碰到的这题的时候，做的游刃有余。
+
+
+
+
+
+（刚刚发了贴可是我被审核了？所以没发出去？但是我又迫不及待想发出来贡献啊。。）
+白人小姐姐就是nice啊。。我答的非常一般居然给我过了！
+但是没有headcount了。。。。所以现在是等着hr联系其他的team然后等有机会可以直接去onsite
+题目是地里的一道原题居然。。。朋友拍照给我的所以我没有link
+我这里复述一下：
+大概是给你N个灯泡的system，然后有两个function，一个是isOn（int index），toggle(int start, int end) -->就是把这个区间的灯泡开或者关
+请写出这样一个class并且实现function，然后问了toggle时间复杂度。。我说O(N)
+然后就来重点了，假设toggle的次数S远小于N，那么可不可以把这个toggle的时间复杂度优化成远小于O（N）
+我没太明白题意所以聊了好久。。。=_=!!!. 1point3acres.com/bbs
+大概就是toggle(3,4); toggle(5,6); toggle(10,20); toggle(3,8) --->求isOn（4）
+我就理解了她可能是想问线段树，并没有什么时间写代码了所以就大概讲了一下然后小姐姐说她要去开会实在是不好意思就挂电话了，全程45分钟一分不多一分不少。。-google 1point3acres
+没有进小黑屋太开心啦！两年前被印度大哥黑的进了黑屋现在还心有余悸。。
+
+
+
+
+首先感谢内推我的『兔流感阿义』前辈，前辈当年是三个月刷题一遍拿到Google offer的传奇人物。而当我从接触编程接到HR电话安排onsite，已经过去了580天。冬天到了，客厅冻的晚上睡不着觉，手上的钱勉强算四位数，每天扛着生活压力很是煎熬。但想想580天比三个月多很多，Google成了就能彻底翻盘。这种痛苦又亢奋的心情可以参考电影《五十度灰》里面的Santa Monica情节。
+
+所以讨论面试日期的时候，我反复的要求HR向我开炮，不能拖到2017，最后定在了12月19号，这一天也是16年Google安排onsite的最后一天。值得一提的是Google的面试过程安排非常标准化，一个电话就能解决所有问题，而且安排行程的老妹非常热情的搞定了我稍微非常规的行程。这让我本来就兴奋的心情更上一层楼，一度感觉自己是牧场里唯一的种马，任何要求都能被满足，想上哪个都行。就是酒店只负责一晚，面试当天要扛着所有行李，不过瑕不掩瑜。去MTV的路上也被照顾的很好，飞到San Jose，在机场租车的时候就被热情接待，Hertz的小黑妹轻车熟路的搞定了所有事情，还一脸崇拜的表情看着我。说真的，她要是再举个牌子我真的以为自己是被粉丝接机的爱豆。而后在酒店checkin完，前台又微笑着拿出一个袋子说是Google专门给面试者的礼物。打开一看竟然是个大苹果，这个礼物在几年前的冬天也出现过，看上去这HR是想和我耍朋友啊，要是送我个带屏幕的苹果就更好了。分给我的房间是个suite，第一次知道酒店里面居然有带客厅的房间，而且第二天还免费给早饭，整个过程堪称完美。
+
+酒店距离Google车程大概15分钟，大早上也没堵车。提前了半小时到了大楼门前，在车里把LC上29个类型题目过了一下，最后听了一遍海阔天空，最后一句是看未来，一步步来了。盯着一会儿面试的大楼，感觉自己的血也一步步变热了。
+看啊，瓦西里同志，前方就是柏林了。
+
+进门，领了一张Guest的纸片，看大厅里有几个人也在等面试。等面试官的时候，想这一年从刷Lintcode，到刷leetcode，到再刷leetcode，到刷cc189，到再刷Leetcode，能刷的都刷过了，现在能做的只有祈祷了。我默默的在胸前划十字，突然脑海中响起了『哈利路亚，建设我们的国家』，果然一紧张就容易出背景音乐。这怎么能行，改成双手合十阿弥陀佛，『我们还能不能能不能再见面，我在佛前苦苦求了几千年。。』，我去这么老的歌都能翻出来，看来佛教也不行了。信仰面前，一切临时工都是纸老虎。
+. 鍥磋鎴戜滑@1point 3 acres
+幸好一个身材精悍的人提前赶到终结了我的DJ生涯，看年龄40多岁，中国人。HUA，运气太好了，第一轮就是同胞，但我们俩还是用洋文假装流畅的交谈。大叔热情的问我是哪里人，还说自己是上海人。哦呦桑海宁，我立刻抓住机会说我是交大的，同时脸上表现的很不在意。内心风起云涌，『老子终于遇上个中国人能显摆一下了，看到没有？交大！牌子！班尼路！』。大叔淡定回复自己是复旦的。哦册那，空气一下就安静了。这不能怪我，总不能把『自由而无用』翻译成『freedom but useless』吧，总之套近乎收获不大，后来同学和我说应该加微信的，这样面试之后还能拿到feedback。然后聊了聊一会儿面试的准备，发现房间是临时安排的，没有空调，也没有白板擦，也没有钟，看来人品都用在昨天的酒店套房了。
+
+差不多10点的时候，大叔上题，two sum closest。不愧是Google，这题考察的是脚后跟的思考能力，因为这题不需要用大脑思考。马上给出排序后双指针的解法，还想叔真好，我爱复旦。大叔表示用binary search行不行，我举了个反例，说这题双指针法不能用二分。结果大叔坚持说行，最后发现是排好序之后，遍历每个数字，对它右边的排好序的部分二分搜索。我心想大叔你这思路挺别致啊，但很明显双指针比二分快。在白板上实现了一遍（小插曲是被问到返回是两个数字还是两个index的时候我居然犯二了，忘了排序这步操作，说这俩都行，唉真蠢。）。follow up是数组已经排好了序，找到所有比target number小的对儿的个数。这题我就被上一个二分的思路带歪了，先提出来直接二分去找，nlgn。大叔说再快，那就往双指针去想，其实复杂度是O(n)，当时好像举了哪个case结果分析错了，耽误了几分钟，后来解释清楚了是On，code没时间写了就讲了一下。感觉第一轮还没进入状态，中途几个小问题耽误了一些时间。
+
+由于是背靠背，所以第二轮的印度哥早早就在门口等着了，而且迫不及待的和我握手，打断了我对第一轮的回味。进来也不废话，直接上题。给出一群Interval，在一条实数轴上，返回一堆点，要求每个轴上都有点，而且点的个数尽量少。在白板上简单画了下就想出这题极简单，把interval按照起点排好序，然后每次加进来的时候看和之前的interval啥关系，根据不同的重合情况加点或者不加点，把几种可能画了出来。这次白板实现比较顺，一遍完成。印度哥又问说你要怎么测试你的code，回答给不同的interval分布的情况，故意卖了个破绽说可能有极多个interval输入。马上被追问如果输入极大怎么办，回答在各自的机器上尽可能的merge，然后再把merge之后的结果再merge起来。这时候就像是拖延时间用的开放讨论，印度哥看到门外来了人立刻就奔跑了。这轮感觉状态好了很多，第二轮果然容易发挥。
+. 1point3acres.com/bbs
+中午午饭轮，一个小哥走进来直接中文『走吃饭去』，聊了一下发现还是老乡。那必须得整顿好的，去了食堂A，关门，食堂B，关门。。最后在餐车捡了两块儿肉吃。小哥和我同岁，但是是科班出身，比我这种横跨四个专业劈叉式转行的人从容多了。临走之前还带我去了一趟大楼里面的micro kitchen（就是放零食的地方）补充了不少弹药，真是好人。
+
+12点半第三轮，一个亚洲面孔的人的老哥准时进来，说『￥%#<*&？』。虽然听不懂，但两条狗见面一般是打架，两个人见面通常是自我介绍。自我介绍之后，老哥说『Are #$%&&&……%*&？』。当时的心境就是一句歌词，我想了很久，我开始慌了。。。当初我也是427分强势搞定CET-4考试的男人，怎么突然就听不懂英语了？难道是刚才喝的那瓶可乐把我耳朵喝聋了？真的第一想法就是那只绝望的哈士奇，『你特么在屎里下毒了？』。老哥看我一脸茫然，在纸上写下了regular expression，我马上耶耶I know。老哥说你写一个能判断邮箱有效的regex。这使不得啊，我之前写都是现查的，但我灵机一动，假装理解成要写个方法来替代这个regex，然而我的计谋被识破了，老哥一脸坚决的让我直接写regex，像一只吃了秤砣的乌龟，看我写不出，还说没关系。然后上题。-google 1point3acres
+
+就是那道假期的题目，说每个城市都有个日历，日历上面有假期，问一年之内怎么休息能拿到最多的假期。我问有啥限制么，说没有。那只能brute force了，老哥居然就让我写了。刚要写，老哥突然想起来说只能在周末换城市，那还是遍历52周，然后挑当周假期最多的那个城市。老哥说OK咱走一个，我就想这题有啥意义么，就白板实现了一下。写的时候老哥还嫌屋里太热，要求开空调可惜落空了。
+写完老哥又提出，说如果我加个条件，说一个城市只能去相邻的几个城市，我一时没反应过来，说那就brute force的时候，每次查一下下周能去的城市好了。这一轮极其艰难，因为老哥的英语给交流造成了极大的障碍，很多时候都是靠写+猜。然后老哥出了杀招，他画了一个二维矩阵，然后纵向是城市，横向是时间，说每一行下一步的范围从它上面一行到它下面一行，我立刻看出这是DP啊，写到这儿终于明白这道假期的题目的用意了。马上补充说我刚才没有理解清楚，这题是可以用DP的，一边说一边在白板上画示意图。但是老哥再出杀招，他讲出了整场面试最清晰的一句，I think your code is perfect. Per你大爷啊，哥看你眼睛就知道你丫肯定是不想纠缠这个问题了，这句话肯定操练过不少遍，太敷衍了也练练演技好不好。接着老哥展示了他的电脑，考了我一道经典题目，说在Google的搜索框里面输入一个词，返回搜索结果，问整个过程发生了什么。我的回答是，这我一年前上课学过，但现在实在是没啥印象了。扯了扯server和爬虫，居然还扯了DNS，整个回答都是懵逼的，这时候下一轮的面试官已经在门口等着了。老哥微笑着收拾东西准备跑，我出于好奇问了一句您哪里人，回答，Japan。老哥您这有些出格啊，我也是看过朝5晚9和龙樱的人，的确我的长相和山下智久有些距离，但您这英语和我印象中的日本英语相差也太多了吧，不知道的还以为您是唱双截棍的整个面试都是哼哼哈嘿。诶你还知道跑还回头看你瞅啥？这一轮是最没有把握的一轮，因为对方继承了偷袭珍珠港的猥琐心态东一榔头西一棒子的，体验很一般。
+
+第四轮，是个看着很年轻的美国人，已经工作3年了。进门就一副很high的样子，直接上题，说现在要在手机上打字，打两个字母自动出来几个补全的单词。其实就是自动补全的实现，还玩那些表演，禽兽之变诈几何哉，止增笑耳。马上给出trie的解法。给出建trie+DFS返回所有单词的解法，白板实现之后，面试官非常满意，follow up是如果词有频率区别怎么办，说那就在每个trie node上加个数字来记录频率，每次搜的时候就从高频的字母往下搜，这一轮只有30多分钟，因为面试官不知道自己是最后一轮，问题问完了就提前结束了。作为补偿他带我去了micro kitchen，让我挖了很久的香蕉片。这一轮营养和体力都有点儿跟不上，偶尔有走神，但是题目不难，所以感觉还挺好。
+
+走出大楼感觉有些不真实，于是走回了大楼把香蕉片全吃了。想这个东西在超市卖4刀一盒之前从来不敢买，结果在这里都不要钱随便吃。感觉四轮下来题目远比想象的简单太多，第二第四轮发挥不错，第一轮有点儿慢热但是题目做出来了，第三轮算法题基本搞定只是前后两道题实在是记不住了那也没办法。当时想都说Google只看算法，估计HC觉得日本人面试水平太差那一轮就不怎么看了，最差也是个加面。但总的来说还是意犹未尽，人一到结束就容易矫情。偷偷的想如果没什么问题的话，那就过了啊。庆祝词我已经开始起草了，比如Google虽然是个搜索引擎，但是仍然没有搜索到人类智商的上限。面试官看起来都很努力的出题，但你看这考的都是啥题，他们根本不造我有多努力。每天蹲图书馆也就算了，发烧60度也坚持每天刷题25小时，学校里面的panda越来越像翔了，好在便宜距离也近，为了生存当了一年多的吞粪男孩。刷题刷到后来都麻木了，天天给别人叭叭讲题，就这样送走了好几批人。人都说多年的媳妇熬成婆，我这边熬成了寡妇，生活不止眼前的苟且，每天都是苟且。结果整个四轮面试下来，感受只有一个，即便是Google的面试题，在为了生存战斗的面试者面前，也是不堪一击。
+
+三周之后，HR打来电话，挂了。还给了feedback，说算法能力很好，但HC结论是在面试过程中体现出来CS基础知识有缺陷，所以直接被拒，不给加面也不给转成其他职位。所以，问题就在日本人那一轮上面。上诉无果，大侠请重新来过。. visit 1point3acres.com for more.
+
+但结果出来了也只能接受，意料之外情理之中。说实话用了很久才接受，拖了快一个月才发面经，因为一些记忆上的东西断定整个基础知识不行也是草率。努力了那么长时间，三轮来自不同国家的算法题都搞定了，没想到死在了东瀛忍术千年杀上面。但无论如何必须要感谢当时鼓励过我的朋友们，你们用第六感或是做梦，甚至完全不懂CS还想帮忙，这一次和Google的战斗值了。
+
+冬天到了，粮草也断了，中国队可以准备下一次练兵了。演员文章曾经说过，『时至今日都是我咎由自取』。青山不改，绿水长流，咱们ICC见。
+
+大年三十，祝地里各位兄弟姐妹们新年春节快乐。
+
+
+
+也怪自己拖延症晚期，把G家面试一拖再拖，拖到2/16 onsite，今天收到通知说hiring committe通过了, impressive techinical skills and coding ability. However, new grad SDE今年没有名额了，不给发offer。Recruiter说这是从来都没有碰到过的特殊状况，当时真想上国骂，TMD，怎么就让我碰到了。。。
+我特意问了2017年后续甚至年底是否会有新名额放出来，得到的答复是"不清楚，概率很小"。. From 1point 3acres bbs
+
+心有不甘也没用了，或许冥冥中自有安排，就是可惜了几个月的刷题时间。。。
+. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+不过，或许两年后再去面试可能可以跳过电面直接onsite，Recruiter说我面试的记录是永久存在的，算是得了点回报吧。。。
+
+over...
+. more info on
 
 
 
@@ -518,23 +1033,116 @@ follow up：如何减少使用内存。-google 1point3acres
 
 
 
+电面
+Valid Sudoku
+Onsite
+decode string,
+maze 1, 2, 3
+Given an array of integers where each element points tothe   index of the next element how wouldyou detect if there is a cycle in this array?
+另一题,给一个board,
+从start(pairi())出发 到一个数,用array表示,的最短路径要求输出路径
+比如从图中的0出发到45,先到 4, 然后再从4到5,
 
 
 
 
 
 
+关于google foobar这个博主介绍得很好：http://xiaohanyu.me/posts/2017-04-30-google-foobar-interview/ 我有好几题和他重复。贴一个遇到的level4题和我的解法。感觉gg foobar就是加点mathmatics的经典算法，high performance的implementation有难度,没有acm难。之后会贴个level5的新题。另外拿到个foobar challenge链接，想要的加米站内信，先到先得。如果要面试的话内推显然更快，主要是好玩。stem-font">Free the Bunny Prisoners
+========================
+
+You need to free the bunny prisoners before Commander Lambda's space station explodes! Unfortunately, the commander was very careful with her highest-value prisoners - they're all held in separate, maximum-security cells. The cells are opened by putting keys into each console, then pressing the open button on each console simultaneously. When the open button is pressed, each key opens its corresponding lock on the cell. So, the union of the keys in all of the consoles must be all of the keys. The scheme may require multiple copies of one key given to different minions.
+
+The consoles are far enough apart that a separate minion is needed for each one. Fortunately, you have already freed some bunnies to aid you - and even better, you were able to steal the keys while you were working as Commander Lambda's assistant. The problem is, you don't know which keys to use at which consoles. The consoles are programmed to know which keys each minion had, to prevent someone from just stealing all of the keys and using them blindly. There are signs by the consoles saying how many minions had some keys for the set of consoles. You suspect that Commander Lambda has a systematic way to decide which keys to give to each minion such that they could use the consoles.. 涓€浜�-涓夊垎-鍦帮紝鐙鍙戝竷
+.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+You need to figure out the scheme that Commander Lambda used to distribute the keys. You know how many minions had keys, and how many consoles are by each cell. You know that Command Lambda wouldn't issue more keys than necessary (beyond what the key distribution scheme requires), and that you need as many bunnies with keys as there are consoles to open the cell. 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+
+Given the number of bunnies available and the number of locks required to open a cell, write a function answer(num_buns, num_required) which returns a specification of how to distribute the keys such that any num_required bunnies can open the locks, but no group of (num_required - 1) bunnies can.
+
+Each lock is numbered starting from 0. The keys are numbered the same as the lock they open (so for a duplicate key, the number will repeat, since it opens the same lock). For a given bunny, the keys they get is represented as a sorted list of the numbers for the keys. To cover all of the bunnies, the final answer is represented by a sorted list of each individual bunny's list of keys. Find the lexicographically least such key distribution - that is, the first bunny should have keys sequentially starting from 0.
+
+num_buns will always be between 1 and 9, and num_required will always be between 0 and 9 (both inclusive). For example, if you had 3 bunnies and required only 1 of them to open the cell, you would give each bunny the same key such that any of the 3 of them would be able to open it, like so:
+[
+[0], 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+[0],
+[0],
+]. From 1point 3acres bbs
+If you had 2 bunnies and required both of them to open the cell, they would receive different keys (otherwise they wouldn't both actually be required), and your answer would be as follows:
+[.1point3acres缃�
+[0],. from: 1point3acres.com/bbs 
+[1],
+]
+Finally, if you had 3 bunnies and required 2 of them to open the cell, then any 2 of the 3 bunnies should have all of the keys necessary to open the cell, but no single bunny would be able to do it. Thus, the answer would be:
+[. visit 1point3acres.com for more.
+[0, 1],
+[0, 2],
+[1, 2],
+]
+. visit 1point3acres.com for more.
+Languages. 鍥磋鎴戜滑@1point 3 acres
+=========
+
+To provide a Python solution, edit solution.py. more info on 1point3acres.com
+To provide a Java solution, edit solution.java-google 1point3acres
+
+Test cases
+==========. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+
+Inputs:. more info on 1point3acres.com
+    (int) num_buns = 2
+    (int) num_required = 1 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+Output:
+    (int) [[0], [0]]
+
+Inputs:
+    (int) num_buns = 5. more info on 1point3acres.com
+    (int) num_required = 3
+Output:. From 1point 3acres bbs
+    (int) [[0, 1, 2, 3, 4, 5], [0, 1, 2, 6, 7, 8], [0, 3, 4, 6, 7, 9], [1, 3, 5, 6, 8, 9], [2, 4, 5, 7, 8, 9]]
+
+Inputs:
+    (int) num_buns = 4
+    (int) num_required = 4
+Output:
+    (int) [[0], [1], [2], [3]]
 
 
 
 
 
+狗家的应聘，一路过来真的不易，今天终于说过了committee，准备给offer了
+
+本人在职码农，在湾区某科技公司工作，3个多月前的某一天，接到狗狗家的recruiter的LinkedIn的邀请，问我有没有兴趣接受他们狗家的面试，我说好啊。就这样，一场跨越3个多月的面试之路就这样拉开了：
+-google 1point3acres
+楼主工作的时候比较懒散，算法什么的早就还个老师了，leetcode最近的一次提交也是1年多前。怎么办，送上门来的肥肉不啃感觉不开心，于是我直接问对方，面试都要准备些什么啊，对方说一般准备一下各种常规算法，系统设计之类，并且跟我强调一般成功的应聘者大多数都准备2个月甚至半年，你准备好了就给你安排电话面试，巴拉巴拉介绍电话面试流程。我说好吧，给我2星期时间准备一下再答复。
+
+于是开始在leetcode上做些热身运动，同时在网上找垫脚石，于是大量投简历。那2-3个星期，接到了很多其他公司的电话面试，都跪了，你没看错，都跪了。楼主那个心酸啊，这狗狗的面试肯定凶多吉少。于是楼主并没有主动联系狗家的人，而是继续自暴自弃的刷题，心想要是对方忘记这件事就算了，我继续在原公司得过且过，反正我不是狗家的料。
+
+1个月后，狗家的人来邮件了，问你准备得怎么啊，语气特别亲切。我心想，跪就跪吧，总不能得罪狗家的人，人家都主动两次找上门了。于是硬着头皮说，来吧。
+
+电面：撕耙鈴的变种题，大同小异，特别繁琐，不过心想这集我看过，于是巴拉巴拉的写，写到90%的时候阿三说，可以了，不用写了，过了。于是就这么莫名其妙的过了。. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+
+于是开始约安塞面试，感觉我和那个面试官八字不符，我提交了2个星期的时间，结果他去休假了，等他休假回来，又到我休假了，于是一推再推，再推，就来到6月初。
+
+这中间的两个月我没有闲着，毕竟过了电面，怎么也要努力一把吧，还是一边工作一边刷题一边面垫脚石，经历了无数的电面，paypal，Amazon还有若干其他公司的安塞，也拿到了一些其他offer。狗家的安塞终于来了。
+
+5轮，具体题目和顺序忘记了，就记得一些有代表性了，面完了我继续刷题，才发现那天面的好多都是原题的变形，条件变了，描述变了，输出结果变了，但是中心思想一样的，我这里就直接给leetcode的原题，通汇贯通就好。
+
+伞意气，乌巴尔，流散，还有一些太简单的就不列出来了，至于有几题原题没有的，例如图片shift，树表达式之类，现场面试官都会很nice都提示你怎么做，最后也都做出来了。其中我比较在意的一个关于exception都问题，在project里面，遇到边界条件都时候到底是用异常好还是返回message好，例如
+if(not valid) {
+    return false/error message; // 1
+    throws new Exception("error message"); // 2
+}
+采用1和采用2有什么区别，我当时回答说如果抛异常，程序就终止了，返回值都话程序还继续运行，他说，如果我在外层方法加try catch的话程序也不会终止的，我就回答不上来了。
+
+整个5轮下来我对自己表现还算满意，不过也有瑕疵，我当时觉得应该是到此一游了，就不当一回事。没想到后面居然拿到offer了。.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+
+感谢我几个朋友在刷题的时候给了我很大帮助，也感谢地里的大家分享的面经，我拿教程自学的。
 
 
 
-
-
-
+补充内容 (2017-7-7 01:50):
+湾区公司个人分2类。PayPal，Master，三星，电面安塞全是阿三，这样一般不靠谱，就算进去了个人感觉也不开心，咖喱文化。狗家，啊嘛，VISA，Atlassian，部分小公司，面试的人种很平均，会比较好。
 
 
 
