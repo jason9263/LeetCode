@@ -1,0 +1,541 @@
+我是在网申第二天受到面试邀请的，一看职位傻了，叫
+
+Technical Solutions Consultant, Google Technical Services Associate Rotation Program (University Graduate），
+https://www.google.com/about/car ... ;jid=211295001&
+大概就是一个一般时间写码，一半时间做consultant和人扯淡的职位，感觉这个职位面经挺少的，glassdoor上也没什么
+
+之前看到也是new grad就随手申了结果，让我去面试。。。。。于是和HR schedule了一个接下来一个周一的phone intervieW大概二十分钟。
+
+嗯 重点来了，hr邮件里说了这是个causual talk， 会介绍一下职位什么，还有个人背景简历什么的，我一看这不是behavior面试嘛。。心想天生擅长扯淡，于是从容的没有准备
+. 1point3acres.com/bbs
+事实证明，我严重低估了google hr的智商
+. visit 1point3acres.com for more.
+终于面试时间到了，开头一问hr，原来就20分钟，又梳了一口气。
+
+开头十分钟，先问了你对这个职位自己的理解， 就一直在扯淡简历上的各种经历，由于本人本科双专业CS ＋ Econ，之前还有过银行实习经历，还有志愿者活动，社团活动啥的（不务正业的码农。。。），于是扯了半天过去的往事，顺便又扯了扯暑假实习时候的项目，写了什么app，用了什么语言，有啥感受什么的
+.1point3acres缃�
+然后，画风一转，突然来了一个冷枪，说engineering team给你几道题，你有空来做做！我现场当时蒙蔽，不是说好的casual talk嘛！没准备技术题啊！. 涓€浜�-涓夊垎-鍦帮紝鐙鍙戝竷
+第一题，问了一下几个语句SQL中那个语法不正确的，有Pick，drop，update，还有两个选项，我当即选了pick，这个还算简单
+第二题，用http get时候能不能同时把一个网页中的text，image一次性在一个request里读出来，true or false，这题也没什么问题，. from: 1point3acres.com/bbs 
+第三题，直接来了道linux题，问了问sudo语句和不sudo的语句在os里process使用情况有啥区别，我顿时懵逼，说好的casual talk呢。。。
+第四题，又问了http 和 https port有啥区别，我又懵逼了，我只记得http默认端口号是80， https多少？忘了。。。只好强行说了说两种协议的区别。。
+
+于是就这样，面完了，心想四道题，只会两题半，估计挂了。。。。
+果然周五据信来了，说engineering team觉得还有比我厉害的，嗯 byebye了。。。
+
+不过HR人还挺好的，收到拒信10分钟后，又来了个Youtube的software engineer的面试邀请。。。。。
+周末就要做youtube的OA了，攒点人品。。
+
+
+
+补充内容 (2016-10-20 04:56):
+话说有好心人知道youtube的OA题和google general software engineer的OA有区别嘛！为什么google总给我面奇奇怪怪的职位。。。。
+
+
+第1轮  API设计. 就是timestamp那一类的
+第2轮 输入是 "+ 1 1 ( * 3 5 4 6)" 这种字符串,有+-*/(). 求值. 也就是求 1+1+(3*4*5*6)
+第3轮 第一题类似regular expression匹配这种的. 输入两个字符串, 输出bool是否匹配 秒了.
+        第二题判断两个二叉树是不是相同. O(1) space. 递归不算O(1), 我不会.就要hint. 面试官说, 如果TreeNode里面储存了 Node* parent,你有没有办法. 我就试图O(1) space Inorder遍历. 被卡住了.在提示下磕磕绊绊的最终写了出来.
+第4轮 输入一个6位ip地址的表示形式,输出一个对应的128位整型. 输入可以是这样的"1:a:abcd:23:0:0", 也可以出现::表示省略. 比如"1::2", 等价于 "1:0:0:0:0:2". 输入字符串里最多出现一次省略符::
+第5轮 输入是一堆各自形状的二维俄罗斯方块. 问他们能不能组成一个正方形. 我用的dfs+回溯.面试官顺便考察interface设计. 比如怎样用数据结构表示俄罗斯方块, 怎样表示旋转. 怎样增加可读性,之类的.
+
+几个题都不难, 比我准备过的hard题简单很多. 都做出来了, 除了判断二叉树相同那个. 今天hr告诉我被hc拒了. 没说理由. 我问我能不能知道面试官的feedback, hr说那是保密的. 但是我看地里很多人发面经都是会有feedback的呀... 然后hr说虽然SRE组不要我了, 但是会把我"大力推荐"到普通SDE组. 不知道这是真的呢..还是为了让我开心一些.  
+
+刚刚面试完我感觉还是挺不错的. 毕竟题都做出来了嘛, 沟通也很顺畅. 唉, 继续努力!
+
+Oct 20 2016 Google面经新鲜出炉1. 日本大叔：合并两个字符串
+1.1合并两个字符串s1 s2，保证字符原本顺序不变
+1.2 Follow up: s1 长度为 m,s2 长度为 n,有多少种合并方法？ 给出公式 F(m, n)=?
+
+Solution:
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+long factorial(long n){
+    long fact = 1;
+    for (long i = 1; i<= n; ++i)
+        fact *= i;
+    return fact;
+}
+
+void DFS(const string &s1, int m, int i,
+         const string&s2, int n, int j,
+         string path,vector<string> &ret)
+{
+    if(i==m &&j==n)  {
+       ret.push_back(path);
+        return;
+    }
+    if(i < m)  DFS(s1, m, i+1, s2, n, j, path+s1, ret);
+    if(j < n)  DFS(s1, m, i, s2, n, j+1, path+s2[j], ret);
+}
+
+vector<string> combineTowStrings(const string &s1,const string &s2) {
+    int m =s1.length(), n = s2.length();
+    long count =factorial(m+n)/factorial(n)/factorial(m);
+    cout <<"count:" << count << endl;
+   vector<string> ret;
+    DFS(s1, m, 0, s2,n, 0, "", ret);
+    return ret;
+}
+
+int main() {
+   vector<string> ret = combineTowStrings("AB","CDF");
+    cout <<ret.size() << endl;
+    for(string &s: ret)  cout << s << endl;
+    return 0;
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+
+}
+
+1.2 Follow up proof
+
+Supposethat you have k ordered lists ofelements--where the file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image001.png list has file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image002.png elements for 1≤j≤k,and that you wish to interleave them.
+Now,there will be file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image003.pngplaces that we must fill. So,first, we assign the elements of the first list to their places, and since wewant to preserve order, then choosing the places will also determine whichelements of the first list go to which places. There are file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image004.pngways to do this.
+Next,we choose which file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image005.png of the remaining places will have members ofthe second list. There are file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image006.pngways to do this. We continuein this fashion, until finally we have only the members of the kth list to place. There are file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image007.pngways to do this.
+Then,there are
+file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image008.png
+ways to interleave the listsin the desired fashion. Still, this expression is a bit ugly. Fortunately, wecan make it simpler, by noting that for nonnegative integers n,rwith r≤n we have
+file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image009.png
+Hence,we're looking at the product
+file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image010.png
+Since 0!=1, then a chain ofcancellations show us that this is simply
+file://localhost/private/var/folders/gm/xyhdwlxn6r73x50zbqj0d3y40000gp/T/TemporaryItems/msoclip/0clip_image011.png
+2. 白人大叔，竟然是我邻居，住同一小区，哈哈: regroup pairs
+不知道咋描述这题，直接上代码，感兴趣的同学运行几个test case 就明白了
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+bool pairCompare(const pair<int, int>& a, constpair<int, int>& b) {
+    return a.first< b.first;
+}
+int reGroup(vector<pair<int, int>> in,vector<int> counts,
+           vector<vector<pair<int, int>>> &ret)
+{
+    int n = in.size(),m = counts.size();
+    sort(in.begin(),in.end(), pairCompare);
+    ret.resize(m);
+    for(int i=1; i< m; ++i){
+        counts +=counts[i-1];
+    }
+    int j = 0;
+    for(int i=0;i<n; ++i){
+        int key =in.first;
+        while(key>= counts[j]) {
+            ++j;
+            if(j >= m) {
+                cout<< "Illegal input." << endl;
+                return-1;
+            }
+        }
+        cout <<key << "\tgroup=" << j << endl;
+        if(j >0)  in.first -= counts[j-1];
+       ret[j].push_back(in);
+    }
+    return 0;
+}
+int main() {
+   vector<pair<int, int>> in = {{0, 6},
+                                 {4, 92},
+                                 {5, 7},
+                                 {6, 10},
+                                 {15, 0},
+                                 {19, 2}
+                                };
+    vector<int>counts = {5, 10, 5};
+   vector<vector<pair<int, int>>> ret;
+    if(reGroup(in,counts, ret) == 0) {
+        for (auto&v : ret) {
+            cout<< endl;
+            for (auto &p : v) {
+                cout<< "(" << p.first << ", " <<p.second << ")" << endl;
+            }
+        }
+    }
+    return 0;
+}
+3. 俄罗斯小哥和白人小哥shaddow， 说话舌头带卷儿 LC 91. Decode Ways的变形
+字典形式为string -> n, n不重复，其中0<= n <1000
+E.X.
+'A' -> 1
+'BA' -> 2
+...
+'ZEX' -> 299
+
+4. 白人小哥
+平面坐标系中：
+给定一个API
+//return a uniformly random number in range [x, y)
+double randomBetween(double x, double y);
+输入一系列长方体的右上角坐标，写出函数，uniformly randomly 返回阴影中的一个点。
+pair<double, double> randoPoint(constvector<pair<double, double>> &rectangle);
+
+5. Nice 孟加拉长毛哥
+5.1 开放问题：当你在浏览器里输入一个url然后会车，都发生了什么？
+5.2 给一组 int， 输出那些比左边所有数都大且比右边所有数都小的数。
+.鏈枃鍘熷垱鑷�1point3acres璁哄潧
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void printLargerSmaller(const vector<int> &v) {
+    int n = v.size();
+    vector<int>leftMax(n, INT_MIN);
+    for(int i=1;i<n; ++i)     leftMax  = max(leftMax[i-1], v[i-1]);
+    int rightMin =INT_MAX;
+    for(int i=n-1;i>=0; i--)  {
+        if(i<n-1)rightMin = min(rightMin, v[i+1]);
+        if(v >leftMax && v < rightMin) cout << v << " ";
+    }
+}
+int main() {
+    vector<int>v = {3,4,7,1,8,12};
+   printLargerSmaller(v);
+    return 0;
+}
+
+
+
+mountain view 连续的5轮
+1.三姐早上姗姗来迟，约得945，10点左右寒暄两句开面。
+一共两道题，第一道题是用array of nodes表示了一个forest，每个entry的index表示这个节点的index， 每个节点包含parentId。给出一组要删除的点，然后输出删除后的节点数组。. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+这里有两个坑，一个是删除父节点要关联删除子节点，一个是删除节点后不能简单地前移后续没有被删除的点，因为删除以后剩余节点的index变了，需要重新维护parentId
+第二题是range sum mutable，只让讲了思路和分析时间复杂度，没有要求实现第二道题。这一轮三姐应该比较满意，全部问题解决，三姐也明确表示面的很好。
+2.白人小哥，描述了问题响应流程的流程图，提出问题-》诊断-》... 实际是一个有向图，让写一个算法检测是否一定可以到“解决“状态。一个坑是图可能有cycle，如果有cycle直接返回false
+第二题是用xpath的方式表示html，输出xpath路径（html/form[0]/a[2]/...）。最终都没彻底明白是让干啥。。给了一个java interface用于遍历， 但是接口参数没有原始html的表示。
+小哥说没关系，这道题就是test一下对XX的理解blabla，做不出来没关系，反正这轮是不太好。
+3.中年三哥。感觉不是很友好，一进来连握手也不握就直接开搞。我面的java，但是他所有问题都要从c++引过来。。一上来问为什么java 不支持ArrayList<int>，但是c++却支持。我就只知道java泛型要求是对象，不能用primitive type。但是三哥说原因是java底层实现的困难，c++会调一个单独的底层方法来创建这类的arraylist blabla... 然后又说c++有 virtual function。 但是java 没有，那么jaa这么来实现virtual function...T_T。。感受到了满满的恶意。。. 鍥磋鎴戜滑@1point 3 acres
+warm up 完后，上题，一个猜数字的游戏，四个数字，如果位置和数字都一样就算一个B，如果只有位置一样算W，最后返回？B?W。 中间问了些设计的小题目，比如返回值是什么比较好。最后和面试官讨论了一下返回自定义的对象比较好。（便于理解）.1point3acres缃�
+第二题是写一个solver，每次随机猜一个，通过猜的结果缩小下次猜的范围。尽快猜出结果。
+临面试结束勉强把第二题搞定，三哥叹了口气表示最后你居然写完了（本想直接挂了你的。。）
+4.白人小哥，一道题加若干followup，给一个球队队员列表，让找到最小的substring满足能够组成一个完整的球队（比如足球队要11个位置上的人，可以用0-10表示）。
+followup 如果有outlier（比如混入篮球队员怎么办）， 如果一个球队队员列表很长（1 billion）怎么办，如果完整球队位置很多（1 billion）怎么办。这轮小哥很满意，说没想到会讨论到这么深，很感谢我....（汗）
+5.国人小哥，上来先问了10分钟之前的项目。然后给了一道题，其实就是eval一个算式（题目描述问了半天才算搞明白。。汗）。和lc上稍微不同的地方是一个符号可以跟多个operand，比如(+ 5 6 7 (* 1 2 3)) 差不多这个样子. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+
+整体面上来感觉非常累，到后面脑子有点不转了。。但愿三哥那轮别坑的太惨T_T
+
+
+
+
+发个google 的onsite 面试。 希望可以最快地给群里的同胞们提供一点点微薄贡献吧。
+面试官是2个老白+3个老中， 感觉算好幸运了， 没碰到老印。 加上整体来说，同胞们对我还是挺nice的。虽然现在不知道结果如何，看了好多别人的面经，感觉还是我还是要悲剧的了。 还是决定先把面经发了， 希望
+最大程度的尽到绵力，并且希望能攒点运气吧。
+
+1. lc 289: game of life.
+follow up：那个2d array 很大的话怎么办。 我就说了个用bit 来表示，也没来得及仔细想了。
+
+2. 给你一个字符串， 找最大的可能的 palindrome。 如果有很多种可能， 只需要输出一种就好
+e.g. abaadxxdc   —> adxaxda or adxbxda or adxcxda
+       yyd  -> ydy
+       yd -> y or d
+
+3. lc 124,  二叉树可能最大的路径。  follow up: 假如给你一个given k， 组成的路径最多k个node，返回最大可能的路径。recursion的时候，除了返回最大的值，还要返回一个list，储存之前得到这个值出现过的node
+
+4.最大的 top 跟 bottom 的差值（普通tree）
+a -b 得到diff a必须是b的祖先，必须是上面的点，减去下面的点
+
+例如：  120，#, 130  返回-10
+              30, 10, 23, 9, 14，25，1 返回， 30 - 1 = 29
+
+. 1point3acres.com/bbs
+5. 感觉不太像 算法题：
+2 big file:
+file1(label1(string), label2(string), ratio(double)):
+d i 0.5
+i  x 0.3
+i  y 0.2
+c y 0.4
+. 涓€浜�-涓夊垎-鍦帮紝鐙鍙戝竷
+file 2 (label1, label2)
+d y
+b c
+求file2 的ratio. 自己设计一个数据结构来读file1， 然后记录下所有label之间的ratio 关系。然后再读file2， 并计算出file2 里面label之间的ratio。
+
+返回
+d y 0.01 （0.5 乘以0.2）
+c d  40 （0.4 除以0.01）
+
+file1 很大不能sort，但是假设可以把所有数方memory 里面。 label1 和label2 之间没有必然顺序关系，就是说可能给你d i ，也可能i d。
+要求写两个function。 一个是读file1， 另一个是写 file2，计算ratio。
+
+这题，我基本上什么code都没写成。唉。。。就是一直在讨论。 最后讨论出，维护一个 Map<String, MAP<String, Double>>的数据结构。也不是说百分百就是答案了。。
+唉。。
+
+好了，继续fighting！
+
+
+
+这周三的店面，问了简历的项目，就考了一道题，meeting location。基本就是LC原题，给你一些人的位置，在矩阵里0代表走，1代表墙。返回meeting location的坐标。写的很匆忙，店面结束发现一个小bug,当时面试官肯定发现了，让我找，我没找到。今天recruiter来电话没接到，语音信箱说是好消息，希望来个电话sync up一下。很纳闷为什么这样，过不过的邮件通知不就行了。有人遇到过相似状况吗？
+
+
+
+其实那天挺幸运的， 3个国人大哥， 一个白人哥哥，交流都没什么障碍，只是自己实在不争气，follow up 全跪了。。。。废话不说了，上题
+第一轮：国人大哥. more info on 1point3acres.com
+亲切地带我去办公室，带我冲了杯卡布其诺，简单聊了一下后开始了.
+给一个字符串，判断这个字符串是否包含了a-z。用unordered_set存然后最后判断是否size等于26。 这里我漏了判断大小写，被指了出来。 跟进：给的字符串很大，所以要只找出第一次出现而且确保它尽可能短。这里我磕磕碰碰的，大概想了用类似lc 340的用一个start 指针来当辅助。国人大哥走时一面的不满意啊。
+
+第二轮：白人哥哥
+问了下简历，然后出题，lc 207, 210 的排课程顺序，一开始我说拓扑排吧，他说不用那么复杂行不行，每个课程有且只有一个前置课。那我就建图然后bfs咯。然后他就让我举些test case 来测试一下我的程序， 问题挺简单，估计看了前一轮对我的评价，所以已经不想刁难我了。-google 1point3acres
+
+到了中午，白人大哥见没人过来领我去吃中饭， 自己勉为其难的带我去吃面条
+
+第三轮：国人大哥
+LC 31, 做过，但印象不深刻了，就记得哪两个要换一下，然后后面的排序一下，花了十分钟来写写画画恢复记忆。 follow up： 找下面第K个呢？ 写不出，问了hint，算每个数字之间相差多少个，最后我给了思路，但没时间写出来了
+
+第四轮：国人大哥
+类似LC 96, 但是只是BT，不是BST，输入是一个先序排列的nodes， 输出有能有多少颗树。 follow up: 能有多少颗平衡的树呢？  我说了对每个长度用log 来判断一下，他说log 有些conner case 覆盖不了。后来给了hint， 用 DP[节点个数][高度]， 但我始终还是想不到节点个数跟高度的联系，除了log。
+
+
+第一轮过后就已经觉得离挂不远了，后面的也就释然了，会我就写，不会就想，想不到就问问hint。。。。， 从他们给的hint 也学到了不少
+
+
+
+面试前一天在地里看面经的时候发现最近好多Onsite的题都有一两道是一样的，所以大家可以重点复习下最近的面经。
+
+第一轮：
+在一个一维的坐标上，rain drop 把一个给定长度的sidewalk 全部打湿的题， rain drop的location是随机的，能打湿的范围会给出。. 1point3acres.com/bbs
+具体思路就是merge interval来做，之前面经也有讨论过
+
+第二轮
+这个面试官似乎就是之前有人说的不喜欢笑的面试官，有点严肃
+先给了道plus one, 后来是LC 317 Shortest Distance from All Buildings，第二题只说了思路，写了个开头就时间到了。。。。. from: 1point3acres.com/bbs 
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+Lunch:
+看有些面经说中午吃饭是国人带或者是内推的人带，我还以为google都会这样安排，可以让面试者更放松。
+结果我四个面试官和一个lunch interviewer没有一个是国人。。。中午吃饭聊天略有一点尴尬。。。
+
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+第三轮
+给定一个2D grid，一个开始位置和length， 每一个位置有八个neighbors， 问从这个位置走Length步有多少种情况。
+思路用的DFS，不过中间过程答得不是很好，最开始Interface写复杂了。。然后问DFS的复杂度也不是很确定。。
+借机想问问各位大神，DFS的复杂度应该怎么说啊，我简单点答就是8的指数，但是具体到8 ^n, 这个n是多少我就很纠结了。。。
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+第四轮：
+有点像一个设计题，就是在火星上有3个stations，每当有发现一个event 就发送一个timestamp, 当三个stations都在相同的timestamp发现事件，就report。
+每个station的timestamp只会增加。
+设计一个数据结构，然后写一个method判断是否report，输入是station名和timestamp
+我的想法是用一个map来存，follow up是怎么优化，然后问复杂度（一问复杂度就很方，答得挺不好的这里。。
+
+
+
+
+上周在MTV的onsite。攒人品 求过！！！
+面试四轮 全是算法题。
+-google 1point3acres
+1. 国人小哥  . From 1point 3acres bbs
+   给一个binary tree T有n个Nodes, 一个binary tree S有m个Nodes. 找到 S下是否subtree跟T一样。所有的Nodes非unique，可重复。 答到最后最优解时间复杂度O(m)
+
+
+2. ABC 
+   给一个unsorted array，定义一个feature：给一个index i, 找到number of all possible indexes j, such that j > i, and array[j] > array。 题目是找到这个array里对所有的indexes i, 最大的number 是多少。 期望的最优解要求O(nlogn)
+
+3. ABC. 1point 3acres 璁哄潧
+   给一个directed graph，每一个node带有颜色属性。 颜色有红绿蓝三种。定义valid path：一条path 红色点 之后有绿色点 为valid（隔多远都行）。在这条path上，那个红色点之前的点（包括红点），定义为valid point。写一个function能找到这样的valid point
+
+4. ABC
+  给一个unsorted array， 给定index i and j， a) 找到i j 之间点的值的和   b)找到 i  j 之间点的最大值。 期望的最优解 a) O(n)  b) 小于 n2
+
+攒人品  求过！！！！！！！！！！！！！求大米！！！！！！！！！！
+
+
+补充内容 (2016-10-12 04:44):
+第四题 b) 时间复杂度和空间复杂度 要求都小于n2
+. more info on 1point3acres.com
+补充内容 (2016-10-13 01:28):. From 1point 3acres bbs
+据坛友补充， 第二题类似LC 315 Count of Smaller Numbers After Self； .鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+第四题解法是 http://www.lintcode.com/en/problem/segment-tree-query/
+
+补充内容 (2016-10-18 00:18):.
+已跪 =_=
+
+
+前两天的面经1. 国人大姊，找数组之中的峰值，倒转一个句子，形式是一个list
+2. 白人哥哥，设计类似像是宝石方块的游戏
+3. 白人哥哥，类似128的最长连续
+4. 国人大哥，找一个tree是否为另一个的sub-tree，大哥很友善，过后还用中文聊天了一下，感谢大哥没有下死手
+5. 白人哥哥，创造迷宫
+周末时间比较多再补个详细一点的面经
+
+
+我是同学内推Google的岗位，当时分别推了Google和Youtube的Software Engineer和Infrastructure岗位。最后只有Youtube有回应，第二天给我发了OA。
+
+**电面：**
+一个人很好的三哥，给我出了三道简单题
+1. Reverse words in a sentence
+2. Validate periodic string (就是如果你能找一个substring， 然后总的string以这个substring为周期）
+3. Validate Word Square（当时我还以为他要让找valid word square， 吓死我了）
+
+**Onsite：**
+我没能见到我recruiter， 因为当时她刚好调到Mountain View 去工作了。我也不清楚Google内部的工作流程和调配是怎样的情况。Onsite总共4轮，从10点开始，上午3轮，然后由一位工程师带着去吃午饭，然后下午一轮就可以走了。
+
+Round 1: 一个白人大哥，人还是挺好的，先随便聊了聊简历和个人情况，然后开始做题。这轮做了两道题，不过都比较简单。
+1. Validate Pangram： 其实我都不知道什么是Pangram，他解释了一下，其实那个就是指这这个string包含所有的字母，比如著名的A quick brown fox jumps over a lazy dog. 需要注意的就是标点符号和空格的问题。 之后聊了聊怎么支持其他的字母，可以从ASCII本身考虑这个问题。
+2. Validate Toepliz Matrix： 我也不知道这是什么matrix，其实定义很简单，就是一个斜线上面所有的数字一样，坐标(i, j) == 坐标(i+1, j+1)。
+
+这之后就每轮一道题了
+Round 2：哎，突然想起来所有轮都是白人大哥
+本轮题目是设计两个API， 情景是一个机器向另外一个机器发packet， packet的format是offset, size, data。这个设定其实就相当于是interval， offset就是start， size就是interval 的长度。第一个API就是类似于receive, 这个function作用就是存下来发过来的packet，可以用global variable。第二个API就是read bytes，有点类似于LC158，input你希望最多读到的byte，返回最终读到的byte数目，读出来的数据需要时连续的。Follow-up就是如果发packet 的机器出了问题，导致发过来的packet所对应的interval有overlapping，然后问你怎么办，其实就相当于LC merge interval那道题。
+
+Round 3：
+Find all duplicate subtrees in a binary tree。这道题我之前好像看过，不过当时并没有仔细看，也没有做过。我当时的做法就是先找相同高度的subtree，用hash table存起来，然后再写一个function来比较两个binary tree是否一样。这个办法挺蠢的，但是我也没什么办法。
+
+Round 4：
+涉及一点DOM的知识，不过其实无所谓，本质是一个tree的问题。题目相当于是说比较两个DOM所有leaf node上面的string concatenate起来的结果是否一样。做法就是用DFS就可以了，recursion很好写。Follow up就是如果现在考虑内存不太够的问题，也就是说你不能把整个concatenate之后的string都算出来再比较，应该怎么办。我当时说的做法就是iterative DFS， 然后就能一个一个读leaf node上面的string了，这样来比较两个string，有点类似把整个过程变成stream。
+
+目前结果：过了Hiring Committee, recruiter说下周应该可以有最后的结果。
+
+
+. Waral 鍗氬鏈夋洿澶氭枃绔�,
+补充内容 (2017-3-4 10:03):
+Update: 下午收到recruiter电话，给了offer，她表示现在招聘也很紧张，希望我尽快决
+
+
+
+最新狗狗电面
+三道题 都是关于树的。
+
+第一题，判断两个树是不是相等，这里说的相等是只要值相等就可以，而不是reference相等。
+直接递归。问了时间复杂度。注意处理null。. 鐗涗汉浜戦泦,涓€浜╀笁鍒嗗湴
+
+第二题，查询一棵树里面是不是有另一棵树。函数接口： 公共的 布尔 有子树(树节点类型 根 ,  树节点类型 子树根)  大家自己翻译一下。
+这里也是递归。 问了时间复杂度。（可以直接用第一题的方法）。-google 1point3acres
+到这里用了三十分钟。
+
+第三题，如果第二题的方法要call很多次，有什么优化。换言之，你有一个大树，这个大树不会变，但是每次查询的时候，子树会不同。怎么修改会更好。
+这个优化我用了哈希“地图” -> 大家自己翻一下。具体就不细说了。不然容易暴露宝宝身份。问了时间复杂度。
+
+第三题只让说了说，在电脑上敲了敲伪码。没让具体实现。
+到这里用了四十分钟
+
+面试官接着问，问的很含蓄：Is there any case that it(your solution) doesn't help? 我还以为我又有哪种corner case没处理呢，想了半天。
+结果只是面试官想问我worst case scenario。这里吐槽面试官问的太含蓄了。
+到这里用了四十二分钟. 1point3acres.com/bbs
+
+我三道题，前两题都有corner case没有处理好，被他指出来，瞬间改好。. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+因为这个点，发个帖子攒攒人品，求个onsite。
+
+
+补充内容 (2017-2-22 16:12):.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+http://www.1point3acres.com/bbs/ ... &fromuid=208901
+
+补充内容 (2017-2-23 12:45):
+这个是正经的。上面那个粘贴错了。
+http://www.geeksforgeeks.org/che ... nother-binary-tree/ 
+
+补充内容 (2017-2-23 12:45):. 鍥磋鎴戜滑@1point 3 acres
+我的天。这个url论坛不识别。大家看下板凳楼吧
+
+
+
+
+
+来发个跪经攒攒人品吧。
+并不难的题，有点像LC Add String，设计一个类把很长的String存为数字，然后实现两个数字加法。
+. 1point3acres.com/bbs
+在面试官的不断提示下才cover了很多corner cases，比如：如果是负数怎么加，如果10010 + （-10000） = 10 等等。. 1point 3acres 璁哄潧
+
+挽～祝大家好运
+
+
+第一轮国人：直接LC340 stream版，之后implement LRU，地里常见面经题不多说。
+
+第二轮硬度大叔：机器人扫地，设计算法让机器人扫完整个房间，地里有面经。
+
+第三轮不明国籍：问一个球能不能到一个终点，球的运行规则是一旦往一个方向走就得一直走不能停until碰到障碍物，地理常见面经。
+
+中间吃饭，和大叔一直保持着尴尬的沉默。。
+. 1point 3acres 璁哄潧
+第四轮俄罗斯人？：给一个coinflip的API，用这个API在数组里随机找一个数。第二题LC410。. from: 1point3acres.com/bbs 
+
+第五轮三哥：口音太重，花了十分钟时间来弄懂他到底在说什么。。题目是在一个森林里有一个雷达站，雷达的探照范围用一个角度来表示，问雷达在哪个角度的时候可以照到最多的树，假设雷达可以探照到无限远。这题血崩，面试官一直告诉我想复杂了，让我想简单一些。。我一天的超负荷脑力运转加上极度困倦让我一度宕机了。。估计就是挂在这轮。
+
+
+一周后收到挂信，move on了。希望对大家有帮助。喜欢的请加点大米，还得继续找工。。
+
+
+
+
+骨骼 航哥奥特面， 白人小哥， 超级nice， 其中一个bug在他的提示下找到然后也是在他的提示下优化
+1.warn up 返回每行最大值的和
+2.利特扣得 最大path sum, 但是给的矩阵是菱形的（这个形状特别奇怪， 楼主就在这出了一个bug）
+然后之前还问了一些简历， 之后还让我问他问题， 全程40分钟用满， 他迟到了3，4分钟吧.鐣欏璁哄潧-涓€浜�-涓夊垎鍦�
+
+求过求过！
+
+
+
+
+
+这周四面的。题目都不是很难，面试官看上去是两个中国人，一个韩国人，一个话不多的白哥。而且其中两个一开口就是自己也是CMU毕业的，所以都很Nice，基本没有刁难。一道是这样给一个String (* 4 (+ 2 3))，求结果。
+一道是count and say，leecode easy题，只不过多了一个cache，海量文件下把每次结果存起来，省时间。
+一道是判断两个binary tree是否相似，如果子节点翻转也算相似，怎么判断。
+一道是binary tree inorder traversal， 稍微有些不一样。
+一道是有个文件，里面的格式是 [A B 0.5  其中第一行表示A*B = 0.5，以此类推，假设不存在conflict的情况下，求A->C的结果，以此类推。如果输入文件特别大，怎么降低时间复杂度。
+                                                    B C 0.6]
+
+四轮面试没有被问系统设计，就问了下经历还有最proud的项目。每道题写出代码都要拍照，有两轮是面试官直接在电脑上敲。午餐一个小时，一个加拿大小哥带着在campus里转了转。. 鐗涗汉
+
+
+
+
+攒人品 发面经~~~没有店面 所以是五轮onsite。第一轮：
+1. 给一个数组和一个数字，求数组中小于等于这个数字的最大数。. 鍥磋鎴戜滑@1point 3 acres
+2. 设计搜索框，用户搜索时显示五个最有可能被输入的关键词。
+第二轮：-google 1point3acres
+判断一个矩阵的每条左上--右下的对角线上数字都一样。
+follow up：如何减少使用内存。-google 1point3acres
+第三轮：. 鐣欏鐢宠璁哄潧-涓€浜╀笁鍒嗗湴
+第一题忘记了，简单题。
+第二题lc411。
+第四轮：
+1. 一辆汽车，初始速度为1。每次加速速度变为两倍，每次调头调转方向并且速度变回1。给一个字符串表示汽车加速调头的过程（比如加速加速调头加速），求最终汽车的位置。
+2. 还是汽车，给出汽车行驶的里程，求字符串。
+第五轮：
+1. 判断一棵树是不是BST。. more info on 1point3acres.com
+2. 开放题，如何优化一个app。 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+. from: 1point3acres.com/bbs 
+总得来说coding题目都很简单，开放题/设计题没怎么看到面经里有 也没准备 全程蒙逼~~~ 鏉ユ簮涓€浜�.涓夊垎鍦拌鍧�. 
+希望对大家有帮助。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

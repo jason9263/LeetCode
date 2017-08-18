@@ -1,39 +1,151 @@
-public class LRUCache {
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+class LRUCache {
+    class Node{
+        int key;
+        int val;
+        Node pre;
+        Node next;
+
+    }
     
-    private Map<Integer,Integer> jm;
+    public void addNode(Node node){
+        node.pre = head;
+        node.next = head.next;
+        head.next.pre = node;
+        head.next = node;
+    }
     
+    public void deleteNode(Node node){
+        Node prenode = new Node();
+        prenode = node.pre;
+        Node nextnode = new Node();
+        nextnode = node.next;
+        
+        prenode.next = nextnode;
+        nextnode.pre = prenode;
+    }
+    
+    public void moveToHead(Node node){
+        deleteNode(node);
+        addNode(node);
+    }
+    
+    
+    private HashMap<Integer,Node> jmap = new HashMap<Integer,Node>();
+    private Node head;
+    private Node tail;
+    private int capacity = -1;
+    private int cnt = 0;
+    
+
     public LRUCache(int capacity) {
-        jm = new JLinkedHashMap(capacity);
+        this.capacity = capacity;
+        this.cnt = 0;
+        
+        head = new Node();
+        tail = new Node();
+        
+        head.next = tail;
+        head.pre = null;
+        
+        tail.pre = head;
+        tail.next = null;
+        
     }
     
     public int get(int key) {
-        if(!jm.containsKey(key)){
-            return -1;
+        if(jmap.containsKey(key)){
+            Node valnode = jmap.get(key);
+            int val = valnode.val;
+            
+            deleteNode(valnode);
+            
+            Node newnode = new Node();
+            newnode.key = key;
+            newnode.val = val;
+            
+            addNode(newnode);
+            jmap.put(key,newnode);
+            return val;
+            
         }else{
-            return jm.get(key);
+            return -1;
         }
     }
     
-    public void set(int key, int value) {
-        jm.put(key,value);
-    }
-    
-    
-    
-    
-    private static class JLinkedHashMap<K,V> extends  LinkedHashMap<K,V>{
-        int maximumCapacity;
-        
-        JLinkedHashMap(int maximumCapacity){
-            super(16,0.75f,true);
-            this.maximumCapacity = maximumCapacity;
+    public void put(int key, int value) {
+        if(jmap.containsKey(key)){
+            Node node = jmap.get(key);
+            node.val = value;
+            
+            moveToHead(node);
+  
+        }else{
+            Node valnode = new Node();
+            valnode.key = key;
+            valnode.val = value;
+            addNode(valnode);
+            
+            jmap.put(key,valnode);
+            ++cnt;
+            
+            if(cnt > capacity){
+                int tmp = tail.pre.key;
+                
+                deleteNode(tail.pre);
+                jmap.remove(tmp);
+                --cnt;
+            }
         }
-        
-        
-        protected boolean removeEldestEntry(Map.Entry eldest){
-            return this.size() > maximumCapacity;
-        }
-        
-        
     }
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+
+
+
+import java.util.LinkedHashMap;
+class LRUCache {
+    
+    private LinkedHashMap<Integer,Integer> map;
+    
+    private final int CAPACITY;
+    
+    public LRUCache(int capacity) {
+        this.CAPACITY = capacity;
+    
+        map= new LinkedHashMap<Integer,Integer>(capacity, 0.75f,true){
+            protected boolean removeEldestEntry(Map.Entry eldest){
+                return size() > CAPACITY;
+            }
+        };
+        
+    }
+    
+    public int get(int key) {
+        return map.getOrDefault(key,-1);
+    }
+    
+    public void put(int key, int value) {
+        map.put(key,value);
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
