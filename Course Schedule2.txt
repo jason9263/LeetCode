@@ -65,3 +65,91 @@ public class Solution {
         
     }
 }
+
+
+===================================error
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+                
+        
+        Map<Integer,Integer> degree = new HashMap<Integer,Integer>();
+        Map<Integer,Set<Integer>> item = new HashMap<Integer,Set<Integer>>();
+        
+        for(int[] tmp: prerequisites){
+
+            if(degree.containsKey(tmp[0])){
+                degree.put(tmp[0], degree.get(tmp[0]) + 1);
+            }else{
+                degree.put(tmp[0],1);
+            }
+            
+            if(degree.containsKey(tmp[1])){
+                
+            }else{
+                degree.put(tmp[1],0);
+            }
+
+            if(item.containsKey(tmp[1])){
+                item.get(tmp[1]).add(tmp[0]);
+            }else{
+                Set<Integer> set = new HashSet<Integer>();
+                set.add(tmp[0]);
+                item.put(tmp[1],set);
+            }
+            
+            if(item.containsKey(tmp[0])){
+                
+            }else{
+                Set<Integer> set = new HashSet<Integer>();
+                item.put(tmp[0],set);
+            }
+            
+        }
+        List<Integer> res = new LinkedList<Integer>();
+        Queue<Integer> q = new LinkedList<Integer>();
+             
+        for(Map.Entry<Integer,Integer> entry : degree.entrySet() ){
+ 
+            if(entry.getValue() == 0){
+               
+                q.offer(entry.getKey());
+                res.add(entry.getKey());
+            }
+        }
+        
+        int count = 0;
+        
+        while(!q.isEmpty()){
+            int tmp = q.poll();
+            count++;
+            
+           if(item.get(tmp).size() > 0){
+                for(int settmp : item.get(tmp)){
+                    int cnt = degree.get(settmp);
+                    cnt--;
+                    if(cnt == 0){
+                        q.offer(settmp);
+                        res.add(settmp);
+                    }
+                    
+                    degree.put(settmp, cnt);
+                }               
+           }
+
+        }
+        
+        if(count != numCourses){
+            
+            System.out.println("JZ");
+            int[] jres = new int[0];
+            return  jres;
+        }
+        
+        
+        int[] intres = new int[res.size()];
+        for(int i = 0; i < res.size(); i++){
+            intres[i] = res.get(i);
+        }
+        return intres;
+    }
+}

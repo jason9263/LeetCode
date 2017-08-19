@@ -1,36 +1,22 @@
-public class Solution {
+class Solution {
     public int findNthDigit(int n) {
-        if (n <= 0) {
-            return -1;
-        }
-
-        if (n >= 1 && n <= 9) {
-            return n;
-        }
-
         int i = 1;
-
-        while (n > i * 9 * Math.pow(10, i - 1)) {
+        while(n > i * 9 * Math.pow(10,i-1)){
+            
             i++;
         }
-
-        for (int j = i - 1; j >= 1; j--) {
-            n -= j * 9 * Math.pow(10, j - 1);
+        
+        for(int j = 0; j < i; j++){
+            n -= j*9*Math.pow(10,j-1);
         }
-
-        System.out.println(n);
         
+        int index = n % i == 0 ? n/i-1 : n/i;
         
-        int target = n % i == 0? n/i-1 : n/i;
+        int target = index + (int)Math.pow(10, i-1);
         
+        String tar = String.valueOf(target);
         
-        
-        target = (int)Math.pow(10,i-1) + target;
-        System.out.println(target);
-        
-        String targets = String.valueOf(target);
-        
-        char res = (n % i == 0 ? targets.charAt(targets.length() -1) : targets.charAt(n%i-1));
+        char res =  (n % i == 0 ? (tar.charAt(tar.length()-1)) : (tar.charAt(n % i -1 )) );
         
         return Integer.valueOf(res - '0');
     }
