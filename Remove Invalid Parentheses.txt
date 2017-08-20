@@ -1,57 +1,65 @@
-public class Solution {
+class Solution {
     public List<String> removeInvalidParentheses(String s) {
-        List<String> res = new ArrayList<>();
+        //sanity check
+        //
+        //
+     
+        List<String> res = new LinkedList<String>();
         if(s == null){
             return res;
         }
-        
-        Set<String> visited = new HashSet<>();
-        Queue<String> queue = new LinkedList<>();
-        
-        queue.add(s);
-        visited.add(s);
-        
+        Queue<String> q = new LinkedList<String>();
+        HashSet<String> set = new HashSet<String>();
+        q.offer(s);
+        set.add(s);
         boolean found = false;
-        while(!queue.isEmpty()){
-            s = queue.poll();
-            if(isValid(s)){
-                res.add(s);
+        
+        while(!q.isEmpty()){
+            String qs = q.poll();
+            if(helper(qs)){
+                res.add(qs);
                 found = true;
             }
-       
-        
-        if(found){
-            continue;
-        }
-        
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) != '('  && s.charAt(i) != ')'){
+            
+            if(found){
                 continue;
             }
             
-            String t = s.substring(0,i) + s.substring(i+1);
-            
-            if(!visited.contains(t)){
-                queue.add(t);
-                visited.add(t);
+            for(int i = 0; i < qs.length(); i++){
+                if(qs.charAt(i) != '(' && qs.charAt(i) != ')')
+                    continue;
+                
+                   
+                
+                    String tmps = qs.substring(0,i) + qs.substring(i+1);
+                
+                    if(!set.contains(tmps)){
+                        
+                        System.out.println(tmps);
+                        
+                        set.add(tmps);
+                        q.add(tmps);
+
+                    
+                }
             }
         }
-         }
+        
         return res;
     }
     
-    public boolean isValid(String s){
-        int count = 0;
+    public boolean helper(String s){
+        int cnt  = 0;
         for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(c == '('){
-                count++;
-            }
-            
-            if(c == ')' && count-- == 0){
+            if(s.charAt(i) == '('){
+                cnt++;
+            }else if(s.charAt(i) == ')' && cnt-- == 0){
                 return false;
             }
         }
-        return count == 0;
+        
+        return cnt == 0;
     }
+    
+    
 }
