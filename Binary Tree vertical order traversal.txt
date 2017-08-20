@@ -7,63 +7,55 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
     public List<List<Integer>> verticalOrder(TreeNode root) {
         
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        //corner case
+        TreeMap<Integer,List<Integer>> tmap = new TreeMap<Integer, List<Integer>>();
+        
+        Queue<TreeNode> qt = new LinkedList<TreeNode>();
+        Queue<Integer> qv = new LinkedList<Integer>();
+        
+        List<List<Integer>> res  = new ArrayList<>();
+        
         if(root == null){
             return res;
         }
         
-        
-        //general case
-        
-        HashMap<Integer,ArrayList<Integer>> jm = new HashMap<Integer,ArrayList<Integer>>();
-        Queue<TreeNode> jq = new LinkedList<TreeNode>();
-        
-        
-        HashMap<TreeNode, Integer> weight = new HashMap<TreeNode ,Integer>();
-        
-        jq.offer(root);
-        weight.put(root,0);
-        
         int min = 0;
+        int max = 0;
         
-        
-        while(!jq.isEmpty()){
+        qt.offer(root);
+        qv.offer(0);
+
+        while(!qt.isEmpty()){
+            TreeNode t = qt.poll();
+            int val = qv.poll();
             
-            TreeNode node = jq.poll();
-            int w = weight.get(node);
-            
-            if(!jm.containsKey(w)){
-                jm.put(w,new ArrayList<>());
+            if(!tmap.containsKey(val)){
+                tmap.put(val,new LinkedList<Integer>());
             }
             
-            jm.get(w).add(node.val);
-            
-            if(node.left != null){
-                jq.add(node.left);
-                weight.put(node.left,w-1);
+            tmap.get(val).add(t.val);
+                        
+            if(t.left != null){
+                qt.offer(t.left);
+                qv.offer(val-1);
+                min = Math.min(min, val -1);
+
             }
             
-            if(node.right != null){
-                jq.add(node.right);
-                weight.put(node.right,w+1);
+            if(t.right != null){
+                qt.offer(t.right);
+                qv.offer(val+1);
+                max = Math.max(max, val + 1);
             }
-            
-            min = Math.min(min,w);
-            
         }
-        
-        
-        while(jm.containsKey(min)){
-            res.add(jm.get(min++));
+                
+        for(int i = min; i <= max; i++){
+            res.add(tmap.get(i));
         }
         
         return res;
-        
-        
         
     }
 }

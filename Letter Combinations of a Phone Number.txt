@@ -1,33 +1,27 @@
-public class Solution {
+class Solution {
     public List<String> letterCombinations(String digits) {
         
+        String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         
+        LinkedList<String> res = new LinkedList<String>();
         
-        String[] button = new String[]{"0" ,"1", "abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
-        
-        LinkedList<String> q = new LinkedList<String>();
-        
-        if(digits ==  null || digits.length() == 0){
-            return q;
+        if(digits == null || digits.length() == 0){
+            return res;
         }
-        
-        
-        String s = "";
-        q.add(s);
+
+        res.add("");
         
         for(int i = 0; i < digits.length(); i++){
             
-            while(q.peek().length() == i){
-                String ans = q.remove();
-                
-                for(char c : button[ digits.charAt(i) - '0' ].toCharArray()){
-                    q.add(ans + c);
+            while(res.peek().length() == i){
+                String t = res.remove();
+                int index = digits.charAt(i) - '0';
+                for(char c: mapping[index].toCharArray()){
+                    res.add(t+c);
                 }
-                
-                
             }
         }
         
-        return q;
+        return res;
     }
 }

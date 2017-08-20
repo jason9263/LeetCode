@@ -1,50 +1,50 @@
-public class Solution {
+class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
         
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        
-        int len = nums.length;
-        
-        for(int i = 0; i < len; i++){
-            if(i == 0 || (i > 0 && nums[i] != nums[i-1])){
-                
-                int lo = i+1;
-                int hi = len-1;
+        for(int i = 0; i < nums.length-2; i++){
+            
+            if(i == 0 || (nums[i] != nums[i-1])){
                 int target = 0 - nums[i];
-                
+                int lo = i+1;
+                int hi = nums.length-1;
                 
                 while(lo < hi){
                     int tmp = nums[lo] + nums[hi];
-                    if(tmp == target){
-                        List<Integer> list = new ArrayList<Integer>();
-                        list.add(nums[i]);
-                        list.add(nums[lo]);
-                        list.add(nums[hi]);
-                        
-                        res.add(list);
-                        
-                        while(lo < hi && nums[lo] == nums[lo+1]){
+                    if(tmp > target){
+                        while(hi > lo && nums[hi] == nums[hi-1]){
+                            hi--;
+                        }
+                        hi--;
+                    }else if(tmp < target){
+                        while(hi > lo && nums[lo] == nums[lo+1]){
                             lo++;
                         }
+                        lo++;
+                    }else{
+                        List<Integer> tmpres = new LinkedList<Integer>();
+                        tmpres.add(nums[i]);
+                        tmpres.add(nums[lo]);
+                        tmpres.add(nums[hi]);
+                        res.add(tmpres);
                         
-                        while(lo < hi && nums[hi] == nums[hi-1]){
+                        while(hi > lo && nums[hi] == nums[hi-1]){
                             hi--;
                         }
                         
-                        lo++;
                         hi--;
                         
-                    }else if(tmp > target){
-                        hi--;
-                    }else{
+                        while(hi > lo && nums[lo] == nums[lo+1]){
+                            lo++;
+                        }
                         lo++;
-                    }
-                }                
-            }
-        }
 
-        return res;
+                    }
+                }
+            }  
+        }
         
+        return res;
     }
 }
