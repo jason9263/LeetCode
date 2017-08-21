@@ -7,39 +7,65 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-public class Solution {
+class Solution {
     public int minMeetingRooms(Interval[] intervals) {
+        int[] starts = new int[intervals.length];
+        int[] ends = new int[intervals.length];
+        
+        for(int i = 0; i < intervals.length; i++){
+            starts[i] = intervals[i].start;
+            ends[i] = intervals[i].end;
+        }
+        
+        Arrays.sort(starts);
+        Arrays.sort(ends);
         
         int res = 0;
+        int endpos = 0;
+        
+        for(int tmp : starts){
+            if(tmp < ends[endpos]){
+                res++;
+            }else{
+                endpos++;
+            }
+        }
+        
+        return res;
+    }
+}
+
+
+
+/**
+ * Definition for an interval.
+ * public class Interval {
+ *     int start;
+ *     int end;
+ *     Interval() { start = 0; end = 0; }
+ *     Interval(int s, int e) { start = s; end = e; }
+ * }
+ */
+class Solution {
+    public int minMeetingRooms(Interval[] intervals) {
         
         if(intervals == null || intervals.length == 0){
-            return res;
+            return 0;
         }
-
+        
         Arrays.sort(intervals,(a,b)-> a.start - b.start);
         
-        PriorityQueue<Interval> q = new PriorityQueue<Interval>(intervals.length,(a,b)->a.end - b.end);
-        
-        q.add(intervals[0]);
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        pq.add(intervals[0].end);
         
         for(int i = 1; i < intervals.length; i++){
-            
-            Interval tmp = q.poll();
-            
-            if(tmp.end <= intervals[i].start){
-                
-                tmp.end = intervals[i].end;
-                
-            }else{
-                
-                q.add(intervals[i]);
-            
+            if(intervals[i].start >= pq.peek()){
+                pq.remove();
             }
-            
-            q.add(tmp);
-            
+            pq.add(intervals[i].end);
         }
         
-        return q.size();    
+        return pq.size();
+        
     }
 }

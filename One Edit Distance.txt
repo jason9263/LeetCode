@@ -1,25 +1,35 @@
-public class Solution {
+class Solution {
     public boolean isOneEditDistance(String s, String t) {
+        
         int lens = s.length();
         int lent = t.length();
-        
-        if(lens < lent){
-            return isOneEditDistance(t,s);
-        }
-        
-        if(lens - lent >= 2){
+        if(Math.abs(lens - lent) > 1 ){
             return false;
         }
         
-        else if(lens - lent == 1){
+        if(lent > lens){
+            return isOneEditDistance(t,s);
+        }
+        boolean res = false;
+        if(lens - lent == 1){
+            int is = 0;
+            int it = 0;
             
-            for(int i = 0; i < lent; i++){
-                if(s.charAt(i) != t.charAt(i)){
-                    return s.substring(i+1, lens).equals(t.substring(i,lent));
+            while(is < lens && it < lent){
+                if(s.charAt(is) == t.charAt(it)){
+                    is++;
+                    it++;
+                }else{
+                    /*
+        if(s.charAt(i) != t.charAt(j)){
+            return s.substring(i+1).equals(t.substring(j));
+        }
+        */
+                    is++;
                 }
             }
             
-            return true;
+            res = (it == lent) ;
             
         }else if(lens == lent){
             int cnt = 0;
@@ -28,10 +38,9 @@ public class Solution {
                     cnt++;
                 }
             }
-            return cnt == 1;
+            res = ( cnt == 1);
         }
-        
-        return false;
-        
+
+        return res;
     }
 }
