@@ -3,28 +3,31 @@
 
 public class Solution extends Relation {
     public int findCelebrity(int n) {
-        boolean[] af = new boolean[n];
         
-        Arrays.fill(af,true);
+        boolean[] c = new boolean[n];
+        Arrays.fill(c,true);
+        
         for(int i = 0; i < n; i++){
             
-            for(int j = 0 ; j < n ; j++){
-                if(i != j && af[i]){
+            for(int j = 0; j < n ; j++){
+                
+                if(c[i] && j != i ){
+                
+                if( knows(i,j) || !knows(j,i) ){
+                    c[i] = false;
+                    break;
+                }else{
+                    c[j] = false;
+                }
                     
-                    if(knows(j,i)  && !knows(i,j)){
-                        af[j] = false;
-                    }else{
-                        af[i] = false;
-                        break;
-                    }
                 }
             }
-                        
-            if(af[i]){
+            
+            if(c[i]){
                 return i;
             }
         }
-        
+
         return -1;
     }
 }
