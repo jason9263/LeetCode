@@ -8,33 +8,35 @@ public class Solution extends Reader4 {
      * @return    The number of characters read
      */
 
-    private int smallcur = 0;
-    private int readlen = 0;
+    private int bufptr = 0;
+    private int bufcnt = 0;
     private char[] tmp = new char[4];
     
     public int read(char[] buf, int n) {
- 
-        int cur = 0;
+        int ptr = 0;
         
-        while(cur < n){
-
-        if(smallcur == 0){
-            readlen = read4(tmp);        
-        }    
+    
+        while(ptr < n){
         
-        if(readlen == 0){
+        if(bufptr == 0){
+            bufcnt = read4(tmp);    
+        }
+        
+        if(bufcnt == 0){
             break;
         }
-            
-            while(cur < n && smallcur < readlen){
-                buf[cur++] = tmp[smallcur++];
-            }
-            
-            if(smallcur >= readlen){
-                smallcur = 0;
-            }
+        
+        while(bufptr <  bufcnt && ptr < n){
+            buf[ptr++] = tmp[bufptr++];
         }
         
-        return cur;
+        if(bufptr >= bufcnt){
+            bufptr = 0;
+        }   
+            
+        }
+        
+        return ptr;
+        
     }
 }
