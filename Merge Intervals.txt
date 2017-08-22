@@ -7,23 +7,26 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-public class Solution {
+class Solution {
     public List<Interval> merge(List<Interval> intervals) {
-        List<Interval> res = new ArrayList<Interval>();
         
-        if(intervals == null || intervals.size() <= 1){
-            return intervals;
+        List<Interval> res = new LinkedList<Interval>();
+        // null
+        if(intervals == null || intervals.size() == 0){
+            return res;
         }
         
-        intervals.sort((a,b)-> a.start - b.start);
+        
+        Collections.sort(intervals, (a,b)-> a.start - b.start);
         
         int start = intervals.get(0).start;
-        int end = intervals.get(0).end;
-        
+        int end  = intervals.get(0).end;
+        // == 
         for(int i = 1; i < intervals.size(); i++){
-            if(end < intervals.get(i).start){
-                Interval tmp = new Interval(start,end);
+            if(intervals.get(i).start > end){
+                Interval tmp = new Interval(start, end);
                 res.add(tmp);
+                
                 start = intervals.get(i).start;
                 end = intervals.get(i).end;
                 
@@ -32,7 +35,8 @@ public class Solution {
             }
         }
         
-        res.add(new Interval(start, end));
+        Interval t = new Interval(start, end);
+        res.add(t);
         
         return res;
     }
