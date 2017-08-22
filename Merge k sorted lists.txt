@@ -6,36 +6,33 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists == null || lists.length == 0){
             return null;
         }
         
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+        ListNode dummy = new ListNode(-1);
         ListNode head = dummy;
         
-        PriorityQueue<ListNode> q = new PriorityQueue<ListNode>((a,b) -> a.val - b.val);
+        PriorityQueue<ListNode> p = new PriorityQueue<ListNode>(lists.length,  (a,b)-> a.val - b.val);
         
-        for(ListNode list : lists){
-            if(list != null){
-                q.add(list);
+        for(ListNode node : lists){
+            if(node != null){
+                p.offer(node);
             }
         }
         
-        
-        while(!q.isEmpty()){
-            ListNode tmp = q.poll();
-            head.next = tmp;
+        while(!p.isEmpty()){
+            head.next = p.poll();
+            head = head.next;
             
-            if(tmp.next != null){
-                q.offer(tmp.next);
+            if(head.next != null){
+                p.offer(head.next);
             }
-            
-            head = tmp;
         }
+        
         
         return dummy.next;
-        
     }
 }

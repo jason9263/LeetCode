@@ -1,28 +1,53 @@
-public class Solution {
+class Solution {
     public void sortColors(int[] nums) {
-        int red = 0;
-        int blue = nums.length-1;
+        int[] cnt = new int[3];
+        for(int tmp : nums){
+            cnt[tmp]++;
+        }
         
+        Arrays.fill(nums,1);
         
-        for(int i = 0; i <= blue; i++){
-            if(nums[i] == 0){
-                swap(nums,i,red);
-                red++;
-            }else if(nums[i] == 2){
-                swap(nums,i,blue);
-                i--;
-                blue--;
+        for(int i = 0; i < nums.length; i++){
+            if(i < cnt[0] ){
+                nums[i] = 0;
+            }else if( i >= cnt[0] + cnt[1]){
+                nums[i] = 2;
             }
         }
         
+    }
+}
+
+
+
+
+
+
+
+
+class Solution {
+    public void sortColors(int[] nums) {
         
+        int sec = nums.length - 1;
+        int zeo = 0;
+        
+        for(int i = 0; i < sec; i++){
+            while(nums[i] == 2 && i < sec){
+                swap(nums,i,sec--);
+            }
+            
+            while(nums[i] == 0 && i > zeo){
+                swap(nums,i,zeo++);
+            }
+        }
         
     }
     
-    public void swap(int[] nums,int i, int j){
+    public void swap(int[] nums, int i , int j){
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
     }
+    
     
 }
