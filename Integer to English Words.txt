@@ -1,40 +1,44 @@
-public class Solution {
-    private final String[] Less_than_20 = {"","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
-                                           "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
-    
-    private final String[] Tens = {"","Ten","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
-        
-    private final String[] Thousands={"","Thousand","Million","Billion"};
-    
+class Solution {
+    private String[] less = new String[]{"","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven",
+                                        "Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"};
+    private String[] tens = new String[]{"","Ten","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"};
+    private String[] thousands = new String[]{"","Thousand", "Million","Billion"};
     public String numberToWords(int num) {
-
+        
+        
         if(num == 0){
             return "Zero";
         }
-                
-        int i = 0;
+        
         String words = "";
+        int i = 0;
         
         while(num > 0){
+            
             if(num % 1000 != 0){
-                words = helper(num % 1000) + Thousands[i] + " " + words;
+                words = helper(num % 1000) + thousands[i] + " " + words;
             }
-            num = num/1000;
+            
+            num /= 1000;
             i++;
         }
         
         return words.trim();
     }
     
-    private String helper(int num){
+    public String helper(int num){
         if(num == 0){
             return "";
-        }else if(num < 20){
-            return Less_than_20[num] + " ";
-        }else if(num < 100){
-            return Tens[num/10] + " " + helper(num%10);
-        }else
-            return Less_than_20[num/100] + " Hundred " + helper(num % 100);
+        }
+        
+        else if(num < 20){
+            return less[num] + " ";
+        }
+        else if(num < 100){
+            return tens[num/10] + " " + helper(num%10);
+        }else 
+            return less[num/100] + " Hundred " + helper(num%100);
+        
     }
-
+    
 }
