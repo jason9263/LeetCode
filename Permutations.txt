@@ -1,34 +1,65 @@
-public class Solution {
+class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> out = new ArrayList<>();
         Arrays.sort(nums);
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        List<Integer> out = new ArrayList<Integer>();
-        int len = nums.length;
-        
-        helper(res,out,nums,len);
-        
+        backtrack(res, out,nums);
         return res;
     }
     
-    public void helper(List<List<Integer>> res, List<Integer> out, int[] nums,int len){
-       
-       if(out.size() == len){
-           res.add(new ArrayList<Integer>(out));
-           return;
-       }else{
+    public void backtrack(List<List<Integer>> res, List<Integer> out, int[] nums){
+        if(out.size() == nums.length){
+            res.add(new ArrayList<Integer>(out) );
            
-           for(int i = 0; i < nums.length; i++){
-               if(out.contains(nums[i])){
-                   continue;
-               }
-               
-               out.add(nums[i]);
-               helper(res,out,nums,len);
-               out.remove(out.size()-1);
-           }
-           
-       } 
+        }else{
+            
+        for(int i = 0; i < nums.length; i++){
+            if(out.contains(nums[i])){
+                continue;
+            }
+            out.add(nums[i]);
+            
+            backtrack(res,out,nums);
+            
+            out.remove(out.size()-1);
+        }   
+            
+        }
+    }
+}
+
+
+
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> out = new ArrayList<>();
+        Arrays.sort(nums);
+        boolean[] used = new boolean[nums.length];
+        backtrack(res, out,nums,used);
+        return res;
     }
     
+    public void backtrack(List<List<Integer>> res, List<Integer> out, int[] nums, boolean[] used){
+        if(out.size() == nums.length){
+            res.add(new ArrayList<Integer>(out) );
+           
+        }else{
+            
+        for(int i = 0; i < nums.length; i++){
+            if(used[i]){
+                continue;
+            }
+            
+            used[i] = true;
+            out.add(nums[i]);
+            
+            backtrack(res,out,nums,used);
+            
+            used[i] = false;
+            out.remove(out.size()-1);
+        }   
+            
+        }
+    }
 }
