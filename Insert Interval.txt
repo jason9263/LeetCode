@@ -7,33 +7,37 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-public class Solution {
+class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        
+        
         intervals.add(newInterval);
         
+        Collections.sort(intervals,(a,b)-> a.start - b.start);
         List<Interval> res = new ArrayList<Interval>();
         
-        
-        Collections.sort(intervals, (a,b) -> a.start - b.start);
-        
+        if(intervals == null || intervals.size() == 0){
+            res.add(newInterval);
+            return res;
+        }
+
         int start = intervals.get(0).start;
         int end = intervals.get(0).end;
         
-        int len = intervals.size();
         
-        for(int i = 1; i < len; i++){
-            if(end >= intervals.get(i).start){
-                end = Math.max(end,intervals.get(i).end);
-            }else{
+        for(int i = 1; i < intervals.size(); i++){
+            if(intervals.get(i).start > end){
                 Interval tmp = new Interval(start,end);
                 res.add(tmp);
                 start = intervals.get(i).start;
                 end = intervals.get(i).end;
-                
+            }else{
+                end = Math.max(end, intervals.get(i).end);
             }
         }
         
         Interval tmp = new Interval(start,end);
+        
         res.add(tmp);
         
         return res;
