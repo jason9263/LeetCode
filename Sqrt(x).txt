@@ -1,33 +1,78 @@
-public class Solution {
+class Solution {
     public int mySqrt(int x) {
-        int res = 0;
-        
-        long left = 0;
-        long right = x/2+1;
-        
-        if(x <= 0){
-            return res;
+        if(x == 0){
+            return 0;
         }
         
-        while(left <= right){
-             long mid = left + (right -left)/2;
+        int lo = 1;
+        int hi = x;
+        int mid  = 0;
+        int ans = -1;
+        
+        while(lo <= hi){
+            mid = lo + (hi - lo)/2;
             
-             long xs = mid*mid;
-            
-            if(xs == x){
-                return (int)mid;
-            }else if(xs < x){
-                left = mid + 1;
-            }else {
-                right = mid - 1;
+            if(mid <= x/mid){
+                lo = mid + 1;
+                ans = mid;
+            }else{
+                hi = mid -1;
             }
             
         }
         
+        return ans;
+    }
+}
+
+
+
+
+class Solution {
+    public int mySqrt(int x) {
+        if(x == 0){
+            return 0;
+        }
         
-        return (int)right;
+        int lo = 1;
+        int hi = x;
+        int mid  = 0;
+        int ans = -1;
         
+        while(lo <= hi){
+            mid = lo + (hi - lo)/2;
+       
+            if(mid > x/mid){
+                hi = mid -1;
+            }else {
+                if( (mid + 1)  > x/ (mid + 1)){
+                   ans =  mid;
+                    break;
+                }
+                
+                lo = mid +1;
+            }
+            
+        }
         
+       return ans;
+    }
+}
+
+
+
+class Solution {
+    public int mySqrt(int x) {
         
+        if(x == 0){
+            return 0;
+        }
+        
+        long r = x;
+        while(r*r > x){
+            r = (r + x/r)/2;
+        }
+        
+        return (int)r;
     }
 }

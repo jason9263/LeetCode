@@ -7,35 +7,24 @@
  *     Interval(int s, int e) { start = s; end = e; }
  * }
  */
-public class Solution {
+class Solution {
     public boolean canAttendMeetings(Interval[] intervals) {
+        Arrays.sort(intervals,(a,b)->a.start - b.start);
         
-        if(intervals == null || intervals.length == 0){
+        if(intervals == null || intervals.length == 0 || intervals.length == 1){
             return true;
         }
-        
-        Arrays.sort(intervals, ( a,b ) -> a.start - b.start );
-        
-        PriorityQueue<Integer> q = new PriorityQueue<Integer>();
-        q.offer(intervals[0].end);
-        
+        int start = intervals[0].start;
+        int end = intervals[0].end;
         
         for(int i = 1; i < intervals.length; i++){
-            
-            if(intervals[i].start < q.peek()){
-            
-                return false;
-            
+            if(intervals[i].start >= end){
+                end = Math.max(end, intervals[i].end);
             }else{
-                
-               q.poll();
-            
+                return false;
             }
-            
-             q.offer(intervals[i].end);
         }
         
         return true;
-        
     }
 }
