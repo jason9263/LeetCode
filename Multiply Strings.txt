@@ -1,50 +1,36 @@
-public class Solution {
+class Solution {
     public String multiply(String num1, String num2) {
-       
-       String res = "";
-       
-        int cnt = 0;
         
-        if(num2.equals("0") || num1.equals("0")){
-            return "0";
-        }
+        int len1 = num1.length();
+        int len2 = num2.length();
         
+        int[] res = new int[len1 + len2];
         
-                
-        int k = num1.length() + num2.length() ;
-        int[] tmp = new int[k-1];
-        
-        for(int i = num1.length()-1; i >=0; i--){
-            for(int j = num2.length()-1; j >=0; j--){
-                
-                
-                tmp[i+j] += ((num1.charAt(i)-'0')*(num2.charAt(j)-'0'));
+        for(int i = len1-1; i >= 0; i--){
+            for(int j = len2 - 1; j >= 0; j--){
+                res[i+j+1] += (num1.charAt(i)-'0') * (num2.charAt(j)-'0');
             }
         }
         
+        int cur = 0;
         
-        for(int i = k-2; i >= 0; i--){
-            int tmpres = tmp[i] + cnt;
-            res = String.valueOf(tmpres%10) + res;
+        for(int i = len1+len2 -1; i >= 0; i--){
+            res[i] += cur;
             
-            cnt = tmpres/10;
+            cur = res[i]/10;
             
-        }
-        
-        
-        if(cnt > 0){
-            res = String.valueOf(cnt) + res;
-        }else{
+            res[i] = res[i]%10;
             
         }
+
+        StringBuilder sb = new StringBuilder();
         
-        
-        if(res.length() == 0){
-            res = "0";
+        for(int p : res){
+            if(!(sb.length() == 0 && p == 0)){
+                sb.append(p);
+            }
         }
         
-        return res;
-        
-      
+        return sb.length() == 0 ? "0" : sb.toString();
     }
 }
