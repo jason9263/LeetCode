@@ -1,47 +1,68 @@
 public class Solution {
     public String countAndSay(int n) {
-        if(n <= 0){
-            return null;
-        }
-        
-
-        
-        int index = 1;
-        
-        String tmpres = "1";
-        
-        while(index < n){
-            
-            tmpres = helper(tmpres);
-            index++;
-            
-        }
-        
-        return tmpres;
+            StringBuilder curr=new StringBuilder("1");
+            StringBuilder prev;
+            int count;
+            char say;
+            for (int i=1;i<n;i++){
+                prev=curr;
+                curr=new StringBuilder();       
+                count=1;
+                say=prev.charAt(0);
+                
+                for (int j=1,len=prev.length();j<len;j++){
+                    if (prev.charAt(j)!=say){
+                        curr.append(count).append(say);
+                        count=1;
+                        say=prev.charAt(j);
+                    }
+                    else count++;
+                }
+                curr.append(count).append(say);
+            }                   
+            return curr.toString();
         
     }
-    
-    public String helper(String s){
-        String res = "";
-        int len = s.length();
-        s = s + "#";
+}
+
+
+
+class Solution {
+    public String countAndSay(int n) {
+        // generate the words one by one.
         
-        for(int i = 0; i < len; i++){
-            int count = 1;
-            char tmp = s.charAt(i);
+        if(n < 1){
+            return "";
+        }
+        
+        StringBuilder curr = new StringBuilder("1");
+        StringBuilder pre ;
+        int count = 0;
+        char say ;
+        
+        for(int i = 1 ; i < n; i++){
+            pre = curr;
+
+            curr = new StringBuilder();
+            count = 1;
+            say = pre.charAt(0);
             
-            while(s.charAt(i) == s.charAt(i+1)){
-                count++;
-                i++;
+            for(int j = 1; j < pre.length(); j++){
+                if(pre.charAt(j) != say){
+                    curr.append(count).append(say);
+                    count = 1;
+                    say = pre.charAt(j);
+                    
+                }else{
+                    count++;
+                }
             }
             
-            res = res + Integer.toString(count) + Character.toString(tmp);
-            
+            curr.append(count).append(say);
             
         }
         
-        return res;
+        return curr.toString();
+        
     }
-    
-    
 }
