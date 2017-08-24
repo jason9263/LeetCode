@@ -7,23 +7,70 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        int res = 0;
+        
+        if(root == null){
+            return res;    
+        }
+        
+        if(root.left != null){
+            if(root.left.left == null && root.left.right == null){
+                res += root.left.val;
+            }else{
+                res += sumOfLeftLeaves(root.left);
+            }
+        }
+        
+        
+        res += sumOfLeftLeaves(root.right);
+        
+        return res;
+    }
+}
+
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         if(root == null){
             return 0;
         }
-        int ans = 0;
-        if(root.left != null){
-            if(root.left.left == null && root.left.right == null){
-                ans += root.left.val;
-            }else{
-                ans += sumOfLeftLeaves(root.left);
-            }
+
+        int res = 0;
+        res = helper(root.left,true,res);
+        res = helper(root.right,false,res);
+        
+        return res;
+    }
+    
+    public int helper(TreeNode root, boolean isleft, int res){
+        if(root == null){
+            return res;
         }
         
-        ans += sumOfLeftLeaves(root.right);
+        if(root.left == null && root.right == null && isleft){
+            res += root.val;
+        }
         
-        return ans;
+        res = helper(root.left,true,res);
+        res = helper(root.right,false,res);
         
+        return res;
     }
+    
+    
+    
 }
