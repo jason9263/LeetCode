@@ -1,61 +1,34 @@
-public class Solution {
+class Solution {
     public int subarraySum(int[] nums, int k) {
-        int result = 0;
-        long[] res = new long[nums.length+1];
-    
+        int len = nums.length;
+        int[] sums = new int[len+1];
         
-        for(int i = 0; i < nums.length; i++){
-            
-            res[i+1] = res[i] + (long)nums[i];
-
-        }
+        HashMap<Integer,List<Integer>> map = new HashMap<>();
+        LinkedList<Integer> zero = new LinkedList<Integer>();
         
+        zero.add(0);
+        map.put(0,zero);
         
-        for(int i = 1; i < nums.length+1;i++){
-            for(int j = 0; j < i; j++){
-               long tmp = res[i] - res[j];
-                if(tmp == k){
-                    result++;
-                }
-            }
-        }
+        int cnt = 0;
         
-
-        return result;
-        
-    }
-}
-
-
-
-public class Solution {
-    public int subarraySum(int[] nums, int k) {
-        int result = 0;
-        long[] res = new long[nums.length+1];
-    
-        HashMap<Long,Integer> jmap = new HashMap<Long,Integer>();
-        jmap.put((long)0,1);
-        
-        for(int i = 0; i < nums.length; i++){
-            
-            res[i+1] = res[i] + (long)nums[i];
-            
-   
-            if(jmap.containsKey(res[i+1]-k)){
-                result = result + jmap.get(res[i+1] -k);
+        for(int i = 1; i <= len; i++){
+         
+            sums[i] = sums[i-1] + nums[i-1];
+            if(map.containsKey(sums[i] - k)){
+                cnt += map.get(sums[i] - k).size();
             }
             
-            if(jmap.containsKey(res[i+1])){
-                int value = jmap.get(res[i+1]);
-                jmap.put(res[i+1],value+1);
+            if(map.containsKey(sums[i])){
+                map.get(sums[i]).add(i);
             }else{
-                jmap.put(res[i+1],1);
+                List<Integer> list = new LinkedList<Integer>();
+                list.add(i);
+                map.put(sums[i], list);
             }
-        
-
+            
         }
-
-        return result;
         
+        return cnt;
+
     }
 }

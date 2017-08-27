@@ -1,21 +1,24 @@
-public class Solution {
+class Solution {
     public int leastInterval(char[] tasks, int n) {
-       int[] cnt = new int[26];
         
-        for(int i = 0; i < tasks.length; i++){
-            cnt[tasks[i] - 'A']++;
+        int[] arr = new int[26];
+        
+        for(int tmp: tasks){
+            arr[tmp - 'A']++;
         }
         
-        Arrays.sort(cnt);
+        Arrays.sort(arr);
+        int i = 0;
         
-        int i = 25;
-       
-        while(i >= 0 && cnt[i] == cnt[25]){
-            i--;
+        for(i = 25; i >= 0; i--){
+            if(arr[i] != arr[25]){
+                break;
+            }
         }
         
-        System.out.println(cnt[25] + "   " + i);
+        int res1 = (n + 1)*(arr[25] - 1) + (25- i);
         
-        return Math.max( ( cnt[25] - 1 )* (n+1) + 25 - i, tasks.length);
+        return Math.max(res1, tasks.length);
+        
     }
 }

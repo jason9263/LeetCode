@@ -1,29 +1,22 @@
-public class Solution {
+class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
+        int len =  nums.length;
+        int[] sums = new int[len+1];
         
-        if( nums == null || nums.length <= 1){
-            return false;
-        }
-        
-        if(k == 1){
-            return true;
-        }
+        sums[0] = 0;
 
-        int len = nums.length;
-        long[] dp = new long[len+1];
-                
-        for(int i = 0; i < len; i++){
-            dp[i+1] = (dp[i] + nums[i]);
+        for(int i = 1; i <= len; i++){
+            sums[i] = sums[i-1] + nums[i-1];
         }
         
-        if(k == 0){
-            return dp[len] == 0 ? true:false;
-        }
-        
-        for(int i = 0; i <= len-2; i++){
-            for(int j = i+2; j <= len; j++){               
-                if((dp[j] - dp[i]) % k == 0 ){
-                  return true;
+        for(int i = 1; i <= len; i++){
+            for(int j = 0; j < i; j++){
+                if(k == 0 && (sums[i] - sums[j]) == 0 && (i-j) >= 2){
+                    System.out.println("Zero");
+                    
+                    return true;
+                }else if( k != 0 && (i-j) >= 2 && (sums[i] - sums[j]) % k == 0){
+                    return true;
                 }
             }
         }
