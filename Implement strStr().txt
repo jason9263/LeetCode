@@ -1,18 +1,18 @@
-public class Solution {
+class Solution {
     public int strStr(String haystack, String needle) {
-        if(haystack == null|| needle == null ||  needle.length() > haystack.length()){
-            return -1;
-        }
+        int len1 = haystack.length();
+        int len2 = needle.length();
         
-        if(needle.length() == 0 && haystack.length() == 0){
+        if(len1 < len2){
+            return -1;
+        }else if(len2 == 0){
             return 0;
         }
         
-        int haylen = haystack.length();
-        int needlelen = needle.length();
+        int diff = len1 - len2;
         
-        for(int i= 0 ; i <= haylen - needlelen ; i++ ){
-            if(haystack.substring(i).startsWith(needle)){
+        for(int i = 0; i <= diff; i++){
+            if(haystack.substring(i, i  + len2).equals(needle)){
                 return i;
             }
         }
