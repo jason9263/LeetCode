@@ -1,52 +1,65 @@
-public class Solution {
+class Solution {
     public int countComponents(int n, int[][] edges) {
+        int[] roots = new int[n];
         
-        //corner case
-        
-        //sorting the edges
-        
-        int[] parent = new int[n];
-        int count = n;
         for(int i = 0; i < n; i++){
-            parent[i] = i;
+            roots[i] = i;
+            
         }
         
-        //union_find
-        
-        for(int i = 0; i < edges.length; i++){
-            int p1 = helper(parent,edges[i][0]);
-            int p2 = helper(parent,edges[i][1]);
+        for(int[] e :  edges){
+            int root1 = find(roots,e[0]);
+            int root2 = find(roots, e[1]);
             
-            
-            
-            if(p1 != p2){
-                count--;
-                parent[p2] = p1;
+            if(root1 != root2){
+                roots[root1] = root2;
+                n--;
             }
-            
         }
         
-        return count;
+        return n;
+    }
+    
+    public int find(int[] roots, int id){
+        while(roots[id] != id){
+            roots[id] = roots[roots[id]];
+            id = roots[id];
+        }
+        
+        return id;
+    }
+}
+
+
+class Solution {
+    public int countComponents(int n, int[][] edges) {
+       int[] roots = new int[n];
+        for(int i = 0; i < n ; i++){
+            roots[i] = i;
+        }
+        
+        for(int[] edge : edges){
+            int root1 = findroot(roots, edge[0]);
+            int root2 = findroot(roots, edge[1]);
+            
+            if(root1 != root2){
+                roots[root1] = root2;
+                n--;
+            }
+        }
+        
+        return n;
         
     }
     
-    public int helper(int[] parent, int id){
-        
-        int idx = id;
-        
-        while(parent[id] != id){
-            parent[id] = parent[parent[id]];
-            id = parent[id];
+    public int findroot(int[] roots, int tmp){
+        while(roots[tmp] != tmp){
+            roots[tmp] = roots[roots[tmp]];
+            tmp = roots[tmp];
         }
-
-        while(parent[idx] != idx){
-            int tmp = parent[idx];
-            parent[idx] = id;
-            idx = tmp;
-        }
-
-        return id;
         
+        return tmp;
     }
+    
     
 }
