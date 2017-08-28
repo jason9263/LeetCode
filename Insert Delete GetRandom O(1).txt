@@ -1,72 +1,52 @@
-public class RandomizedSet {
-    
-    public HashMap<Integer, Integer> jhash = new HashMap<Integer, Integer>();
-    public ArrayList<Integer> jarr = new ArrayList<Integer>();
-    public Random jr = new Random();
-    
+class RandomizedSet {
+
+    private List<Integer> list ;
+    private Map<Integer,Integer> map;
     /** Initialize your data structure here. */
     public RandomizedSet() {
-
+        list = new ArrayList<Integer>();
+        map = new HashMap<Integer,Integer>();
+        
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        if(jhash.containsKey(val)){
+        if(map.containsKey(val)){
             return false;
-        }else{
-            int len = jarr.size();
-            
-            jarr.add(val);
-            jhash.put(val, len);
-            
-            return true;
         }
+        
+        map.put(val, list.size());
+        list.add(val);
+        return true;
     }
     
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
-        if(jhash.containsKey(val)){
-            
-            
-            int pos = jhash.get(val);
-            int len = jarr.size();
-            int tmpval = -1;
-            
-            if(pos < len-1){
-                tmpval = jarr.get(len-1);
-                jhash.put(tmpval,pos);
-                jarr.set(pos,tmpval);
-            }
-            
-            jarr.remove(jarr.size() - 1);
-            
-            jhash.remove(val);
-            
-            return true;
-            
-        }else{
-            
+        if(!map.containsKey(val)){
             return false;
-          
         }
+        
+        int pos = map.get(val);
+                
+   
+            
+        int tmp = list.get(pos);
+        map.put(list.get(list.size()-1), pos);
+        list.set(pos, list.get( list.size()-1 ));
+        list.set(list.size()-1, tmp);
+        
+        map.remove(val); 
+        
+        list.remove(list.size()-1);
+
+        return true;        
     }
-    
+
+
     /** Get a random element from the set. */
     public int getRandom() {
-
-
-        
-        if(jarr.size() > 0){
-            
-            int tmp = jr.nextInt(jarr.size());
-            
-            System.out.println(tmp + "  " + jarr.size());
-            
-            return jarr.get(tmp);
-        }
-        
-        return 0;
-
+        Random r = new Random();
+        return list.get(r.nextInt(list.size()));
     }
 }
 

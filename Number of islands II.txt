@@ -51,3 +51,58 @@ class Solution {
         }
     
 }
+
+
+
+
+class Solution {
+    
+    public int[][] dirs = new int[][]{{1,0},{-1,0},{0,1},{0,-1}};
+    
+    public List<Integer> numIslands2(int m, int n, int[][] positions) {
+        List<Integer>res = new LinkedList<Integer>();
+        
+        int len = m*n;
+        
+        int[] roots = new int[len];
+        
+        Arrays.fill(roots,-1);
+        int cnt = 0;
+        
+        for(int[] tmp : positions){
+            cnt++;
+            int pos = tmp[0]*n + tmp[1];
+            roots[pos] = pos;
+            
+            for(int[] dir : dirs){
+                int nx = tmp[0] + dir[0];
+                int ny = tmp[1] + dir[1];
+                int npos = nx * n + ny;
+                
+                if(nx < 0 || nx >= m || ny < 0 || ny >= n || roots[npos] == -1){
+                    continue;
+                }
+                    
+                int nroot = findroot(roots,npos);            
+                if(pos != nroot){
+                    roots[pos] = nroot;
+                    pos = nroot;
+                    cnt--;
+                }   
+            }
+            
+            res.add(cnt);
+        }
+        return res;
+    }
+    
+    
+    public int findroot(int[] roots, int id){
+        while(roots[id] != id){
+            roots[id] = roots[roots[id]];
+            id = roots[id];
+        }
+        return id;
+    }
+    
+}
