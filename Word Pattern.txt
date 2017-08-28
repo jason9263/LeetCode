@@ -19,3 +19,23 @@ public class Solution {
         return true;
     }
 }
+
+
+
+
+
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        Map index = new HashMap();
+        
+        for(Integer i = 0 ; i < s.length(); i++){
+            if(index.put(s.charAt(i), i)  != index.put(t.charAt(i), i)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
+
+
