@@ -1,13 +1,15 @@
-public class PhoneDirectory {
-    
-    public Set<Integer> set = new HashSet<Integer>();
-    public Queue<Integer> q = new LinkedList<Integer>();
-    public int max = -1;
+class PhoneDirectory {
 
     /** Initialize your data structure here
         @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
+    private Set<Integer> set;
+    private Queue<Integer> q = new LinkedList<Integer>();
+    private int max = 0;
+    
     public PhoneDirectory(int maxNumbers) {
-        max = maxNumbers;
+        this.max = maxNumbers;
+        set = new HashSet<Integer>();
+        
         for(int i = 0; i < maxNumbers; i++){
             q.offer(i);
         }
@@ -16,30 +18,31 @@ public class PhoneDirectory {
     /** Provide a number which is not assigned to anyone.
         @return - Return an available number. Return -1 if none is available. */
     public int get() {
-        if(q.size() > 0){
-            int tmp = q.poll();
-            set.add(tmp);
-            return tmp;
-        }else{
+        if(q.size() == 0){
             return -1;
         }
+        Integer tmp = q.remove();
+        set.add(tmp);
+        return tmp;
+        
     }
     
     /** Check if a number is available or not. */
     public boolean check(int number) {
-        if(set.contains(number)){
+        if(number >= max || number < 0){
             return false;
-        }else{
-            return true;
         }
+        
+        return !set.contains(number);
+       
     }
     
     /** Recycle or release a number. */
     public void release(int number) {
-        if(number >= 0 && number < max && set.contains(number)){
-            set.remove(number);
-            q.offer(number);
+        if(set.remove(number)){
+            q.offer(number);    
         }
+        
     }
 }
 
