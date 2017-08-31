@@ -7,23 +7,27 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
     int sum = 0;
     
     public TreeNode convertBST(TreeNode root) {
-        convert(root);
+        helper(root);   
         return root;
     }
     
-    public void convert(TreeNode cur){
-        if(cur == null){
+    public void helper(TreeNode root){
+        if(root == null){
             return;
         }
         
-        convert(cur.right);
-        cur.val += sum;
-        sum = cur.val;
-        convert(cur.left);
+        helper(root.right);
+        
+        root.val += sum;
+        
+        sum = root.val;
+        
+        helper(root.left);
+        
     }
     
 }

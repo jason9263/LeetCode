@@ -7,34 +7,66 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    
-    public int number = 0;
-    public int count = 0;
+class Solution {
+    public int cnt = 0;
+    public int res = Integer.MIN_VALUE;
     
     public int kthSmallest(TreeNode root, int k) {
-        count = k;
-        helper(root);
-        return number;
+        helper(root,k);
+        
+        return res;
     }
     
+    public void helper(TreeNode root,int k){
+        if(root == null){
+            return;
+        }
+        
+        helper(root.left, k);
+        cnt++;
+        
+        if(cnt == k){
+            res = root.val;
+        }
+        
+        helper(root.right, k);
+    }
+}
+
+
+
+
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
     
-    public void helper(TreeNode root){
-        if(root.left != null){
-            helper(root.left);
+    public Stack<TreeNode> stack;
+    public int res = Integer.MIN_VALUE;
+    public int cnt = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        stack = new Stack<TreeNode>();
+        TreeNode p = root;
+        
+        while(!stack.isEmpty() || p != null){
+            if( p != null){
+                stack.push(p);
+                p = p.left;
+            }else{
+                TreeNode node = stack.pop();
+                if(++cnt == k){
+                    return node.val;
+                }
+                p = node.right;
+            }
         }
-        count--;
-        
-        
-        if(count == 0){
-            number = root.val;
-            return ;
-        }
-        
-        if(root.right != null){
-            helper(root.right);
-        }
-    
-        
+         return res;   
     }
 }
