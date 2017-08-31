@@ -7,25 +7,28 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    public boolean findTarget(TreeNode root, int k) {
-        HashSet<Integer> set = new HashSet<Integer>();
-        return helper(root,k,set);
-    }
+class Solution {
+    public Set<Integer> tset = new TreeSet<>();
     
-    public boolean helper(TreeNode root, int k , Set<Integer> set){
+    public boolean findTarget(TreeNode root, int k) {
         if(root == null){
             return false;
         }
+        return preorder(root,k);        
+    }
+    
+    public boolean preorder(TreeNode root,int k){
+        if(root == null){
+             return false;
+            } 
         
-        if(set.contains(k - root.val)){
+        tset.add(root.val);
+        int diff = k - root.val ;
+        if(tset.contains(diff ) && diff != root.val){
             return true;
         }
         
-        set.add(root.val);
-        
-        
-        return helper(root.left, k , set) || helper(root.right, k , set);
+        return preorder(root.right,k) || preorder(root.left,k);
         
     }
     
