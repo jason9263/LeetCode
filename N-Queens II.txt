@@ -1,0 +1,58 @@
+class Solution {
+    public int n ;
+    
+    public int totalNQueens(int n) {
+        this.n = n;
+        
+        char[][] board = new char[n][n];
+        for(int i = 0; i < n ; i++){
+            for(int j = 0; j < n; j++){
+                board[i][j] = '.';
+            }
+        }
+        Set<String> set = new HashSet<>();
+        dfs(board,0,set);
+        
+        return set.size();
+    }
+    
+    public void dfs(char[][] board, int colindex, Set<String> set){
+        if(colindex == n){
+            set.add(construct(board));
+            return;
+        }
+        
+        for(int i = 0; i < n ; i++){
+            if(valid(board,i,colindex)){
+                board[i][colindex] = 'Q';
+                dfs(board,colindex+1,set);
+                board[i][colindex] = '.';
+            }
+        }
+    }
+    
+    public boolean valid(char[][] board, int x, int y){
+        for(int i = 0; i < n; i++ ){
+            for(int j = 0; j < y ; j++){
+                if(board[i][j] == 'Q' && (x-y == i - j || x == i || x+y == i+j)){
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+    
+    public String construct(char[][] board){
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 0; i < n ; i++){
+            sb.append(new String(board[i]));
+        }
+        
+        return sb.toString();
+    } 
+    
+    
+    
+}
