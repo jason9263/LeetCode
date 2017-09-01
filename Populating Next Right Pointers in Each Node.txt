@@ -8,77 +8,6 @@
  */
 public class Solution {
     public void connect(TreeLinkNode root) {
-    
-    Queue<TreeLinkNode> jq = new LinkedList<TreeLinkNode>();
-    int len = 0;
-    int nextlen = 0;
-    
-    if(root == null){
-        return;
-    }
-    
-    if(root.left == null || root.right == null ){
-        root.next = null;
-    }
-    
-    jq.add(root);
-    len = 1;
-    
-    while(jq.size() > 0){
-        
-        
-        while(len > 0){
-            TreeLinkNode tmp = jq.poll();
-            len--;
-            
-            if(tmp.left != null){
-                jq.add(tmp.left);
-                nextlen++;
-            }
-            
-            if(tmp.right != null){
-                jq.add(tmp.right);
-                nextlen++;
-            }
-            
-            if(len > 0){
-                tmp.next = jq.peek();
-            }else if(len == 0){
-                tmp.next = null;
-            
-            }
-            
-        }
-        
-        len = nextlen;
-        nextlen = 0;
-        
-    }
-        
-
-        
-    }
-    
-    
-    
-    
-    
-}
-
-
-
-
-///////////////////////////////////////////////////////////////////////
-////**
- * Definition for binary tree with next pointer.
- * public class TreeLinkNode {
- *     int val;
- *     TreeLinkNode left, right, next;
- *     TreeLinkNode(int x) { val = x; }
- * }
- */
-public class Solution {
-    public void connect(TreeLinkNode root) {
         if(root == null){
             return;
         }
@@ -87,16 +16,11 @@ public class Solution {
             root.left.next = root.right;
         }
         
-        
         if(root.right != null){
-            root.right.next = root.next == null? null : root.next.left;
+            root.right.next = root.next != null ? root.next.left : null;
         }
-        
-        
         
         connect(root.left);
         connect(root.right);
-        
-        
     }
 }

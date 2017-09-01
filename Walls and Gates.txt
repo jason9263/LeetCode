@@ -1,49 +1,45 @@
-public class Solution {
+class Solution {
     
-    private int m;
-    private int n;
+    public int m ;
+    public int n ;
+    
+    public int[][] dirs = new int[][]{{1,0} , {-1,0} ,{0,1} ,{0,-1} };
     
     public void wallsAndGates(int[][] rooms) {
-        if(rooms == null || rooms.length == 0 || rooms[0].length == 0){
+        if(rooms == null || rooms.length == 0){
+            return ;
+        }
+
+        m = rooms.length;
+        n = rooms[0].length;
+    
+        for(int i = 0; i < m ; i++){
+            for(int j = 0; j < n ; j++){
+                if(rooms[i][j] == 0){
+
+                    dfs(rooms, i,j, 0);
+                }
+            }
+        }
+    }
+    
+    public void dfs(int[][] rooms , int i , int j , int val){
+        
+        if(i < 0 || i >= m || j < 0 || j >= n || rooms[i][j] == -1 ||  rooms[i][j] < val){
             return;
         }
         
-        Queue<int[]> queue = new LinkedList<>();
+        rooms[i][j] = val;
         
-        m = rooms.length;
-        n = rooms[0].length;
+        //System.out.println(rooms[i][j]);
         
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n ; j++ ){
-                if(rooms[i][j] == 0){
-                    queue.add(new int[]{i,j});
-                }
-            }
-        }
-        
-       int[][] dir = {{-1,0} , {0,1}, {1,0},{0,-1}};
-        while(!queue.isEmpty()){
-            int[] top = queue.remove();
-            for(int[] tmpdir : dir){
-                
-                int r = top[0] + tmpdir[0];
-                int c = top[1] + tmpdir[1];
+        for(int[] dir : dirs){
             
-                
-                if( r < 0 || r >= m || c < 0 || c >=n || rooms[r][c] == -1 
-                   || (rooms[top[0]][top[1]] == Integer.MAX_VALUE && rooms[r][c] <= rooms[top[0]][top[1]] )
-                  || rooms[r][c] <= rooms[top[0]][top[1]] + 1){
-                    
-                    continue;
-                    
-                }
-                
-                rooms[r][c] = rooms[top[0]][top[1]] + 1;
-                queue.add(new int[] {r,c});
-                
-            }
+            int newi = i + dir[0];
+            int newj = j + dir[1];
             
+            dfs(rooms, newi, newj , val+1);
         }
-        
     }
+
 }
