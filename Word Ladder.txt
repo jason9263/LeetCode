@@ -58,6 +58,13 @@ public class Solution {
 
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+
+
+        if(!wordList.contains(endWord)){
+            return 0;
+        }
+
+
         Set<String> beginSet = new HashSet<String>();
         Set<String> endSet = new HashSet<String>();
         
@@ -67,15 +74,10 @@ class Solution {
         HashSet<String> visited = new HashSet<String>();
         
         beginSet.add(beginWord);
-        
-        if(!wordList.contains(endWord)){
-            return 0;
-        }
-        
-        
         endSet.add(endWord);
         
         while(!beginSet.isEmpty() && !endSet.isEmpty()){
+            
             if(beginSet.size() > endSet.size()){
                 Set<String> set = beginSet;
                 beginSet = endSet;
@@ -112,6 +114,66 @@ class Solution {
             len++;
         }
         
+        return 0;
+    }
+}
+
+
+
+
+
+
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        if(!wordList.contains(endWord)) 
+            return 0;
+        Set<String> beginSet = new HashSet<>();
+        Set<String> endSet = new HashSet<>();
+        Set<String> dic = new HashSet<>(wordList);
+        
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+        
+        int step = 1;
+        
+        Set<String> visited = new HashSet<>();
+        
+        while(!beginSet.isEmpty() &&!endSet.isEmpty()) {
+        
+            if(beginSet.size() > endSet.size()) {
+                Set<String> tmp = beginSet;
+                beginSet = endSet;
+                endSet = tmp;
+            }
+            
+            Set<String> tmp = new HashSet<>();
+            
+            for(String str : beginSet) {
+            
+                for(int i = 0; i < str.length(); i++) {
+                
+                    char[] chars = str.toCharArray();    
+                    
+                    for(char a = 'a'; a <= 'z'; a++) {
+                    
+                        chars[i] = a;
+                        
+                        String newV = String.valueOf(chars);
+                        
+                        if(endSet.contains(newV)) 
+                            return step+1;
+                        
+                        if(dic.contains(newV) && visited.add(newV)) {
+                            dic.remove(newV);
+                            tmp.add(newV);
+                        }
+                    }
+                }
+            }
+            
+            step++;
+            beginSet = tmp;
+        }
         return 0;
     }
 }
