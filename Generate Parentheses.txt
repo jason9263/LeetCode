@@ -1,37 +1,29 @@
-public class Solution {
+class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String> res = new LinkedList<String>();
-        String tmp = "";
-        int left = n;
-        int right = n;
-        helper(n,tmp, res, left, right);
+        List<String> res = new ArrayList<String>();
+        helper(res,"", 0, 0,n);
         return res;
     }
     
-    
-    public void helper(int n, String tmp , List<String> res, int left, int right){
-        if(left > right){
+    public void helper(List<String> res, String out, int l, int r, int n){
+        if(l < r){
+            return ;
+        }
+        
+        if(l == n && r == n ){
+            res.add(out);
             return;
         }
         
-        if(left== right &&right == 0){
-            res.add(new String(tmp));
-        }else{
-                   
-        if(left > 0){
-            helper(n, tmp+"(" , res, left-1, right);
+        if(l < n){
+            helper(res, out+ "(" , l+1, r, n);    
         }
         
-        if(right > 0){
-             helper(n, tmp +")", res,left, right-1); 
+        if(r < n){
+            helper(res, out + ")" , l,r+1,n);    
         }
-       
-        }
-
+        
         
     }
-    
-    
-    
     
 }

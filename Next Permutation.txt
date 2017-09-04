@@ -52,3 +52,62 @@ public class Solution {
     }
 
 }
+
+
+
+
+class Solution {
+    public void nextPermutation(int[] nums) {
+        if(nums == null || nums.length <= 1){
+            return ;
+        }
+        int l = 0;
+        int r = 0;
+        
+        int len = nums.length;
+        
+        for(int i = nums.length - 1; i > 0; i--){
+            if(nums[i-1] < nums[i]){
+                
+                l = i;
+                
+                int tmp = nums[i-1];
+                
+                for(int j = len-1; j >= i; j--){
+                    if(nums[j] > tmp){
+                        r = j;
+                        break;
+                    }
+                }
+                
+                        
+        System.out.println(l + "    " + r);
+        
+        swap(nums,l-1,r);
+                        
+        reverse(nums,l,len-1);
+                return;
+                
+            }
+        }
+
+        reverse(nums,0,len-1);
+    }
+    
+    public void swap(int[] nums, int i , int j){
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+    
+    public void reverse(int[] nums, int i , int j){
+        int lo = i;
+        int hi = j;
+        
+        while(lo <= hi){
+            swap(nums,lo++,hi--);
+        }
+    }
+    
+    
+}
