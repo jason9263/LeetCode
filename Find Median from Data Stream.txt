@@ -1,19 +1,37 @@
-public class MedianFinder {
+class MedianFinder {
 
-    private Queue<Long> small = new PriorityQueue(),
-                        large = new PriorityQueue();
-
-    public void addNum(int num) {
-        large.add((long) num);
-        small.add(-large.poll());
-        if (large.size() < small.size())
-            large.add(-small.poll());
+    /** initialize your data structure here. */
+    
+    public PriorityQueue<Integer> minh;
+    public PriorityQueue<Integer> maxh;
+    
+    public MedianFinder() {
+        minh = new PriorityQueue<Integer>();//save the bigger number
+        maxh = new PriorityQueue<Integer>(1,(a,b) -> b-a);// save smaller number
     }
-
+    
+    public void addNum(int num) {
+        maxh.add(num);
+        
+        minh.add(maxh.poll());
+        
+        if(maxh.size() < minh.size()){
+            maxh.add(minh.poll());
+        }
+        
+        
+    }
+    
     public double findMedian() {
-        return large.size() > small.size()
-               ? large.peek()
-               : (large.peek() - small.peek()) / 2.0;
+        double res = 0;
+        if(maxh.size() == minh.size() ){
+            res = minh.peek() + maxh.peek();
+            res = res/2;
+        }else{
+            res = maxh.peek();
+        }
+        
+        return res;
     }
 }
 
