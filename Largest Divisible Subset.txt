@@ -1,40 +1,36 @@
-public class Solution {
-        
+class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
-        List<Integer> res = new ArrayList<Integer>();
-        if (nums == null || nums.length == 0) {
-            return res;
-        }
-        
+        List<Integer> res = new ArrayList<>();
         Arrays.sort(nums);
-        int[] dp = new int[nums.length];
-        Arrays.fill(dp,1);
+        int len = nums.length;
         
-        int lastIndex = 0;
-        int maxLength = 1;
-        // find the length of divisible sequence for every position
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = i-1; j >= 0; j--) {
-                if (nums[i] % nums[j] == 0) {
-                    dp[i] = Math.max(dp[j] + 1, dp[i]);
+        int maxLen = 0;
+        int pos = 0;
+        
+        int[] parent = new int[len];
+        int[] dp = new int[len];
+        
+        for(int i = len-1; i >= 0; i--){
+            for(int j = i ; j < len; j++){
+                if(nums[j] % nums[i] == 0 && dp[i] < dp[j] + 1){
+                    dp[i] = dp[j] +1;
+                    parent[i] = j;
+                    
+                    if(maxLen < dp[i]){
+                        maxLen = dp[i];    
+                        pos = i;
+                    }   
                 }
             }
-            // get the lastIndex
-            if (maxLength < dp[i]) {
-                maxLength = dp[i];
-                lastIndex = i;
-            }
         }
-        // then add every divisible number before last index into the list
-        int divisor = nums[lastIndex];
-        int curDp = dp[lastIndex];
-        for (int i = lastIndex; i >= 0; i--) {
-            if (divisor % nums[i] == 0 && dp[i] == curDp) {
-                res.add(0, nums[i]);
-                divisor = nums[i];
-                curDp--;
-            }
+        
+        
+        for(int i = 0; i < maxLen; i++){
+            res.add(nums[pos]);
+            pos = parent[pos];
         }
+        
+        
         return res;
     }
 }
