@@ -47,3 +47,54 @@ public class Solution {
         return res;
     }
 }
+
+
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+     
+        List<Integer> res = new ArrayList<>();
+        
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
+            return res;
+        }
+        
+        int colbegin = 0;
+        int colend = matrix[0].length-1;
+        
+        int rowbegin = 0;
+        int rowend = matrix.length-1;
+        
+        while(colbegin <= colend && rowbegin <= rowend){
+            
+            for(int i = colbegin; i <= colend; i++){
+                res.add(matrix[rowbegin][i]);
+            }
+            rowbegin++;
+            
+            for(int i = rowbegin; i <= rowend; i++ ){
+                res.add(matrix[i][colend]);
+            }
+            colend--;
+            
+            
+           
+            for(int i = colend; i >= colbegin; i--){
+                 if( rowbegin <= rowend){
+                    res.add(matrix[rowend][i]);
+                 }
+            } 
+                rowend--;
+
+            for(int i = rowend; i >= rowbegin; i--){
+                    if(colbegin <= colend ){
+                        res.add(matrix[i][colbegin]);
+                    }
+                }
+                colbegin++;
+            }
+        
+        return res;
+        
+    }
+}
