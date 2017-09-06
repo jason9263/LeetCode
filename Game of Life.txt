@@ -1,5 +1,6 @@
 public class Solution {
     public void gameOfLife(int[][] board) {
+        
         if(board == null || board[0] == null || board[0].length == 0){
             return ;
         }
@@ -9,7 +10,6 @@ public class Solution {
         
         int[] dx = {-1,0,1,-1,1,-1,0,1};
         int[] dy = {-1,-1,-1,0,0,1,1,1};
-        
         
         for(int i = 0; i< m; i++){
             for(int j = 0; j <n;j++){
@@ -22,8 +22,6 @@ public class Solution {
                     if(x >= 0 && x< m && y >= 0 && y < n &&( board[x][y] == 1 || board[x][y] == 2)){
                         cnt++;
                     }
-                    
-                    
                 }
                 
                 if(board[i][j] > 0 && (cnt < 2 || cnt > 3)){
@@ -31,18 +29,13 @@ public class Solution {
                 }else if(board[i][j] == 0 && cnt == 3){
                     board[i][j] = 3;
                 }
-
-            }
-            
+            }    
         }
         
         for(int  i = 0; i < m ;  i++){
             for(int j = 0; j < n; j++){
                 board[i][j]  = board[i][j]%2;
             }
-        }
-        
-        
-        
+        } 
     }
 }
