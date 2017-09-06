@@ -1,43 +1,34 @@
-public class Solution {
+class Solution {
     public String reverseVowels(String s) {
-        String vow = "aeiouAEIOU";
-        if(s == null || s.length() <= 1){
-            return s;
-        }
-        char[] chars = s.toCharArray();
-        
-        int l = 0;
-        int h = s.length()-1;
-        
-        while(l < h){
-            
-            while(l < h && !vow.contains(chars[l]+"")){
-                l++;
-            }
-            
-            while(l < h && !vow.contains(chars[h]+"")){
-                h--;
-            }
-            
-            if(l < h){
-                            
-            char tmp = chars[l];
-            chars[l] = chars[h];
-            chars[h] = tmp;
-            l++;
-            h--;
-            }else{
-                break;
-            }
-            
-
+        if(s == null || s.length() == 0){
+            return "";
         }
         
-        return new String(chars);
+        String vol = "aeiouAEIOU";
+        char[] c = s.toCharArray();
+        
+        int lo = 0;
+        int hi = s.length()-1;
+        
+        while(lo < hi){
+            
+            while(lo < hi && !vol.contains(c[lo] +"" )){
+                lo++;
+            }
+            
+            while(lo < hi && !vol.contains(c[hi] + "")){
+                hi--;
+            }
+            
+            char tmp = c[lo];
+            c[lo] = c[hi];
+            c[hi] = tmp;
+            
+            lo++;
+            hi--;
+        }
+        
+        return new String(c);
         
     }
-    
-    
-    
-    
 }

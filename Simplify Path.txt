@@ -18,3 +18,26 @@ public class Solution {
         
     }
 }
+
+
+
+class Solution {
+    public String simplifyPath(String path) {
+        String[] words = path.split("/");
+        
+        Stack<String> stack = new Stack<String>();
+        
+        for(String tmp : words){
+            if(!stack.isEmpty() && tmp.equals("..")){
+                stack.pop();
+            }else if(!tmp.equals("") && !tmp.equals(".")&& !tmp.equals("..")){
+                stack.push(tmp);
+            }
+        }
+        
+        List<String> str = new ArrayList<>(stack);
+        
+        return "/" + String.join("/",str);
+        
+    }
+}
