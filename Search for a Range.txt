@@ -31,9 +31,7 @@ class Solution {
         
         while(i < j){
             int mid = i + (j - i)/2 +1;
-            
-           
-            
+
             if(nums[mid] > target){
                 j = mid-1;
             }else{

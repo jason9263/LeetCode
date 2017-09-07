@@ -1,61 +1,4 @@
-public class Solution {
-    public List<String> wordBreak(String s, List<String> wordDict) {
-        List<List<String>> res = new ArrayList<List<String>>();
-        
-        List<String> out = new ArrayList<String>();
-        
-        int depth = 0;
-        int len = s.length();
 
-        dfs(s,res,out,wordDict,depth, len);
-        
-        List<String> result = new ArrayList<String>();
-
-        helper(res,result);
-        
-        return result;
-    }
-    
-    public void helper(List<List<String>> res, List<String> result){
-        
-        for(int i = 0; i < res.size() ; i++){
-            
-            List<String> tmpres = new ArrayList<String>(res.get(i));
-            
-            StringBuilder sb = new StringBuilder();
-            for(int j = 0; j < tmpres.size(); j++){
-                sb.append(tmpres.get(j));
-                sb.append(" ");
-            }
-            if(sb.length() != 0){
-                sb.setLength(sb.length()-1);
-            }
-            result.add(sb.toString());
-        }
-    }
-    
-    
-    public void dfs(String s, List<List<String>> res, List<String> out, List<String> wordDict, int depth , int len ){
-        
-        if(depth > len){
-            return;
-        }
-        
-        if(depth == len){
-            List<String> tmpout = new ArrayList<String>(out);
-            res.add(tmpout);
-            return;
-        }
-        
-        for(String word : wordDict){
-            if(s.startsWith(word)){
-                out.add(word);
-                dfs(s.substring(word.length()), res, out, wordDict,depth+word.length(),len);
-                out.remove(out.size()-1);
-            }
-        }
-    } 
-}
 
 
 
@@ -92,4 +35,43 @@ public class Solution {
         return res;
     }
 
+}
+
+
+class Solution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        
+        HashMap<String , List<String>> map = new HashMap<String, List<String>>();
+        
+        return dfs(s,wordDict,map);
+    }
+    
+    public List<String> dfs(String s, List<String> wordDict, HashMap<String, List<String>> map){
+        
+        if(map.containsKey(s)){
+            return map.get(s);
+        }
+        
+        List<String> res = new ArrayList<String>();
+        
+        if(s.length() == 0){
+            res.add("");
+            return res;
+        }
+        
+        for(String word : wordDict){
+            
+            if(s.startsWith(word)){
+                
+                List<String> list = dfs(s.substring(word.length()), wordDict,map);
+                
+                for(String tmp : list){
+                    res.add(word + ( tmp.isEmpty() ? "" : " ") + tmp);
+                }
+            }
+        }
+        
+        map.put(s, res);
+        return res;
+    } 
 }
