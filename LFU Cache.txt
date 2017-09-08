@@ -24,8 +24,6 @@ public class LFUCache {
         cnts.put(key,tmp+1);
     
         lists.get(tmp).remove(key);
-
-        
         //update min
         
         if(tmp == min && lists.get(tmp).size() == 0){
@@ -36,11 +34,9 @@ public class LFUCache {
         if(!lists.containsKey(tmp+1)){
             lists.put(tmp+1,new LinkedHashSet<Integer>());
         }
-        
 
         lists.get(tmp+1).add(key);
-
-        
+   
         return vals.get(key);
     }
     
@@ -56,15 +52,12 @@ public class LFUCache {
             return;
         }
         
-        if(vals.size() >= cap){
-            
+        if(vals.size() >= cap){    
             int minval = lists.get(min).iterator().next();
             lists.get(min).remove(minval);
             cnts.remove(minval);
             vals.remove(minval);
         }
-        
-        
         
         vals.put(key,value);
         //cnts
@@ -74,8 +67,6 @@ public class LFUCache {
         min = 1;
 
         lists.get(min).add(key);
-
-        
     }
 }
 
