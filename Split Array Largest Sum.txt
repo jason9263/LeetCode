@@ -3,44 +3,49 @@ class Solution {
         long sum = 0;
         int max = 0;
         
-        for(int num : nums){
-            max = Math.max(max,num);
-            sum += num;
+        for(int tmp : nums){
+            max = Math.max(max,tmp);
+            sum += tmp;
         }
         
-        return (int)binary(nums,m, sum, max);
+        if(m == 1){
+            return (int)sum;
+        }
         
-    }
-    
-    private long binary(int[] nums, int m , long high, long low){
-        long mid = 0;
-        while(low < high){
-            mid = low + (high - low)/2;
-            if(valid(nums,m, mid)){
-                high = mid;
+        long l = max;
+        long h = sum;
+        
+        
+        while(l <= h){
+            long mid = l + (h - l)/2;
+            if(valid(nums,mid,m)){
+                h = mid -1;
             }else{
-                low = mid + 1;
+                l = mid + 1;
             }
         }
-        
-        return high;
+        return (int)l;
     }
     
-    private boolean valid(int[] nums, int m , long max){
-        int cur  = 0;
+    public boolean valid(int[] nums, long mid, int m){
+        
+        long total = 0;
         int count = 1;
-        for(int num : nums){
-            cur += num;
-            if(cur > max){
-                cur = num;
+        
+        for(int i = 0; i < nums.length; i++){
+            
+             total += nums[i];
+            
+            if(total > mid){
+                total = nums[i];
                 count++;
-                if(count > m){
-                    return false;
-                }
+            }
+            
+            if(count > m){
+                return false;
             }
         }
-        
         return true;
     }
-
+    
 }

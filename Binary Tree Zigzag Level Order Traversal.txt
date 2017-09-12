@@ -7,58 +7,56 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-                Queue<TreeNode> jq = new LinkedList<TreeNode>();
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
+                List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
         
         if(root == null){
             return res;
         }
         
+        q.add(root);
+        int cnt = 1;
+        int nextcnt = 0;
+        List<Integer> tmplist = new ArrayList<Integer>();
         
-        jq.offer(root);
+        while(!q.isEmpty()){
         
-        while(!jq.isEmpty()){
+            nextcnt = 0;
+            tmplist = new ArrayList<Integer>();
             
-            List<Integer> tmpres = new ArrayList<Integer>();
-            int qsize = jq.size();
+            while(cnt > 0){
+                
+                TreeNode tmp = q.remove();
+                cnt--;
+                tmplist.add(tmp.val);
+                
+            if(tmp.left != null){
+                q.offer(tmp.left);
+                nextcnt++;
+            }
             
-            for(int i = 0 ; i < qsize; i++){
+            if(tmp.right != null){
+                q.offer(tmp.right);
+                nextcnt++;
+            }    
                 
-                if(jq.peek().left != null){
-                    jq.offer(jq.peek().left);
+                if(cnt == 0){
+                    cnt = nextcnt;
+                    break;
                 }
-                
-                if(jq.peek().right != null){
-                    jq.offer(jq.peek().right);
-                }
-                
-                
-                int tmp = jq.poll().val;
-                tmpres.add(tmp);
                 
             }
             
-            res.add(tmpres);
-            
-            
-            
+            res.add(tmplist);   
         }
         
-        int index = 0;
-        
-        for(int i = 0; i < res.size(); i++){
-            List<Integer> tmp = res.get(i);
-            if(i % 2== 0){
-                
-            }else{
-                Collections.reverse(tmp);
-            }
+        for(int i = 1; i < res.size() ; i = i + 2){
+            Collections.reverse(res.get(i));
         }
-        
-        
-        
+
         return res;
     }
 }
