@@ -35,13 +35,10 @@ public class Solution {
                     }
                 }
             }
-            
-            
-            
+                        
         }
         
         return cnt == numCourses;
-        
         
     }
 }
@@ -51,11 +48,9 @@ public class Solution {
 
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        
-
-        
-        
+ 
         Map<Integer,Integer> degree = new HashMap<Integer,Integer>();
+
         Map<Integer,Set<Integer>> item = new HashMap<Integer,Set<Integer>>();
         
         for(int[] tmp: prerequisites){
