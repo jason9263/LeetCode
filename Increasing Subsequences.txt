@@ -1,38 +1,33 @@
-public class Solution {
+class Solution {
     public List<List<Integer>> findSubsequences(int[] nums) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        
+        Set<List<Integer>> res = new HashSet<List<Integer>>();
+        
         List<Integer> out = new ArrayList<Integer>();
         
-        Set<List<Integer>> set = new HashSet<List<Integer>>();
-        int start = 0;
-        helper(set,out,nums,start);
+        helper(res, out, nums,0);
         
-        for(List<Integer> tmp : set){
-            res.add(tmp);
-        }
-        return res;
+        List result = new ArrayList(res);
+        
+        return result;
     }
     
-    
-    public void helper(Set<List<Integer>> set, List<Integer> out, int[] nums, int start){
-     
+    public static void helper(Set<List<Integer>> res, List<Integer> out , int[] nums, int start){
+        
         if(out.size() >= 2){
-            set.add(new ArrayList<Integer>( out));
+            res.add(new ArrayList<Integer>(out));    
         }
         
         for(int i = start; i < nums.length; i++){
             
-         if( out.size() == 0 || nums[i] >= out.get(out.size()-1)){
-                            
-            out.add(nums[i]);
-            helper(set,out,nums,i+1);
-            out.remove(out.size()-1);
+            if(out.size() == 0 || out.get(out.size()-1) <= nums[i]){
+                out.add(nums[i]);
                 
-            }
-
+                helper(res, out, nums, i+1);
+                
+                out.remove(out.size()-1);
+            }  
         }
-        
     }
-    
-    
+ 
 }
