@@ -1,11 +1,16 @@
-public class Solution {
-    final Set<Integer> set = new HashSet<Integer>();
+class Solution {
+    
+    final Set<Integer> dic = new HashSet<Integer>();
+    
     public boolean containsDuplicate(int[] nums) {
-        for(int tmp: nums){
-            if(set.contains(tmp)){
+        
+        for(int num : nums){
+            
+            if(dic.contains(num)){
                 return true;
             }
-            set.add(tmp);
+            
+            dic.add(num);
         }
         
         return false;

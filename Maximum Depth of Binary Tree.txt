@@ -7,15 +7,30 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
+    int max = 0;
+    
+    HashMap<TreeNode,Integer> map = new HashMap<TreeNode, Integer>();
+    
     public int maxDepth(TreeNode root) {
+        
         if(root == null){
             return 0;
+        }    
+        
+        if(map.containsKey(root)){    
+            return map.get(root); 
         }
         
         int left = maxDepth(root.left);
         int right = maxDepth(root.right);
         
-        return (left == 0 || right == 0) ? right + left + 1 : Math.max(left,right)+1;
+        int res = Math.max(left,right) + 1;
+        
+        map.put(root,res);
+        
+        max = Math.max(res, max);
+        
+        return res;
     }
 }
