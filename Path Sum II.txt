@@ -7,36 +7,40 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
+class Solution {
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        List<List<Integer>> res = new LinkedList<List<Integer>>();
-        List<Integer> tmpres = new LinkedList<Integer>();    
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> out = new ArrayList<Integer>();
         
-        helper(res,tmpres,root,sum);
+        helper(res, out, root, sum);
         
         return res;
+        
     }
     
-    
-    public void helper(List<List<Integer>> res, List<Integer> tmpres, TreeNode root, int sum){
+    public void helper(List<List<Integer>> res, List<Integer> out, TreeNode root, int sum){
         
         if(root == null){
             return;
         }
         
-        tmpres.add(root.val);
-        
         if(root.left == null && root.right == null && root.val == sum){
-            res.add(new LinkedList<Integer>(tmpres));
+            
+            out.add(new Integer(root.val));
+            
+            res.add(new ArrayList<Integer>(out));
+            
+            out.remove(out.size()-1);
+            return;
         }
         
-        helper(res,tmpres,root.left,sum-root.val);
-        helper(res,tmpres,root.right,sum-root.val);
+        out.add(new Integer(root.val));
         
-        tmpres.remove(tmpres.size()-1);
+        helper(res, out, root.left, sum-root.val);
+        helper(res, out, root.right, sum - root.val);
+        
+        out.remove(out.size()-1);
         
     }
-    
-    
-    
+
 }
