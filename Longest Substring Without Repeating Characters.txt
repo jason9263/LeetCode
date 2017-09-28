@@ -1,5 +1,6 @@
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
+
         if(s == null ||s.length() == 0){
             return 0;
         }
@@ -19,8 +20,9 @@ public class Solution {
                 
             }
             
-            map.put(tmp,i);
+            map.put(tmp,i); 
             max = Math.max(max, i - j + 1);
+            
         }
         
         return max;
