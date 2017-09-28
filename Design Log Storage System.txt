@@ -15,12 +15,16 @@ public class LogSystem {
     public List<Integer> retrieve(String s, String e, String gra) {
         
         List<Integer> res = new LinkedList<>();
+        
         int idx = indices[units.indexOf(gra)]; 
         
         for(String[] timestamp : timestamps){
+        
             if(timestamp[1].substring(0,idx).compareTo(s.substring(0,idx)) >= 0 &&
               timestamp[1].substring(0,idx).compareTo(e.substring(0,idx)) <= 0){
+        
                 res.add(Integer.parseInt(timestamp[0]));
+        
             }
         }
         
