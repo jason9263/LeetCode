@@ -20,9 +20,7 @@ public class Solution {
             jmap.put(inorder[i],i);
         }
         
-        
         TreeNode res = helper(preorder, 0 , preorder.length-1 , inorder, 0 , inorder.length- 1, jmap);
-        
         
         return res;
     }
@@ -46,7 +44,5 @@ public class Solution {
         return root;
         
     }
-    
-    
-    
+
 }
