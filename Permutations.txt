@@ -36,7 +36,7 @@ class Solution {
         List<Integer> out = new ArrayList<>();
         Arrays.sort(nums);
         boolean[] used = new boolean[nums.length];
-        backtrack(res, out,nums,used);
+        backtrack(res,out,nums,used);
         return res;
     }
     

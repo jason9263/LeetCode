@@ -23,9 +23,7 @@ class Solution {
                     res = sum;
                 }
                 
-            }
-            
-             
+            }  
         }
         return res;   
     }

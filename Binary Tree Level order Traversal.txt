@@ -18,6 +18,7 @@ class Solution {
         }
         
         q.add(root);
+        
         int cnt = 1;
         int nextcnt = 0;
         List<Integer> tmplist = new ArrayList<Integer>();

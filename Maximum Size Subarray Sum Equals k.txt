@@ -9,10 +9,7 @@ class Solution {
             if(sum == k){
                 max = i+1;
             }else if(map.containsKey(sum - k)){
-                
-                System.out.println(i + "    " + (sum-k) + "     "+  map.get(sum  -k));
-                
-                max  = Math.max(max, i - map.get(sum - k));
+               max  = Math.max(max, i - map.get(sum - k));
             }
             
             if(!map.containsKey(sum)){

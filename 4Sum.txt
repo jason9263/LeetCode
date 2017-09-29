@@ -29,15 +29,17 @@ public class Solution {
                         res.add(jlist);
                         jset.add(jlist);
                     }
+
                     left++;
                     right--;
+                
                 }else if(tmp > tmptarget){
                     right--;
                 }else{
                     left++;
                 }
+
                 }
-                
             }
         }
         

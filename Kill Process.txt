@@ -31,3 +31,72 @@ public class Solution {
         
     }
 }
+
+class Solution {
+    public List<Integer> killProcess(List<Integer> pid, List<Integer> ppid, int kill) {
+        
+        if(kill == 0){
+            return pid;
+        }
+        
+        int n = pid.size();
+        
+        Map<Integer,Set<Integer>> tree = new HashMap<>();
+        
+        for(int i = 0; i < n ; i++){
+            tree.put(pid.get(i), new HashSet<Integer>()); 
+        }
+        
+        for(int i = 0; i < n; i++){
+            if(tree.containsKey(ppid.get(i))){
+                
+                Set<Integer> children = tree.get(ppid.get(i));
+                children.add(pid.get(i));
+                tree.put(ppid.get(i), children); 
+            }
+        }
+        
+        List<Integer> result = new ArrayList<>();
+        traverse(tree, result, kill);
+        
+        return result; 
+    }
+    
+    private void traverse(Map<Integer, Set<Integer>> tree, List<Integer> result , int pid){
+        result.add(pid);
+        
+        Set<Integer> children = tree.get(pid);
+        
+        for(Integer child : children){
+            traverse(tree, result, child);
+        }
+    }
+}
+
+
+
+import java.io.*;
+public static void main(String [] args) throws IOException{ 
+         System.out.print("Enter a Char:"); 
+         char i = (char) System.in.read(); 
+         System.out.println("your char is :"+i); 
+
+
+
+
+
+         import java.util.Scanner;
+public static void main(String [] args) { 
+         Scanner sc = new Scanner(System.in); 
+         System.out.println("请输入你的姓名："); 
+         String name = sc.nextLine(); 
+         System.out.println("请输入你的年龄："); 
+         int age = sc.nextInt(); 
+         System.out.println("请输入你的工资："); 
+         float salary = sc.nextFloat(); 
+         System.out.println("你的信息如下："); 
+         System.out.println("姓名："+name+"\n"+"年龄："+age+"\n"+"工资："+salary); 
+
+
+
+         

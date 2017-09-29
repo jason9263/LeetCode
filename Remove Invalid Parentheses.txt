@@ -29,8 +29,6 @@ class Solution {
                 if(qs.charAt(i) != '(' && qs.charAt(i) != ')')
                     continue;
                 
-                   
-                
                     String tmps = qs.substring(0,i) + qs.substring(i+1);
                 
                     if(!set.contains(tmps)){

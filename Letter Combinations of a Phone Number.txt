@@ -14,8 +14,11 @@ class Solution {
         for(int i = 0; i < digits.length(); i++){
             
             while(res.peek().length() == i){
+
                 String t = res.remove();
+                
                 int index = digits.charAt(i) - '0';
+
                 for(char c: mapping[index].toCharArray()){
                     res.add(t+c);
                 }

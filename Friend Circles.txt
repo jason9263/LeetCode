@@ -9,9 +9,12 @@ class Solution {
         int[] visited = new int[len];
         
         for(int i = 0; i < len; i++){
+            
             if(visited[i] == 0){
+
                 dfs(M, i, visited);
                 cnt++;
+
             }
         }
         
@@ -19,10 +22,13 @@ class Solution {
     }
     
     public void dfs(int[][] M , int i , int[] visited){
+       
        for(int j = 0; j < len; j++){
+           
            if(visited[j] == 0 && M[i][j] == 1){
-               visited[j] = 1;
                
+               visited[j] = 1;    
+
                dfs(M, j , visited);
            }
        }

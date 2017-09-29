@@ -19,10 +19,9 @@ public class Solution {
                 j = Math.max(map.get(tmp) + 1,j);
                 
             }
-            
+                
             map.put(tmp,i); 
             max = Math.max(max, i - j + 1);
-            
         }
         
         return max;
