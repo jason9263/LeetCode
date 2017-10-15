@@ -51,7 +51,11 @@ class Solution {
             if(tree.containsKey(ppid.get(i))){
                 
                 Set<Integer> children = tree.get(ppid.get(i));
+<<<<<<< HEAD
                 children.add(pid.get(i));
+=======
+                children.add(ppid.get(i));
+>>>>>>> origin/master
                 tree.put(ppid.get(i), children); 
             }
         }
@@ -72,6 +76,7 @@ class Solution {
         }
     }
 }
+<<<<<<< HEAD
 
 
 
@@ -100,3 +105,5 @@ public static void main(String [] args) {
 
 
          
+=======
+>>>>>>> origin/master
