@@ -1,45 +1,39 @@
-public class Solution {
+class Solution {
     public int evalRPN(String[] tokens) {
-        int res = 0;
         
-        Stack<Integer> js = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<Integer>();
         
-        for(String tmp : tokens){
+        for(int i = 0; i < tokens.length; i++){
             
-            if(tmp.equals("+") || tmp.equals("-") || tmp.equals("*")|| tmp.equals("/")){
-                if(js.size() < 2){
-                    break;
-                }
+            String c = tokens[i];
+            
+            switch(c) {
                 
-                int var1 = js.peek();
-                js.pop();
-                int var2 = js.peek();
-                js.pop();
+            case "+":
+                stack.push(stack.pop() + stack.pop());
+                break;
                 
-                int tmpres = 0;
+            case "-":
+                stack.push(-stack.pop() + stack.pop());
+                break;
                 
-                if(tmp.equals("+")){
-                    tmpres = var1+ var2;
-                    js.push(tmpres);
-                }else if(tmp.equals("-")){
-                    tmpres = var2 -var1;
-                     js.push(tmpres);
-                }else if(tmp.equals("*")){
-                    tmpres = var1 * var2;
-                     js.push(tmpres);
-                }else if(tmp.equals("/")){
-                    tmpres = var2/ var1;
-                     js.push(tmpres);
+            case "*":
+                stack.push(stack.pop() * stack.pop());
+                break;
+                
+            case "/":
+                int a = stack.pop();
+                int b = stack.pop();
+                stack.push(b/a);
+                break;
+                
+            default:
+                stack.push(new Integer(c));
+                
             }
-                
-            }
-            else{
-                    js.push(Integer.valueOf(tmp));
-                }
 
         }
         
-        
-        return js.peek();
+        return Integer.valueOf(stack.pop());
     }
 }

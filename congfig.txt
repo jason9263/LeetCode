@@ -1,0 +1,26 @@
+{                                                                                                                                   
+  "display_name": "PySpark (Yarn Cluster)",                                                                                         
+  "language": "python",                                                                                                             
+  "argv": [                                                                                                                         
+    "/home/udocker/phoenix-worker/environments/python2/bin/python",                                                                 
+    "-m",                                                                                                                           
+    "ipykernel",                                                                                                                    
+    "-f",                                                                                                                           
+    "{connection_file}"                                                                                                             
+  ],                                                                                                                                
+  "env": {                                                                                                                          
+    "HADOOP_USER_NAME": "junwei.zhang",                                                                                             
+    "YARN_CONF_DIR": "/home/udocker/phoenix-worker/config/sjc1/hadoop/conf",                                                        
+    "SPARK_HOME": "/opt/spark/spark-2.0.0",                                                                                         
+    "PYTHONPATH": "/opt/spark/spark-2.0.0/python/:/opt/spark/spark-2.0.0/python/lib/py4j-0.10.1-src.zip",                           
+    "PYTHONSTARTUP": "/opt/spark/spark-2.0.0/python/pyspark/shell.py",                                                              
+    "PYSPARK_SUBMIT_ARGS": "--master yarn --deploy-mode client --num-executors 128 --queue fraud-tier3 --conf spark.driver.host=10.3
+0.16.24 --conf spark.driver.bindAddress=10.30.16.24 --conf spark.driver.memory=12g --conf spark.driver.maxResultSize=2g --conf spark
+.executor.cores=3 --conf spark.executor.memory=10g --conf spark.yarn.executor.memoryOverhead=4096 --conf spark.sql.parquet.binaryAsS
+tring=true --conf spark.rpc.message.maxSize=256 --conf spark.eventLog.enabled=true --conf spark.eventLog.overwrite=true --conf spark
+.eventLog.dir=hdfs://nameservice1/user/spark/applicationHistory --conf spark.yarn.historyServer.address=http://hadoopmaster09-sjc1.p
+rod.uber.internal:18088 --conf spark.ui.port=9040 --driver-class-path /home/udocker/phoenix-worker/config/sjc1/hive/conf:~/graphfram
+es-0.5.0-spark2.0-s_2.11.jar --jars /home/udocker/junwei.zhang/graphframes/graphframes-0.5.0-spark2.0-s_2.11.jar --conf spark.execut
+or.extraClassPath=graphframes-0.5.0-spark2.0-s_2.11.jar --conf spark.jars.packages=graphframes:graphframes:0.5.0-spark2.0-s_2.11 pys
+park-shell"                                                                                                                         
+  }
