@@ -4,37 +4,39 @@ class Solution {
     }
     
     public List<Integer> helper(String s){
-        List<Integer> res = new ArrayList<Integer>();
-        for(int k = 0; k < s.length(); k++){
-            
-            char c = s.charAt(k);
-            if(c == '+' || c == '-' || c== '*'){
-                List<Integer> left = helper(s.substring(0,k));
-                List<Integer> right = helper(s.substring(k+1));
+        
+        List<Integer> rst = new LinkedList<Integer>();
+        
+        for(int i = 0; i < s.length(); i++){
+            if(s.charAt(i) == '-' || s.charAt(i) == '+' || s.charAt(i) == '*'){
+                String left = s.substring(0,i);
+                String right = s.substring(i+1);
                 
-                for(int i = 0; i < left.size(); i++){
-                    for(int j = 0; j < right.size(); j++){
-                        
-                        
-                        if(c == '+'){
-                            res.add(left.get(i) + right.get(j));
-                        }else if(c == '-'){
-                            res.add(left.get(i) - right.get(j));
-                        }else if(c == '*'){
-                            res.add(left.get(i) * right.get(j));
+                List<Integer> leftlist = helper(left);
+                List<Integer> rightlist = helper(right);
+                
+                for(int m = 0; m < leftlist.size(); m++){
+                    for(int n = 0; n < rightlist.size(); n++){
+                        if(s.charAt(i) == '+'){
+                            int tmp = leftlist.get(m) + rightlist.get(n);
+                            rst.add(tmp);
+                        }else if(s.charAt(i) == '-'){
+                            int tmp = leftlist.get(m) - rightlist.get(n);
+                            rst.add(tmp);
+                        }else if(s.charAt(i) == '*'){
+                            int tmp = leftlist.get(m) * rightlist.get(n);
+                            rst.add(tmp);
                         }
-                        
                     }
                 }
-                
-            }            
-        }
-        
-        if(res.size() == 0){
-            res.add(Integer.valueOf(s));
-        }
-        
-        return res;
-    }
 
+            } 
+        }
+
+                if(rst.size() == 0){
+                     rst.add(Integer.valueOf(s));
+                }
+
+        return rst;  
+    }
 }
