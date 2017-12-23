@@ -37,6 +37,7 @@ public class Solution {
     }
     
     void getPerm(List<Character> list, String mid,boolean[] used, StringBuilder sb, List<String> res){
+        
         if(sb.length() == list.size()){
             res.add(sb.toString()+mid+sb.reverse().toString());
             sb.reverse();
@@ -55,9 +56,6 @@ public class Solution {
                 used[i] = false;
                 sb.deleteCharAt(sb.length()-1);
             }
-
         }
-
     }
-      
 }
