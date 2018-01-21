@@ -32,3 +32,38 @@ public class Solution {
         
         }
 }
+
+
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        List<String>  result = new ArrayList<String>();
+        
+        HashMap<String,Integer> hm = new HashMap<String,Integer>();
+        
+        for(String tmp:words){
+            if(hm.containsKey(tmp)){
+                hm.put(tmp,hm.get(tmp) + 1);
+            }else{
+                hm.put(tmp,1);
+            }
+        }
+        
+        PriorityQueue<Map.Entry<String,Integer>> pq = new PriorityQueue<>((a,b)-> a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue());
+        
+        for(Map.Entry<String,Integer> entry:hm.entrySet()){
+            
+            pq.offer(entry);
+            
+            if(pq.size() > k){
+            
+                pq.poll();
+            }
+        }
+        
+        while(!pq.isEmpty()){
+            result.add(0,pq.poll().getKey());
+        }
+        
+        return result;
+    }
+}

@@ -1,0 +1,35 @@
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        if(image == null){
+            return image;
+        }
+        
+        
+        int m = image.length;
+        int n = image[0].length;
+        
+        if(sr>= m || sc >= n){
+            return image;
+        }
+        
+        if(image[sr][sc] == newColor){
+            return image;
+        }else{
+            image = dfs(image,sr, sc, m,n,image[sr][sc],newColor);
+            return image;
+        }
+
+    }
+    
+    public int[][] dfs(int[][] image, int i , int j , int m, int n, int oldc , int newc){
+        if(i < m && i >= 0 && j < n && j >= 0 && image[i][j] == oldc){
+            image[i][j] = newc;
+            dfs(image,i+1,j,m,n,oldc,newc);
+            dfs(image,i-1,j,m,n,oldc,newc);
+            dfs(image,i,j-1,m,n,oldc,newc);
+            dfs(image,i,j+1,m,n,oldc,newc);
+        }
+        return image;
+    }
+    
+}
