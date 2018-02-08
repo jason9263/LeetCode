@@ -34,8 +34,11 @@ class WordDictionary {
     }
     
     public boolean bfs(char[] word, int start, TrieNode node){
+
         if(start == word.length){
+        
             return node.isword;
+        
         }
         
         if(word[start] != '.'){
