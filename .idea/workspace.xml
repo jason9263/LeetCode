@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a8017c9-de3c-42c2-a51c-889fb9f206ab" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="1a8017c9-de3c-42c2-a51c-889fb9f206ab" name="Default" comment="reorganize the package">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/old_code/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.py" beforeDir="false" afterPath="$PROJECT_DIR$/hello.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,8 +150,17 @@
       <updated>1493258233361</updated>
       <workItem from="1493258237619" duration="608000" />
       <workItem from="1565895297178" duration="1622000" />
-      <workItem from="1566052319683" duration="994000" />
+      <workItem from="1566052319683" duration="1174000" />
+      <workItem from="1566256065213" duration="1189000" />
     </task>
+    <task id="LOCAL-00001" summary="reorganize the package">
+      <created>1566062968563</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566062968564</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,5 +181,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="reorganize the package" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganize the package" />
   </component>
 </project>
