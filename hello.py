@@ -1,26 +1,40 @@
-class NumArray(object):
-    def __init__(self, nums):
-        self.n = len(nums)
-        self.a, self.c = nums, [0] * (self.n + 1)
-        for i in range(self.n):
-            k = i + 1
-            while k <= self.n:
-                self.c[k] += nums[i]
-                k += (k & -k)
+# class Solution:
+from collections import defaultdict
+from typing import List
 
-    def update(self, i, val):
-        diff, self.a[i] = val - self.a[i], val
-        i += 1
-        while i <= self.n:
-            self.c[i] += diff
-            i += (i & -i)
+def findItinerary(tickets: List[List[str]]) -> List[str]:
+    d = defaultdict(list)
+# establish the graph
+    for flight in tickets:
+        d[flight[0]].append(flight[1])
 
-    def sumRange(self, i, j):
-        res, j = 0, j + 1
-        while j:
-            res += self.c[j]
-            j -= (j & -j)
-        while i:
-            res -= self.c[i]
-            i -= (i & -i)
-        return res
+    trips = ["SEA"]
+
+    def dfs(start): # start 
+        # start point populate all the children to run         
+        #base condition
+
+        if len(trips) == len(tickets) + 1:
+            print(trips)
+            return trips
+
+        # further steps 
+        myDests = sorted(d[start]) #SFO
+
+        for dst in myDests:
+            d[start].remove(dst)
+            trips.append(dst)  # SEA + SFO + LAX + DXW + BOS + JFK == 6 node city
+            # left dfs 
+            tmptrip = dfs(dst)
+
+            if tmptrip:
+                return tmptrip # this the basic return the city name or list of city name
+            #backtacking from here pop the dst
+            trips.pop()
+            d[start] += dst
+
+    dfs("SEA")
+
+tickets = [("DXW", "BOS"), ("SEA", "SFO"),("LAX", "DXW"),("BOS", "JFK"), ("SFO", "LAX")]
+
+findItinerary(tickets)
