@@ -1,23 +1,32 @@
-from threading import Lock
-class FooBar:
-    def __init__(self, n):
-        self.n = n
-        self.foo_lock = Lock()
-        self.bar_lock = Lock()
-        self.bar_lock.acquire()
+class Solution:
+    # def minWindow(self, s: str, t: str) -> str:
 
+    def minWindow(self, s, t):
+        left, right = 0, 0
+        # count T chars
+        counter = collections.defaultdict(int)
+        for a in t:
+            counter[a] += 1
 
-    def foo(self, printFoo: 'Callable[[], None]') -> None:
-        for i in range(self.n):
-            self.foo_lock.acquire()
-            # printFoo() outputs "foo". Do not change or remove this line.
-            printFoo()
-            self.bar_lock.release()
+        minwindow = len(s) + 1
+        answer = None
 
+        while right <= len(s):
+            # check all chars in T are in the current answer
+            if all(map(lambda x: True if x <= 0 else False, counter.values())):
+                if minwindow > right-left:
+                    minwindow = right-left
+                    answer = s[left:right]
+                char = s[left]
+                if char in counter:
+                    counter[char] += 1
+                left += 1
+            else:
+                if right == len(s):
+                    break
+                char = s[right]
+                if char in counter:
+                    counter[char] -= 1
+                right += 1
 
-    def bar(self, printBar: 'Callable[[], None]') -> None:
-        for i in range(self.n):
-            self.bar_lock.acquire()
-            # printBar() outputs "bar". Do not change or remove this line.
-            printBar()
-            self.foo_lock.release()
+        return answer if answer else ''

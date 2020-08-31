@@ -1,25 +1,28 @@
-# Author: Huahua
-class Solution:
-  def calculate(self, s: str) -> int:
-    nums = []
-    op = '+'
-    cur = 0
-    i = 0
-    while i < len(s):
-      if s[i] == ' ': 
-        i += 1
-        continue
-      while i < len(s) and s[i].isdigit():
-        cur = cur * 10 + ord(s[i]) - ord('0')
-        i += 1      
-      if op in '+-':
-        nums.append(cur * (1 if op == '+' else -1))
-      elif op == '*':
-        nums[-1] *= cur
-      elif op == '/':
-        sign = -1 if nums[-1] < 0 or cur < 0 else 1
-        nums[-1] = abs(nums[-1]) // abs(cur) * sign
-      cur = 0
-      if (i < len(s)): op = s[i]
-      i += 1    
-    return sum(nums)
+# Standard dfs with two base conditions and three recursive calls
+
+# If the same values has been explored before or if value not present in array, then return false.
+# If destination found, then return True
+# Keep log of the path visited so that not to visit that one again
+# Else go further with all the possible options
+
+# Use a set of stones for faster lookup
+
+
+class Solution(object):
+    def canCross(self, stones):
+        n = len(stones)
+        stoneSet = set(stones)
+        visited = set()
+
+        def goFurther(value, units):
+            if (value+units not in stoneSet) or ((value, units) in visited):
+                return False
+
+            if value+units == stones[n-1]:
+                return True
+
+            visited.add((value, units))
+
+            return goFurther(value+units, units) or goFurther(value+units, units-1) or goFurther(value+units, units+1)
+
+        return goFurther(stones[0], 1)
