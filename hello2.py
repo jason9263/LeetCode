@@ -1,17 +1,17 @@
-class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
-        if not nums or not k:
-            return 0
+import PyPDF2
+import matlab.engine
 
-        cnt = 0
-        dic = dict()
+# pdf file object
+# you can find find the pdf file with complete code in below
+pdfFileObj = open('../mor.pdf', 'rb')
+# pdf reader object
+pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+# number of pages in pdf
+print(pdfReader.numPages)
+# a page object
+pageObj = pdfReader.getPage(3)
+# extracting text from page.
+# this will print the text you can also save that into String
+print(pageObj.extractText())
 
-        sum_x = 0
-        dic[0] = 1
-
-        for i in range(len(nums)):
-            sum_x += nums[i]
-            cnt += dic.get(sum_x - k, 0)
-            dic[sum_x] = dic.get(sum_x, 0) + 1
-
-        return cnt
+pdfFileObj.close()
