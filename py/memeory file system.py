@@ -73,7 +73,11 @@ class FileSystem:
             cur = cur.child[p]
         if cur.isFile:
             return cur.content
+
+
 ------------------------------------------------------------------
+
+
 class TrieNode:
     def __init__(self):
         self.child = collections.defaultdict(TrieNode)
