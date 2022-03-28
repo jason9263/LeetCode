@@ -1,0 +1,29 @@
+two parts:
+
+1) scale the system autoscaling
+2) opeartion performance
+
+web application, service, distributed system
+
+get the requirement first?
+
+1)internet or auth, user, scale, scope
+
+2)
+architecture level
+
+	design consideration  trade off discussion.
+
+why take this action?
+
+major commponent , how to connect them?
+
+3) clearly idfenfy the function, how to enable the UI for inter or exterior.
+
+4) data belongs to the database or the same store
+
+5) one big truck of datablob  to one rdms
+
+6) bottlenecks
+
+7) operations performance , the key mertics to monitor the services.
