@@ -53,3 +53,26 @@ def solution(s, t, g):
 s = "A"
 t = "C"
 print(solution(s, t, g))
+
+
+def solutionpath(s, t, g):
+    ans = []
+
+    def helper(cur, path, seen):
+        if cur == t:
+            ans.append(path)
+            return
+
+        if cur in g:
+            for neighbor in g[cur]:
+                if neighbor not in seen:
+                    seen.add(neighbor)
+                    helper(neighbor, path + [neighbor], seen)
+                    seen.remove(neighbor)
+        return
+
+    helper(s, [s], {s})
+    return ans
+
+
+print(solutionpath(s, t, g))
