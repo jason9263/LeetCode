@@ -1,6 +1,4 @@
 from collections import defaultdict
-from email.policy import default
-
 
 g = {
     "A": {"B": 6, "D": 1},
