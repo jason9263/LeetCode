@@ -1,23 +1,34 @@
 class Solution:
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        ans = []
-        if not nums or k <= 0 or k > len(nums):
-            return ans
+    def minTransfers(self, transactions: List[List[int]]) -> int:
+        if not transactions:
+            return 0
 
-        l = 0
-        q = deque()
+        debt = defaultdict(int)
+        for f, t, a in transactions:
+            debt[f] -= a
+            debt[t] += a
 
-        for r in range(len(nums)):
-            while q and nums[q[-1]] < nums[r]:
-                q.pop()
+        dlist = [val for key, val in debt.items() if val != 0]
 
-            q.append(r)
+        def helper(k, dl):
+            if k == len(dl):
+                return 0
 
-            if l > q[0]:
-                q.popleft()
+            if dl[k] == 0:
+                return helper(k + 1, dlist)
 
-            if q and r >= k - 1:
-                ans.append(nums[q[0]])
-                l += 1
+            cur = dl[k]
+            min_trans = float('inf')
 
-        return ans
+            for i in range(k + 1, len(dl)):
+                d_next = dl[i]
+                if (cur * d_next < 0):
+                    dl[i] = cur + d_next
+                    min_trans = min(min_trans, 1 + helper(k + 1, dl))
+                    dl[i] = d_next
+
+                    if cur + d_next == 0:
+                        break
+            return min_trans
+
+        return helper(0, dlist)
