@@ -20,7 +20,6 @@ class Solution:
             trie.addWord(word)
         
         def helper(i, j, word, node):
-            nonlocal m, n
             if '-' in node:
                 res.append(word)
                 del node['-']
@@ -48,7 +47,6 @@ class Solution:
             
             if not curnode:
                 node.pop(tmp)
-                
 
         for i in range(m):
             for j in range(n):
